@@ -1,7 +1,7 @@
 {
-  "name": "@stateicons/cli",
+  "name": "@stateglyph/cli",
   "version": "0.1.0",
-  "description": "Copy StateIcons components into React projects.",
+  "description": "Copy StateGlyph components into React projects.",
   "license": "MIT",
   "author": "Kamalveer Singh",
   "keywords": [
@@ -13,19 +13,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kamalhara/state_icons.git",
+    "url": "git+https://github.com/kamalhara/StateGlyph.git",
     "directory": "packages/cli"
   },
-  "homepage": "https://github.com/kamalhara/state_icons#readme",
+  "homepage": "https://github.com/kamalhara/StateGlyph#readme",
   "bugs": {
-    "url": "https://github.com/kamalhara/state_icons/issues"
+    "url": "https://github.com/kamalhara/StateGlyph/issues"
   },
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
   "bin": {
-    "stateicons": "./dist/index.js"
+    "stateglyph": "./dist/index.js"
   },
   "files": [
     "dist",
@@ -38,10 +38,10 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateicons/core": "^0.1.0",
+    "@stateglyph/core": "^0.1.0",
     "commander": "^15.0.0"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.19.0"
   }
 }

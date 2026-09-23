@@ -1,4 +1,4 @@
-import { fullscreenStateIcon } from "@stateicons/core";
+import { fullscreenStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type FullscreenStateIconProps = Omit<

@@ -1,7 +1,7 @@
 {
-  "name": "@stateicons/core",
+  "name": "@stateglyph/core",
   "version": "0.1.0",
-  "description": "Typed state definitions and metadata for StateIcons.",
+  "description": "Typed state definitions and metadata for StateGlyph.",
   "license": "MIT",
   "author": "Kamalveer Singh",
   "keywords": [
@@ -13,12 +13,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kamalhara/state_icons.git",
+    "url": "git+https://github.com/kamalhara/StateGlyph.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/kamalhara/state_icons#readme",
+  "homepage": "https://github.com/kamalhara/StateGlyph#readme",
   "bugs": {
-    "url": "https://github.com/kamalhara/state_icons/issues"
+    "url": "https://github.com/kamalhara/StateGlyph/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -44,6 +44,6 @@
     "prepublishOnly": "npm run build"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.19.0"
   }
 }

@@ -1,4 +1,4 @@
-import { shuffleStateIcon } from "@stateicons/core";
+import { shuffleStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type ShuffleStateIconProps = Omit<

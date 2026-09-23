@@ -1,4 +1,4 @@
-import { chevronHorizontalStateIcon } from "@stateicons/core";
+import { chevronHorizontalStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type ChevronHorizontalStateIconProps = Omit<

@@ -20,7 +20,7 @@ afterEach(async () => {
 });
 
 async function createTemporaryProject() {
-  const directory = await mkdtemp(path.join(tmpdir(), "stateicons-cli-"));
+  const directory = await mkdtemp(path.join(tmpdir(), "stateglyph-cli-"));
   temporaryDirectories.push(directory);
   return directory;
 }
@@ -31,14 +31,14 @@ describe("addIcons", () => {
     const result = await addIcons(["upload", "save"], { cwd });
     const uploadFile = path.join(
       cwd,
-      "components/stateicons/upload-state-icon.tsx",
+      "components/stateglyph/upload-state-icon.tsx",
     );
     const source = await readFile(uploadFile, "utf8");
 
     expect(result.added).toHaveLength(2);
     expect(source).toContain("export function UploadStateIcon");
     expect(source).toContain('from "lucide-react"');
-    expect(source).not.toContain("@stateicons/react");
+    expect(source).not.toContain("@stateglyph/react");
   });
 
   it("does not overwrite an existing file without force", async () => {
@@ -49,7 +49,7 @@ describe("addIcons", () => {
 
     expect(result.added).toEqual([]);
     expect(result.skipped).toEqual([
-      "components/stateicons/copy-state-icon.tsx",
+      "components/stateglyph/copy-state-icon.tsx",
     ]);
   });
 
@@ -66,10 +66,10 @@ describe("addIcons", () => {
     const result = await addIcons(["bookmark"], { cwd, dryRun: true });
 
     expect(result.added).toEqual([
-      "components/stateicons/bookmark-state-icon.tsx",
+      "components/stateglyph/bookmark-state-icon.tsx",
     ]);
     await expect(
-      readFile(path.join(cwd, "components/stateicons/bookmark-state-icon.tsx")),
+      readFile(path.join(cwd, "components/stateglyph/bookmark-state-icon.tsx")),
     ).rejects.toThrow();
   });
 });

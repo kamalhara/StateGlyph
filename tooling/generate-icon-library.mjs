@@ -589,7 +589,7 @@ export type ${icon.pascal}State = keyof typeof ${icon.camel}StateIcon.states;
 
 const reactFile = (
   icon,
-) => `import { ${icon.camel}StateIcon } from "@stateicons/core";
+) => `import { ${icon.camel}StateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type ${icon.pascal}StateIconProps = Omit<StateIconProps<typeof ${icon.camel}StateIcon.states>, "definition">;
@@ -638,7 +638,7 @@ const docsRecords = icons
     slug: ${q(x.slug)}, name: ${x.camel}StateIcon.title, componentName: "${x.pascal}StateIcon", category: ${q(x.docsCategory)},
     source: "Lucide", license: ${x.camel}StateIcon.source.license, description: ${x.camel}StateIcon.description,
     keywords: ${x.camel}StateIcon.tags, states: toStateRecords(${x.camel}StateIcon),
-    usage: ${q(`import { ${x.pascal}StateIcon } from "@stateicons/react";\n\n<${x.pascal}StateIcon state="${x.initialState}" decorative />`)},
+    usage: ${q(`import { ${x.pascal}StateIcon } from "@stateglyph/react";\n\n<${x.pascal}StateIcon state="${x.initialState}" decorative />`)},
     render: ({ state, size, className }: RenderIconOptions) => <${x.pascal}StateIcon state={state as ComponentProps<typeof ${x.pascal}StateIcon>["state"]} size={size} strokeWidth={1.65} decorative className={className} />,
   },`,
   )
@@ -649,10 +649,10 @@ import {
   ${icons.map((x) => `  ${x.camel}StateIcon,`).join("\n")}
   type StateIconDefinition,
   type StateIconStates,
-} from "@stateicons/core";
+} from "@stateglyph/core";
 import {
 ${icons.map((x) => `  ${x.pascal}StateIcon,`).join("\n")}
-} from "@stateicons/react";
+} from "@stateglyph/react";
 
 export type IconStateRecord = { name: string; label: string; description: string; continuous: boolean };
 type RenderIconOptions = { state: string; size: number; className?: string };
@@ -696,4 +696,4 @@ await writeFile(
   path.join(root, "apps/docs/src/data/icon-catalog.tsx"),
   docsRegistry,
 );
-console.log(`Generated ${icons.length} StateIcons.`);
+console.log(`Generated ${icons.length} StateGlyph.`);

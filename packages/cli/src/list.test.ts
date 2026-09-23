@@ -6,7 +6,7 @@ describe("formatIconList", () => {
   it("lists all icons and their categories", () => {
     const output = formatIconList();
 
-    expect(output).toContain("StateIcons — 30 icons");
+    expect(output).toContain("StateGlyph — 30 icons");
     expect(output).toContain("Async workflows (12)");
     expect(output).toContain("Media controls (8)");
     expect(output).toContain("Navigation and layout (7)");

@@ -1,7 +1,7 @@
 import { access, mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { stateIconCatalog } from "@stateicons/core";
+import { stateIconCatalog } from "@stateglyph/core";
 
 import { renderIconComponent } from "./template";
 
@@ -31,7 +31,7 @@ export async function addIcons(
   options: AddIconsOptions = {},
 ): Promise<AddIconsResult> {
   const cwd = options.cwd ?? process.cwd();
-  const directory = options.directory ?? "components/stateicons";
+  const directory = options.directory ?? "components/stateglyph";
   const destination = path.resolve(cwd, directory);
   const requestedNames = requestedIcons.includes("all")
     ? stateIconCatalog.map((icon) => icon.id)
@@ -43,7 +43,7 @@ export async function addIcons(
 
   if (unknownNames.length > 0) {
     throw new Error(
-      `Unknown icon${unknownNames.length === 1 ? "" : "s"}: ${unknownNames.join(", ")}. Run 'stateicons list' to see valid names.`,
+      `Unknown icon${unknownNames.length === 1 ? "" : "s"}: ${unknownNames.join(", ")}. Run 'stateglyph list' to see valid names.`,
     );
   }
 

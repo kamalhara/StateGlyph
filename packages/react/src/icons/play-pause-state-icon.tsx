@@ -1,4 +1,4 @@
-import { playPauseStateIcon } from "@stateicons/core";
+import { playPauseStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type PlayPauseStateIconProps = Omit<

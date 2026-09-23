@@ -1,14 +1,14 @@
-# Contributing to StateIcons
+# Contributing to StateGlyph
 
-Thank you for helping improve StateIcons.
+Thank you for helping improve StateGlyph.
 
 ## Set up the repository
 
-You need Node.js 20.9 or newer and npm.
+You need Node.js 22.19 or newer and npm 10.9 or newer.
 
 ```bash
-git clone https://github.com/kamalhara/state_icons.git
-cd state_icons
+git clone https://github.com/kamalhara/StateGlyph.git
+cd StateGlyph
 npm install
 npm run dev
 ```

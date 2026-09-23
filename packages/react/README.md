@@ -1,13 +1,13 @@
-# @stateicons/react
+# @stateglyph/react
 
 Typed, accessible state icon components for React.
 
 ```bash
-npm install @stateicons/react
+npm install @stateglyph/react
 ```
 
 ```tsx
-import { SaveStateIcon } from "@stateicons/react";
+import { SaveStateIcon } from "@stateglyph/react";
 
 export function SaveStatus({ saving }: { saving: boolean }) {
   return <SaveStateIcon state={saving ? "saving" : "idle"} />;
@@ -17,7 +17,7 @@ export function SaveStatus({ saving }: { saving: boolean }) {
 Each icon can also be imported through its own entry point:
 
 ```tsx
-import { SaveStateIcon } from "@stateicons/react/save";
+import { SaveStateIcon } from "@stateglyph/react/save";
 ```
 
 Common props include `state`, `size`, `strokeWidth`, `decorative`, and `label`,

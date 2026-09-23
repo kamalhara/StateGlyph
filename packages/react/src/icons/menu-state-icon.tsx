@@ -1,4 +1,4 @@
-import { menuStateIcon } from "@stateicons/core";
+import { menuStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type MenuStateIconProps = Omit<

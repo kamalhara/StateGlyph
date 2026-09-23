@@ -32,7 +32,7 @@ import {
   bookmarkStateIcon,
   type StateIconDefinition,
   type StateIconStates,
-} from "@stateicons/core";
+} from "@stateglyph/core";
 import {
   UploadStateIcon,
   DownloadStateIcon,
@@ -64,7 +64,7 @@ import {
   CopyStateIcon,
   LikeStateIcon,
   BookmarkStateIcon,
-} from "@stateicons/react";
+} from "@stateglyph/react";
 
 export type IconStateRecord = {
   name: string;
@@ -115,7 +115,7 @@ export const iconCatalog = [
     keywords: uploadStateIcon.tags,
     states: toStateRecords(uploadStateIcon),
     usage:
-      'import { UploadStateIcon } from "@stateicons/react";\n\n<UploadStateIcon state="idle" decorative />',
+      'import { UploadStateIcon } from "@stateglyph/react";\n\n<UploadStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <UploadStateIcon
         state={state as ComponentProps<typeof UploadStateIcon>["state"]}
@@ -137,7 +137,7 @@ export const iconCatalog = [
     keywords: downloadStateIcon.tags,
     states: toStateRecords(downloadStateIcon),
     usage:
-      'import { DownloadStateIcon } from "@stateicons/react";\n\n<DownloadStateIcon state="idle" decorative />',
+      'import { DownloadStateIcon } from "@stateglyph/react";\n\n<DownloadStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <DownloadStateIcon
         state={state as ComponentProps<typeof DownloadStateIcon>["state"]}
@@ -159,7 +159,7 @@ export const iconCatalog = [
     keywords: saveStateIcon.tags,
     states: toStateRecords(saveStateIcon),
     usage:
-      'import { SaveStateIcon } from "@stateicons/react";\n\n<SaveStateIcon state="idle" decorative />',
+      'import { SaveStateIcon } from "@stateglyph/react";\n\n<SaveStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <SaveStateIcon
         state={state as ComponentProps<typeof SaveStateIcon>["state"]}
@@ -181,7 +181,7 @@ export const iconCatalog = [
     keywords: deleteStateIcon.tags,
     states: toStateRecords(deleteStateIcon),
     usage:
-      'import { DeleteStateIcon } from "@stateicons/react";\n\n<DeleteStateIcon state="idle" decorative />',
+      'import { DeleteStateIcon } from "@stateglyph/react";\n\n<DeleteStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <DeleteStateIcon
         state={state as ComponentProps<typeof DeleteStateIcon>["state"]}
@@ -203,7 +203,7 @@ export const iconCatalog = [
     keywords: refreshStateIcon.tags,
     states: toStateRecords(refreshStateIcon),
     usage:
-      'import { RefreshStateIcon } from "@stateicons/react";\n\n<RefreshStateIcon state="idle" decorative />',
+      'import { RefreshStateIcon } from "@stateglyph/react";\n\n<RefreshStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <RefreshStateIcon
         state={state as ComponentProps<typeof RefreshStateIcon>["state"]}
@@ -225,7 +225,7 @@ export const iconCatalog = [
     keywords: syncStateIcon.tags,
     states: toStateRecords(syncStateIcon),
     usage:
-      'import { SyncStateIcon } from "@stateicons/react";\n\n<SyncStateIcon state="idle" decorative />',
+      'import { SyncStateIcon } from "@stateglyph/react";\n\n<SyncStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <SyncStateIcon
         state={state as ComponentProps<typeof SyncStateIcon>["state"]}
@@ -247,7 +247,7 @@ export const iconCatalog = [
     keywords: sendStateIcon.tags,
     states: toStateRecords(sendStateIcon),
     usage:
-      'import { SendStateIcon } from "@stateicons/react";\n\n<SendStateIcon state="idle" decorative />',
+      'import { SendStateIcon } from "@stateglyph/react";\n\n<SendStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <SendStateIcon
         state={state as ComponentProps<typeof SendStateIcon>["state"]}
@@ -269,7 +269,7 @@ export const iconCatalog = [
     keywords: paymentStateIcon.tags,
     states: toStateRecords(paymentStateIcon),
     usage:
-      'import { PaymentStateIcon } from "@stateicons/react";\n\n<PaymentStateIcon state="idle" decorative />',
+      'import { PaymentStateIcon } from "@stateglyph/react";\n\n<PaymentStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <PaymentStateIcon
         state={state as ComponentProps<typeof PaymentStateIcon>["state"]}
@@ -291,7 +291,7 @@ export const iconCatalog = [
     keywords: addToCartStateIcon.tags,
     states: toStateRecords(addToCartStateIcon),
     usage:
-      'import { AddToCartStateIcon } from "@stateicons/react";\n\n<AddToCartStateIcon state="idle" decorative />',
+      'import { AddToCartStateIcon } from "@stateglyph/react";\n\n<AddToCartStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <AddToCartStateIcon
         state={state as ComponentProps<typeof AddToCartStateIcon>["state"]}
@@ -313,7 +313,7 @@ export const iconCatalog = [
     keywords: submitStateIcon.tags,
     states: toStateRecords(submitStateIcon),
     usage:
-      'import { SubmitStateIcon } from "@stateicons/react";\n\n<SubmitStateIcon state="idle" decorative />',
+      'import { SubmitStateIcon } from "@stateglyph/react";\n\n<SubmitStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <SubmitStateIcon
         state={state as ComponentProps<typeof SubmitStateIcon>["state"]}
@@ -335,7 +335,7 @@ export const iconCatalog = [
     keywords: installStateIcon.tags,
     states: toStateRecords(installStateIcon),
     usage:
-      'import { InstallStateIcon } from "@stateicons/react";\n\n<InstallStateIcon state="idle" decorative />',
+      'import { InstallStateIcon } from "@stateglyph/react";\n\n<InstallStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <InstallStateIcon
         state={state as ComponentProps<typeof InstallStateIcon>["state"]}
@@ -357,7 +357,7 @@ export const iconCatalog = [
     keywords: publishStateIcon.tags,
     states: toStateRecords(publishStateIcon),
     usage:
-      'import { PublishStateIcon } from "@stateicons/react";\n\n<PublishStateIcon state="draft" decorative />',
+      'import { PublishStateIcon } from "@stateglyph/react";\n\n<PublishStateIcon state="draft" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <PublishStateIcon
         state={state as ComponentProps<typeof PublishStateIcon>["state"]}
@@ -379,7 +379,7 @@ export const iconCatalog = [
     keywords: playPauseStateIcon.tags,
     states: toStateRecords(playPauseStateIcon),
     usage:
-      'import { PlayPauseStateIcon } from "@stateicons/react";\n\n<PlayPauseStateIcon state="paused" decorative />',
+      'import { PlayPauseStateIcon } from "@stateglyph/react";\n\n<PlayPauseStateIcon state="paused" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <PlayPauseStateIcon
         state={state as ComponentProps<typeof PlayPauseStateIcon>["state"]}
@@ -401,7 +401,7 @@ export const iconCatalog = [
     keywords: playbackStateIcon.tags,
     states: toStateRecords(playbackStateIcon),
     usage:
-      'import { PlaybackStateIcon } from "@stateicons/react";\n\n<PlaybackStateIcon state="idle" decorative />',
+      'import { PlaybackStateIcon } from "@stateglyph/react";\n\n<PlaybackStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <PlaybackStateIcon
         state={state as ComponentProps<typeof PlaybackStateIcon>["state"]}
@@ -423,7 +423,7 @@ export const iconCatalog = [
     keywords: volumeStateIcon.tags,
     states: toStateRecords(volumeStateIcon),
     usage:
-      'import { VolumeStateIcon } from "@stateicons/react";\n\n<VolumeStateIcon state="audible" decorative />',
+      'import { VolumeStateIcon } from "@stateglyph/react";\n\n<VolumeStateIcon state="audible" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <VolumeStateIcon
         state={state as ComponentProps<typeof VolumeStateIcon>["state"]}
@@ -445,7 +445,7 @@ export const iconCatalog = [
     keywords: microphoneStateIcon.tags,
     states: toStateRecords(microphoneStateIcon),
     usage:
-      'import { MicrophoneStateIcon } from "@stateicons/react";\n\n<MicrophoneStateIcon state="active" decorative />',
+      'import { MicrophoneStateIcon } from "@stateglyph/react";\n\n<MicrophoneStateIcon state="active" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <MicrophoneStateIcon
         state={state as ComponentProps<typeof MicrophoneStateIcon>["state"]}
@@ -467,7 +467,7 @@ export const iconCatalog = [
     keywords: cameraStateIcon.tags,
     states: toStateRecords(cameraStateIcon),
     usage:
-      'import { CameraStateIcon } from "@stateicons/react";\n\n<CameraStateIcon state="active" decorative />',
+      'import { CameraStateIcon } from "@stateglyph/react";\n\n<CameraStateIcon state="active" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <CameraStateIcon
         state={state as ComponentProps<typeof CameraStateIcon>["state"]}
@@ -489,7 +489,7 @@ export const iconCatalog = [
     keywords: fullscreenStateIcon.tags,
     states: toStateRecords(fullscreenStateIcon),
     usage:
-      'import { FullscreenStateIcon } from "@stateicons/react";\n\n<FullscreenStateIcon state="windowed" decorative />',
+      'import { FullscreenStateIcon } from "@stateglyph/react";\n\n<FullscreenStateIcon state="windowed" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <FullscreenStateIcon
         state={state as ComponentProps<typeof FullscreenStateIcon>["state"]}
@@ -511,7 +511,7 @@ export const iconCatalog = [
     keywords: repeatStateIcon.tags,
     states: toStateRecords(repeatStateIcon),
     usage:
-      'import { RepeatStateIcon } from "@stateicons/react";\n\n<RepeatStateIcon state="off" decorative />',
+      'import { RepeatStateIcon } from "@stateglyph/react";\n\n<RepeatStateIcon state="off" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <RepeatStateIcon
         state={state as ComponentProps<typeof RepeatStateIcon>["state"]}
@@ -533,7 +533,7 @@ export const iconCatalog = [
     keywords: shuffleStateIcon.tags,
     states: toStateRecords(shuffleStateIcon),
     usage:
-      'import { ShuffleStateIcon } from "@stateicons/react";\n\n<ShuffleStateIcon state="off" decorative />',
+      'import { ShuffleStateIcon } from "@stateglyph/react";\n\n<ShuffleStateIcon state="off" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <ShuffleStateIcon
         state={state as ComponentProps<typeof ShuffleStateIcon>["state"]}
@@ -555,7 +555,7 @@ export const iconCatalog = [
     keywords: menuStateIcon.tags,
     states: toStateRecords(menuStateIcon),
     usage:
-      'import { MenuStateIcon } from "@stateicons/react";\n\n<MenuStateIcon state="closed" decorative />',
+      'import { MenuStateIcon } from "@stateglyph/react";\n\n<MenuStateIcon state="closed" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <MenuStateIcon
         state={state as ComponentProps<typeof MenuStateIcon>["state"]}
@@ -577,7 +577,7 @@ export const iconCatalog = [
     keywords: expandStateIcon.tags,
     states: toStateRecords(expandStateIcon),
     usage:
-      'import { ExpandStateIcon } from "@stateicons/react";\n\n<ExpandStateIcon state="collapsed" decorative />',
+      'import { ExpandStateIcon } from "@stateglyph/react";\n\n<ExpandStateIcon state="collapsed" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <ExpandStateIcon
         state={state as ComponentProps<typeof ExpandStateIcon>["state"]}
@@ -599,7 +599,7 @@ export const iconCatalog = [
     keywords: sidebarStateIcon.tags,
     states: toStateRecords(sidebarStateIcon),
     usage:
-      'import { SidebarStateIcon } from "@stateicons/react";\n\n<SidebarStateIcon state="open" decorative />',
+      'import { SidebarStateIcon } from "@stateglyph/react";\n\n<SidebarStateIcon state="open" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <SidebarStateIcon
         state={state as ComponentProps<typeof SidebarStateIcon>["state"]}
@@ -621,7 +621,7 @@ export const iconCatalog = [
     keywords: viewStateIcon.tags,
     states: toStateRecords(viewStateIcon),
     usage:
-      'import { ViewStateIcon } from "@stateicons/react";\n\n<ViewStateIcon state="grid" decorative />',
+      'import { ViewStateIcon } from "@stateglyph/react";\n\n<ViewStateIcon state="grid" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <ViewStateIcon
         state={state as ComponentProps<typeof ViewStateIcon>["state"]}
@@ -643,7 +643,7 @@ export const iconCatalog = [
     keywords: chevronVerticalStateIcon.tags,
     states: toStateRecords(chevronVerticalStateIcon),
     usage:
-      'import { ChevronVerticalStateIcon } from "@stateicons/react";\n\n<ChevronVerticalStateIcon state="down" decorative />',
+      'import { ChevronVerticalStateIcon } from "@stateglyph/react";\n\n<ChevronVerticalStateIcon state="down" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <ChevronVerticalStateIcon
         state={
@@ -667,7 +667,7 @@ export const iconCatalog = [
     keywords: chevronHorizontalStateIcon.tags,
     states: toStateRecords(chevronHorizontalStateIcon),
     usage:
-      'import { ChevronHorizontalStateIcon } from "@stateicons/react";\n\n<ChevronHorizontalStateIcon state="right" decorative />',
+      'import { ChevronHorizontalStateIcon } from "@stateglyph/react";\n\n<ChevronHorizontalStateIcon state="right" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <ChevronHorizontalStateIcon
         state={
@@ -691,7 +691,7 @@ export const iconCatalog = [
     keywords: panelStateIcon.tags,
     states: toStateRecords(panelStateIcon),
     usage:
-      'import { PanelStateIcon } from "@stateicons/react";\n\n<PanelStateIcon state="restored" decorative />',
+      'import { PanelStateIcon } from "@stateglyph/react";\n\n<PanelStateIcon state="restored" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <PanelStateIcon
         state={state as ComponentProps<typeof PanelStateIcon>["state"]}
@@ -713,7 +713,7 @@ export const iconCatalog = [
     keywords: copyStateIcon.tags,
     states: toStateRecords(copyStateIcon),
     usage:
-      'import { CopyStateIcon } from "@stateicons/react";\n\n<CopyStateIcon state="idle" decorative />',
+      'import { CopyStateIcon } from "@stateglyph/react";\n\n<CopyStateIcon state="idle" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <CopyStateIcon
         state={state as ComponentProps<typeof CopyStateIcon>["state"]}
@@ -735,7 +735,7 @@ export const iconCatalog = [
     keywords: likeStateIcon.tags,
     states: toStateRecords(likeStateIcon),
     usage:
-      'import { LikeStateIcon } from "@stateicons/react";\n\n<LikeStateIcon state="unliked" decorative />',
+      'import { LikeStateIcon } from "@stateglyph/react";\n\n<LikeStateIcon state="unliked" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <LikeStateIcon
         state={state as ComponentProps<typeof LikeStateIcon>["state"]}
@@ -757,7 +757,7 @@ export const iconCatalog = [
     keywords: bookmarkStateIcon.tags,
     states: toStateRecords(bookmarkStateIcon),
     usage:
-      'import { BookmarkStateIcon } from "@stateicons/react";\n\n<BookmarkStateIcon state="unbookmarked" decorative />',
+      'import { BookmarkStateIcon } from "@stateglyph/react";\n\n<BookmarkStateIcon state="unbookmarked" decorative />',
     render: ({ state, size, className }: RenderIconOptions) => (
       <BookmarkStateIcon
         state={state as ComponentProps<typeof BookmarkStateIcon>["state"]}

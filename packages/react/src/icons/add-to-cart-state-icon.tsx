@@ -1,4 +1,4 @@
-import { addToCartStateIcon } from "@stateicons/core";
+import { addToCartStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type AddToCartStateIconProps = Omit<

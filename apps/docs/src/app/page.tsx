@@ -9,7 +9,7 @@ import {
   iconCategories,
 } from "@/data/icon-catalog";
 
-const installCommand = "npm install @stateicons/react";
+const installCommand = "npm install @stateglyph/react";
 
 const collections = iconCategories.map((name) => {
   const icons = iconCatalog.filter((icon) => icon.category === name);
@@ -43,7 +43,7 @@ const howItWorks = [
   },
 ] as const;
 
-const usageSnippet = `import { UploadStateIcon } from "@stateicons/react";
+const usageSnippet = `import { UploadStateIcon } from "@stateglyph/react";
 
 function UploadButton({ status }: { status: UploadState }) {
   return (
@@ -61,7 +61,7 @@ const principles = [
   ],
   [
     "Presentational only",
-    "StateIcons renders state — it never owns your async logic, timers, or business rules. You stay in control.",
+    "StateGlyph renders state — it never owns your async logic, timers, or business rules. You stay in control.",
   ],
   [
     "Typed and accessible",
@@ -95,7 +95,7 @@ export default function Home() {
               <br className="hidden sm:block" /> interface state.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#a6aaa5]">
-              StateIcons groups the related visual states of an interface action
+              StateGlyph groups the related visual states of an interface action
               into one typed, accessible React component — so a button can move
               from idle → loading → success without scattered icon logic.
             </p>
@@ -108,7 +108,7 @@ export default function Home() {
                 Browse {iconCatalog.length} icons
               </Link>
               <a
-                href="https://github.com/kamalhara/state_icons"
+                href="https://github.com/kamalhara/StateGlyph"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-md border border-[#3c403d] px-4 py-2.5 text-sm text-[#c5c8c3] transition-colors hover:border-[#666b67] hover:text-white"
@@ -304,7 +304,7 @@ export default function Home() {
               A focused icon system for changing UI.
             </h2>
             <p className="mt-5 max-w-lg leading-7 text-[#929792]">
-              Most icon libraries give you individual drawings. StateIcons adds
+              Most icon libraries give you individual drawings. StateGlyph adds
               the missing relationship between them — so a button or status can
               move through its lifecycle without scattered imports and
               conditional rendering.
@@ -336,11 +336,11 @@ export default function Home() {
       <footer className="border-t border-[#2b2e2c] bg-[#101211]">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-5 py-7 text-sm text-[#7e837e] sm:flex-row sm:items-center sm:px-8">
           <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-            <span>StateIcons · Open source · ISC License</span>
+            <span>StateGlyph · Open source · MIT License</span>
           </div>
           <div className="flex items-center gap-5">
             <a
-              href="https://github.com/kamalhara/state_icons"
+              href="https://github.com/kamalhara/StateGlyph"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-white"

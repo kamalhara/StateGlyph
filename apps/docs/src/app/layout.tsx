@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "StateIcons — Stateful icons for React",
+  title: "StateGlyph — Stateful icons for React",
   description:
     "Typed, accessible React icons for every visual state of an interface action.",
   icons: {

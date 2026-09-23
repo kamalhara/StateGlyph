@@ -1,4 +1,4 @@
-import { bookmarkStateIcon } from "@stateicons/core";
+import { bookmarkStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type BookmarkStateIconProps = Omit<

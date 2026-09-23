@@ -11,7 +11,7 @@ export function SiteHeader() {
           <span className="grid size-7 place-items-center rounded border border-[#686d69] font-mono text-[10px]">
             SI
           </span>
-          <span>StateIcons</span>
+          <span>StateGlyph</span>
         </Link>
 
         <nav className="hidden items-center gap-7 text-sm text-[#929792] sm:flex">
@@ -31,7 +31,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://github.com/kamalhara/state_icons"
+            href="https://github.com/kamalhara/StateGlyph"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden text-sm text-[#929792] transition-colors hover:text-white sm:block"

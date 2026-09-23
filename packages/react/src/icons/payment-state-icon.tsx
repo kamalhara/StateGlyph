@@ -1,4 +1,4 @@
-import { paymentStateIcon } from "@stateicons/core";
+import { paymentStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type PaymentStateIconProps = Omit<

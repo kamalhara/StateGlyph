@@ -1,4 +1,4 @@
-import { repeatStateIcon } from "@stateicons/core";
+import { repeatStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type RepeatStateIconProps = Omit<

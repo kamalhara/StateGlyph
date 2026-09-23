@@ -1,5 +1,5 @@
 {
-  "name": "stateicons",
+  "name": "stateglyph",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,9 +9,9 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev --workspace=@stateicons/docs",
-    "build": "npm run build:packages && npm run build --workspace=@stateicons/docs",
-    "build:packages": "npm run build --workspace=@stateicons/core && npm run build --workspace=@stateicons/react && npm run build --workspace=@stateicons/cli && npm run build --workspace=@stateicons/transitions",
+    "dev": "npm run dev --workspace=@stateglyph/docs",
+    "build": "npm run build:packages && npm run build --workspace=@stateglyph/docs",
+    "build:packages": "npm run build --workspace=@stateglyph/core && npm run build --workspace=@stateglyph/react && npm run build --workspace=@stateglyph/cli && npm run build --workspace=@stateglyph/transitions",
     "typecheck": "npm run build:packages && npm run typecheck:workspaces",
     "typecheck:workspaces": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
@@ -24,8 +24,9 @@
     "release": "npm run build:packages && changeset publish"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=22.19.0"
   },
+  "packageManager": "npm@10.9.3",
   "license": "MIT",
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
@@ -33,7 +34,7 @@
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@testing-library/user-event": "^14.6.7",
-    "@types/node": "^26.6.2",
+    "@types/node": "^22.19.0",
     "@vitest/coverage-v8": "^5.0.1",
     "jsdom": "^29.1.1",
     "picomatch": "^4.0.7",

@@ -1,6 +1,6 @@
 import type { SVGProps } from "react";
 
-import type { StateIconDefinition, StateIconStates } from "@stateicons/core";
+import type { StateIconDefinition, StateIconStates } from "@stateglyph/core";
 
 import { lucideIconMap, type LucideIconName } from "../lucide/icons-map";
 

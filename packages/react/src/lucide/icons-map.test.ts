@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { stateIconCatalog } from "@stateicons/core";
+import { stateIconCatalog } from "@stateglyph/core";
 
 import { lucideIconMap } from "./icons-map";
 

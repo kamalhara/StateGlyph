@@ -1,17 +1,17 @@
-# @stateicons/cli
+# @stateglyph/cli
 
-Copy editable StateIcons components into a React project.
+Copy editable StateGlyph components into a React project.
 
 ```bash
-npx @stateicons/cli list
-npx @stateicons/cli add upload
+npx @stateglyph/cli list
+npx @stateglyph/cli add upload
 ```
 
 Add more than one icon or choose a different destination:
 
 ```bash
-npx @stateicons/cli add upload save --dir src/components/stateicons
-npx @stateicons/cli add all
+npx @stateglyph/cli add upload save --dir src/components/stateglyph
+npx @stateglyph/cli add all
 ```
 
 Use `--dry-run` to preview files and `--force` to replace existing files.

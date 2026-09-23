@@ -26,7 +26,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${icon.name} state icon — StateIcons`,
+    title: `${icon.name} state icon — StateGlyph`,
     description: icon.description,
   };
 }

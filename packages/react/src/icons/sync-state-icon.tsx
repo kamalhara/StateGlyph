@@ -1,4 +1,4 @@
-import { syncStateIcon } from "@stateicons/core";
+import { syncStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type SyncStateIconProps = Omit<

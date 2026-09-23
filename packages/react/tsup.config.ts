@@ -23,5 +23,5 @@ export default defineConfig({
   sourcemap: true,
   treeshake: true,
   splitting: false,
-  external: ["react", "react-dom", "lucide-react", "@stateicons/core"],
+  external: ["react", "react-dom", "lucide-react", "@stateglyph/core"],
 });

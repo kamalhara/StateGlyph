@@ -1,4 +1,4 @@
-import { volumeStateIcon } from "@stateicons/core";
+import { volumeStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type VolumeStateIconProps = Omit<

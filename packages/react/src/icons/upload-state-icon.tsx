@@ -1,4 +1,4 @@
-import { uploadStateIcon } from "@stateicons/core";
+import { uploadStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type UploadStateIconProps = Omit<

@@ -1,4 +1,4 @@
-import { publishStateIcon } from "@stateicons/core";
+import { publishStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type PublishStateIconProps = Omit<

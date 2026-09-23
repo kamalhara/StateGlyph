@@ -1,4 +1,4 @@
-import { likeStateIcon } from "@stateicons/core";
+import { likeStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type LikeStateIconProps = Omit<

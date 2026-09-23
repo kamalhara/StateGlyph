@@ -1,4 +1,4 @@
-import { viewStateIcon } from "@stateicons/core";
+import { viewStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type ViewStateIconProps = Omit<

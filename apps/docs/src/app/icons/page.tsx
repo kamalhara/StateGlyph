@@ -4,7 +4,7 @@ import { IconCatalog } from "@/components/icon-catalog";
 import { iconCatalog } from "@/data/icon-catalog";
 
 export const metadata: Metadata = {
-  title: "Icon library — StateIcons",
+  title: "Icon library — StateGlyph",
   description: "Browse typed, accessible state icon components for React.",
 };
 

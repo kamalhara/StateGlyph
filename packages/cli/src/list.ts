@@ -1,4 +1,4 @@
-import { stateIconCatalog } from "@stateicons/core";
+import { stateIconCatalog } from "@stateglyph/core";
 
 const categoryLabels = {
   async: "Async workflows",
@@ -29,7 +29,7 @@ export function formatIconList(): string {
   );
 
   return [
-    `StateIcons — ${stateIconCatalog.length} icons`,
+    `StateGlyph — ${stateIconCatalog.length} icons`,
     "",
     ...sections.flatMap((section, index) =>
       index === sections.length - 1 ? [section] : [section, ""],

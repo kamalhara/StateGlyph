@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-import { UploadStateIcon } from "@stateicons/react";
+import { UploadStateIcon } from "@stateglyph/react";
 
 const states = ["idle", "loading", "success", "error"] as const;
 const labels: Record<(typeof states)[number], string> = {

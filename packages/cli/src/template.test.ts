@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { uploadStateIcon } from "@stateicons/core";
+import { uploadStateIcon } from "@stateglyph/core";
 
 import { renderIconComponent } from "./template";
 

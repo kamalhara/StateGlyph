@@ -1,20 +1,20 @@
-# @stateicons/core
+# @stateglyph/core
 
 Framework-independent definitions and metadata for
-[StateIcons](https://github.com/kamalhara/state_icons).
+[StateGlyph](https://github.com/kamalhara/StateGlyph).
 
 ```bash
-npm install @stateicons/core
+npm install @stateglyph/core
 ```
 
 ```ts
-import { stateIconCatalog, uploadStateIcon } from "@stateicons/core";
+import { stateIconCatalog, uploadStateIcon } from "@stateglyph/core";
 
 console.log(uploadStateIcon.states);
 console.log(stateIconCatalog.length); // 30
 ```
 
-Most React applications should install `@stateicons/react` instead. Use this
+Most React applications should install `@stateglyph/react` instead. Use this
 package when building documentation, integrations, or tooling around the icon
 catalog.
 

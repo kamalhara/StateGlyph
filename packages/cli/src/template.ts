@@ -1,4 +1,4 @@
-import type { StateIconStateDefinition } from "@stateicons/core";
+import type { StateIconStateDefinition } from "@stateglyph/core";
 
 type RenderableIconDefinition = {
   id: string;
@@ -27,7 +27,7 @@ export function renderIconComponent(
   const continuousStates = states
     .filter(([, stateDefinition]) => stateDefinition.continuous)
     .map(([name]) => name);
-  const animationName = `stateicons-${definition.id}-spin`;
+  const animationName = `stateglyph-${definition.id}-spin`;
   const stateUnion = states.map(([name]) => JSON.stringify(name)).join(" | ");
   const iconRows = states
     .map(

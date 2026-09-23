@@ -8,8 +8,8 @@ import { formatIconList } from "./list";
 const program = new Command();
 
 program
-  .name("stateicons")
-  .description("Browse and add StateIcons components to a React project.")
+  .name("stateglyph")
+  .description("Browse and add StateGlyph components to a React project.")
   .version("0.1.0")
   .showHelpAfterError();
 
@@ -22,12 +22,14 @@ program
 
 program
   .command("add")
-  .description("Copy one or more StateIcons into the current project.")
+  .description(
+    "Copy one or more StateGlyph components into the current project.",
+  )
   .argument("<icons...>", "Icon names to add, or 'all'")
   .option(
     "-d, --dir <directory>",
     "Destination directory",
-    "components/stateicons",
+    "components/stateglyph",
   )
   .option("--force", "Overwrite existing icon files", false)
   .option(
