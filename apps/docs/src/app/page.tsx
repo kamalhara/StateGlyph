@@ -332,27 +332,7 @@ export default function Home() {
         </section>
       </div>
 
-      {/* ── Footer ─────────────────────────────────────────── */}
-      <footer className="border-t border-[#2b2e2c] bg-[#101211]">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-5 py-7 text-sm text-[#7e837e] sm:flex-row sm:items-center sm:px-8">
-          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-            <span>StateGlyph · Open source · MIT License</span>
-          </div>
-          <div className="flex items-center gap-5">
-            <a
-              href="https://github.com/kamalhara/StateGlyph"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-white"
-            >
-              GitHub
-            </a>
-            <Link className="transition-colors hover:text-white" href="/icons">
-              Browse the library →
-            </Link>
-          </div>
-        </div>
-      </footer>
+      
     </main>
   );
 }
