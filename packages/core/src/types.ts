@@ -7,7 +7,7 @@ export type StateIconTransition =
 export interface StateIconStateDefinition {
   icon: string;
   label: string;
-  continous?: boolean;
+  continuous?: boolean;
 }
 export type StateIconStates = Record<string, StateIconStateDefinition>;
 
