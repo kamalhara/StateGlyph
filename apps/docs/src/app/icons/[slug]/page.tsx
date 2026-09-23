@@ -87,7 +87,7 @@ export default async function IconPage({ params }: IconPageProps) {
 
           {/* State detail cards */}
           <div className="grid content-start gap-3 sm:grid-cols-2 lg:grid-cols-1">
-            {icon.states.map((state, index) => (
+            {icon.states.map((state) => (
               <article
                 key={state.name}
                 className="flex items-start gap-4 rounded-lg border border-[#343735] bg-[#1a1c1b] p-4"
@@ -136,8 +136,8 @@ export default async function IconPage({ params }: IconPageProps) {
             <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
               state
             </code>{" "}
-            prop is a TypeScript string literal union — pass an invalid state and
-            you&apos;ll get a type error at build time.
+            prop is a TypeScript string literal union — pass an invalid state
+            and you&apos;ll get a type error at build time.
           </p>
 
           <dl className="mt-7 divide-y divide-[#2b2e2c] border-y border-[#2b2e2c] text-sm">

@@ -1,21 +1,47 @@
 {
   "name": "@stateicons/cli",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Copy StateIcons components into React projects.",
+  "license": "MIT",
+  "author": "Kamalveer Singh",
+  "keywords": [
+    "cli",
+    "react",
+    "icons",
+    "typescript",
+    "codegen"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamalhara/state_icons.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/kamalhara/state_icons#readme",
+  "bugs": {
+    "url": "https://github.com/kamalhara/state_icons/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "stateicons": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts --format esm --dts --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateicons/core": "0.0.0",
+    "@stateicons/core": "^0.1.0",
     "commander": "^15.0.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

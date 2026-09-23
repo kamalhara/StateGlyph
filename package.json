@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspace=@stateicons/docs",
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build:packages && npm run build --workspace=@stateicons/docs",
+    "build:packages": "npm run build --workspace=@stateicons/core && npm run build --workspace=@stateicons/react && npm run build --workspace=@stateicons/cli && npm run build --workspace=@stateicons/transitions",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
     "test": "vitest run --passWithNoTests",
@@ -18,7 +19,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "changeset": "changeset",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "release": "npm run build:packages && changeset publish"
   },
   "engines": {
     "node": ">=20.9.0"

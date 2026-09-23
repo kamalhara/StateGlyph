@@ -3,9 +3,9 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [],
+  "linked": [["@stateicons/core", "@stateicons/react", "@stateicons/cli"]],
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["@stateicons/docs"]
+  "ignore": ["@stateicons/docs", "@stateicons/transitions"]
 }

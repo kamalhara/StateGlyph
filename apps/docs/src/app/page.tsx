@@ -108,7 +108,7 @@ export default function Home() {
                 Browse {iconCatalog.length} icons
               </Link>
               <a
-                href="https://github.com/kamalhara/stateicons"
+                href="https://github.com/kamalhara/state_icons"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-md border border-[#3c403d] px-4 py-2.5 text-sm text-[#c5c8c3] transition-colors hover:border-[#666b67] hover:text-white"
@@ -159,9 +159,7 @@ export default function Home() {
             <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
               License
             </dt>
-            <dd className="mt-2 text-sm font-medium">
-              ISC · Open source
-            </dd>
+            <dd className="mt-2 text-sm font-medium">MIT · Open source</dd>
           </div>
         </section>
 
@@ -342,17 +340,14 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-5">
             <a
-              href="https://github.com/kamalhara/stateicons"
+              href="https://github.com/kamalhara/state_icons"
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-white"
             >
               GitHub
             </a>
-            <Link
-              className="transition-colors hover:text-white"
-              href="/icons"
-            >
+            <Link className="transition-colors hover:text-white" href="/icons">
               Browse the library →
             </Link>
           </div>

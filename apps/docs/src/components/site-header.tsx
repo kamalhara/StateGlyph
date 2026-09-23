@@ -31,7 +31,7 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://github.com/kamalhara/stateicons"
+            href="https://github.com/kamalhara/state_icons"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden text-sm text-[#929792] transition-colors hover:text-white sm:block"

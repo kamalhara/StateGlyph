@@ -1,7 +1,29 @@
 {
   "name": "@stateicons/react",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
+  "description": "Typed, accessible state icon components for React.",
+  "license": "MIT",
+  "author": "Kamalveer Singh",
+  "keywords": [
+    "react",
+    "icons",
+    "typescript",
+    "state",
+    "lucide",
+    "accessibility"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamalhara/state_icons.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/kamalhara/state_icons#readme",
+  "bugs": {
+    "url": "https://github.com/kamalhara/state_icons/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "sideEffects": false,
   "main": "./dist/index.js",
@@ -10,23 +32,31 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./*": {
+      "types": "./dist/icons/*-state-icon.d.ts",
+      "import": "./dist/icons/*-state-icon.js"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --dts --clean --external react --external react-dom",
-    "dev": "tsup src/index.ts --format esm --dts --watch --external react --external react-dom",
-    "typecheck": "tsc --noEmit"
+    "build": "tsup --config tsup.config.ts",
+    "dev": "tsup --config tsup.config.ts --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateicons/core": "0.0.0",
-    "@stateicons/transitions": "0.0.0",
+    "@stateicons/core": "^0.1.0",
     "lucide-react": "^1.47.0"
   },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18"
+  },
+  "engines": {
+    "node": ">=20.9.0"
   }
 }

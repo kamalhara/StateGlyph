@@ -16,9 +16,7 @@ export function StateSwitcher({ states, renderedStates }: StateSwitcherProps) {
   return (
     <div className="overflow-hidden rounded-xl border border-[#343735] bg-[#1a1c1b]">
       <div className="grid place-items-center border-b border-[#2b2e2c] bg-[#171918] py-14">
-        <div className="relative">
-          {renderedStates[activeIndex]}
-        </div>
+        <div className="relative">{renderedStates[activeIndex]}</div>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-2 border-b border-[#2b2e2c] px-5 py-4">
