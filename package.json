@@ -1,0 +1,16 @@
+{
+  "name": "stateicons",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Typed, accessible state icons for React.",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@stateicons/docs",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "license": "MIT"
+}
