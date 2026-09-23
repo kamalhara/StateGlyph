@@ -6,27 +6,27 @@ export const uploadStateIcon = defineStateIcon({
   description: "Shows the current state of a file upload.",
   category: "async",
   states: {
-    idle: {
-      icon: "upload",
-      label: "Upload",
-    },
+    idle: { icon: "upload", label: "Upload", description: "Ready to upload." },
     loading: {
       icon: "loader-circle",
       label: "Uploading",
+      description: "Uploading is in progress.",
       continuous: true,
     },
     success: {
       icon: "circle-check",
       label: "Upload complete",
+      description: "Upload complete successfully.",
     },
     error: {
       icon: "circle-alert",
       label: "Upload failed",
+      description: "The upload action failed.",
     },
   },
   initialState: "idle",
   transition: "scale-fade",
-  tags: ["upload", "file", "loading", "success", "error"],
+  tags: ["upload", "idle", "loading", "success", "error"],
   source: {
     library: "lucide",
     license: "ISC",

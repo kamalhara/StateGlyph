@@ -63,7 +63,12 @@ export function IconCatalog() {
               key={icon.slug}
               className="overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b]"
             >
-              <div className="grid grid-cols-4 divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]">
+              <div
+                className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]"
+                style={{
+                  gridTemplateColumns: `repeat(${icon.states.length}, minmax(0, 1fr))`,
+                }}
+              >
                 {icon.states.map((state) => (
                   <div
                     key={state.name}
@@ -73,10 +78,9 @@ export function IconCatalog() {
                     {icon.render({
                       state: state.name,
                       size: 26,
-                      className:
-                        state.name === "loading"
-                          ? "catalog-icon--loading"
-                          : undefined,
+                      className: state.continuous
+                        ? "catalog-icon--loading"
+                        : undefined,
                     })}
                   </div>
                 ))}

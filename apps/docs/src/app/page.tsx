@@ -1,49 +1,94 @@
 import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
+import { HeroDemo } from "@/components/hero-demo";
 import { SiteHeader } from "@/components/site-header";
-import { iconCatalog } from "@/data/icon-catalog";
+import {
+  categoryDescriptions,
+  iconCatalog,
+  iconCategories,
+} from "@/data/icon-catalog";
 
 const installCommand = "npm install @stateicons/react";
 
-const collections = [
+const collections = iconCategories.map((name) => {
+  const icons = iconCatalog.filter((icon) => icon.category === name);
+
+  return {
+    name,
+    description: categoryDescriptions[name],
+    count: icons.length,
+    icons,
+  };
+});
+
+const howItWorks = [
   {
-    name: "File actions",
-    description: "Upload, download, sync, and transfer states.",
-    status: `${iconCatalog.filter((icon) => icon.category === "File actions").length} available`,
-    href: "/icons",
+    step: "01",
+    title: "Define states",
+    description:
+      "Each icon definition maps named states to their glyph, accessible label, and optional animation flag.",
   },
   {
-    name: "System feedback",
-    description: "Status, validation, alerts, and progress states.",
-    status: "Planned",
+    step: "02",
+    title: "Pass your state",
+    description:
+      'Import the component and pass a typed state prop — "idle", "loading", "success", or any state the icon supports.',
   },
   {
-    name: "Navigation",
-    description: "Directional actions and changing navigation states.",
-    status: "Planned",
+    step: "03",
+    title: "Ship accessible UI",
+    description:
+      "Every state carries an ARIA label and role. Add decorative={false} and screen readers announce the current state.",
   },
 ] as const;
 
+const usageSnippet = `import { UploadStateIcon } from "@stateicons/react";
+
+function UploadButton({ status }: { status: UploadState }) {
+  return (
+    <button>
+      <UploadStateIcon state={status} size={20} />
+      Upload file
+    </button>
+  );
+}`;
+
 const principles = [
-  ["One component", "Related visual states live behind one stable component."],
   [
-    "Your state",
-    "The library presents state; it never owns application logic.",
+    "One component, many states",
+    "Related visual states live behind one stable component. No more switching between five separate icon imports.",
   ],
-  ["Open foundations", "Each glyph keeps its source and license metadata."],
+  [
+    "Presentational only",
+    "StateIcons renders state — it never owns your async logic, timers, or business rules. You stay in control.",
+  ],
+  [
+    "Typed and accessible",
+    "Every state is a TypeScript literal. Every glyph ships with ARIA labels, roles, and reduced-motion support.",
+  ],
+  [
+    "Open foundations",
+    "Every glyph keeps its source library and license metadata. Currently built on Lucide icons (ISC license).",
+  ],
 ] as const;
 
 export default function Home() {
+  const totalStates = iconCatalog.reduce(
+    (sum, icon) => sum + icon.states.length,
+    0,
+  );
+
   return (
     <main className="min-h-screen bg-[#141615] text-[#f0f1ed]">
       <SiteHeader />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_360px] lg:items-end">
+        {/* ── Hero ──────────────────────────────────────────── */}
+        <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_320px] lg:items-center">
           <div className="max-w-4xl">
             <p className="mb-5 font-mono text-xs text-[#929792]">
-              Open-source · React · TypeScript
+              Open-source · React · TypeScript · {iconCatalog.length} icons
             </p>
             <h1 className="text-5xl leading-[1.02] font-semibold tracking-[-0.055em] sm:text-7xl">
               Icons that understand
@@ -51,7 +96,8 @@ export default function Home() {
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#a6aaa5]">
               StateIcons groups the related visual states of an interface action
-              into one typed, accessible React component.
+              into one typed, accessible React component — so a button can move
+              from idle → loading → success without scattered icon logic.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
@@ -59,41 +105,128 @@ export default function Home() {
                 href="/icons"
                 className="rounded-md bg-[#e4e6e1] px-4 py-2.5 text-sm font-medium text-[#141615] transition-colors hover:bg-white"
               >
-                Browse icons
+                Browse {iconCatalog.length} icons
               </Link>
               <a
-                href="#about"
+                href="https://github.com/kamalhara/stateicons"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-md border border-[#3c403d] px-4 py-2.5 text-sm text-[#c5c8c3] transition-colors hover:border-[#666b67] hover:text-white"
               >
-                About the project
+                View on GitHub
+              </a>
+              <a
+                href="#how-it-works"
+                className="px-2 py-2.5 text-sm text-[#7e837e] transition-colors hover:text-white"
+              >
+                How it works ↓
               </a>
             </div>
           </div>
 
-          <div className="border-t border-[#343735] pt-5 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
-            <dl className="grid grid-cols-3 gap-5 lg:grid-cols-1">
-              <div>
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
-                  Available
-                </dt>
-                <dd className="mt-2 text-sm">{iconCatalog.length} of 30</dd>
-              </div>
-              <div>
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
-                  Built for
-                </dt>
-                <dd className="mt-2 text-sm">React</dd>
-              </div>
-              <div>
-                <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
-                  License
-                </dt>
-                <dd className="mt-2 text-sm">Open source</dd>
-              </div>
-            </dl>
+          <div className="hidden lg:flex lg:justify-center">
+            <HeroDemo />
           </div>
         </section>
 
+        {/* ── Stats bar ─────────────────────────────────────── */}
+        <section className="grid grid-cols-2 gap-5 border-y border-[#2b2e2c] py-8 sm:grid-cols-4">
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
+              Icons
+            </dt>
+            <dd className="mt-2 text-2xl font-semibold tabular-nums">
+              {iconCatalog.length}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
+              Total states
+            </dt>
+            <dd className="mt-2 text-2xl font-semibold tabular-nums">
+              {totalStates}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
+              Categories
+            </dt>
+            <dd className="mt-2 text-2xl font-semibold tabular-nums">
+              {iconCategories.length}
+            </dd>
+          </div>
+          <div>
+            <dt className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#737873]">
+              License
+            </dt>
+            <dd className="mt-2 text-sm font-medium">
+              ISC · Open source
+            </dd>
+          </div>
+        </section>
+
+        {/* ── Install ───────────────────────────────────────── */}
+        <section className="grid gap-8 py-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20">
+          <div>
+            <p className="font-mono text-xs text-[#7e837e]">Get started</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
+              One package. Every state.
+            </h2>
+            <p className="mt-4 max-w-md text-sm leading-6 text-[#929792]">
+              Install the React package and start using typed, accessible state
+              icons in minutes. Tree-shaking ensures you only ship what you use.
+            </p>
+          </div>
+          <div className="flex items-center justify-between rounded-md border border-[#343735] bg-[#1b1d1c] px-4 py-3">
+            <code className="overflow-x-auto font-mono text-xs text-[#d9dbd7] sm:text-sm">
+              {installCommand}
+            </code>
+            <CopyButton value={installCommand} />
+          </div>
+        </section>
+
+        {/* ── How it works ──────────────────────────────────── */}
+        <section
+          id="how-it-works"
+          className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[1fr_1.2fr] lg:py-20"
+        >
+          <div>
+            <p className="font-mono text-xs text-[#7e837e]">How it works</p>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
+              From state prop to accessible icon.
+            </h2>
+
+            <div className="mt-10 space-y-8">
+              {howItWorks.map(({ step, title, description }) => (
+                <article key={step} className="flex gap-5">
+                  <span className="mt-0.5 font-mono text-xs text-[#666b67]">
+                    {step}
+                  </span>
+                  <div>
+                    <h3 className="font-medium">{title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-[#929792]">
+                      {description}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-md border border-[#343735] bg-[#101211]">
+            <div className="flex items-center justify-between border-b border-[#2b2e2c] px-5 py-3">
+              <span className="font-mono text-[10px] text-[#7e837e]">
+                upload-button.tsx
+              </span>
+              <CopyButton value={usageSnippet} />
+            </div>
+            <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
+              <code>{usageSnippet}</code>
+            </pre>
+          </div>
+        </section>
+
+        {/* ── Collections ───────────────────────────────────── */}
         <section
           id="collections"
           className="border-t border-[#2b2e2c] py-14 lg:py-20"
@@ -106,59 +239,77 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-[#929792]">
-              Find icons by what the user is doing, then open a dedicated page
-              for every supported state and usage detail.
+              Icons are grouped by what the user is doing — uploading, playing
+              media, navigating — so you find related states together.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
             {collections.map((collection, index) => (
               <article
                 key={collection.name}
-                className="flex min-h-52 flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] p-5"
+                className="group flex flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] transition-colors hover:border-[#454946]"
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs text-[#666b67]">
-                    0{index + 1}
-                  </span>
-                  <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#7e837e]">
-                    {collection.status}
-                  </span>
+                {/* Icon preview strip */}
+                <div
+                  className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918] rounded-t-lg"
+                  style={{
+                    gridTemplateColumns: `repeat(${Math.min(collection.icons.length, 4)}, minmax(0, 1fr))`,
+                  }}
+                >
+                  {collection.icons.slice(0, 4).map((icon) => (
+                    <div
+                      key={icon.slug}
+                      className="grid aspect-square place-items-center text-[#929792] group-hover:text-[#c5c8c3] transition-colors"
+                    >
+                      {icon.render({ state: icon.states[0].name, size: 22 })}
+                    </div>
+                  ))}
                 </div>
-                <h3 className="mt-8 text-lg font-medium">{collection.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#7e837e]">
-                  {collection.description}
-                </p>
-                {"href" in collection ? (
+
+                <div className="flex flex-1 flex-col p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs text-[#666b67]">
+                      0{index + 1}
+                    </span>
+                    <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#7e837e]">
+                      {collection.count}{" "}
+                      {collection.count === 1 ? "icon" : "icons"}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 text-lg font-medium">
+                    {collection.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-[#7e837e]">
+                    {collection.description}
+                  </p>
                   <Link
-                    href={collection.href}
+                    href="/icons"
                     className="mt-auto pt-6 text-sm text-[#c5c8c3] transition-colors hover:text-white"
                   >
                     Explore collection →
                   </Link>
-                ) : (
-                  <span className="mt-auto pt-6 text-sm text-[#5f645f]">
-                    On the roadmap
-                  </span>
-                )}
+                </div>
               </article>
             ))}
           </div>
         </section>
 
+        {/* ── Principles / About ────────────────────────────── */}
         <section
           id="about"
           className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[0.8fr_1.2fr] lg:py-20"
         >
           <div>
-            <p className="font-mono text-xs text-[#7e837e]">About</p>
+            <p className="font-mono text-xs text-[#7e837e]">Principles</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
               A focused icon system for changing UI.
             </h2>
             <p className="mt-5 max-w-lg leading-7 text-[#929792]">
               Most icon libraries give you individual drawings. StateIcons adds
-              the missing relationship between them, so a button or status can
-              move from idle to loading to success without scattered icon logic.
+              the missing relationship between them — so a button or status can
+              move through its lifecycle without scattered imports and
+              conditional rendering.
             </p>
           </div>
 
@@ -166,42 +317,45 @@ export default function Home() {
             {principles.map(([title, description], index) => (
               <article
                 key={title}
-                className="grid gap-3 py-6 sm:grid-cols-[48px_180px_1fr] sm:items-baseline"
+                className="grid gap-3 py-6 sm:grid-cols-[48px_1fr] sm:items-baseline"
               >
                 <span className="font-mono text-xs text-[#666b67]">
                   0{index + 1}
                 </span>
-                <h3 className="font-medium">{title}</h3>
-                <p className="text-sm leading-6 text-[#929792]">
-                  {description}
-                </p>
+                <div>
+                  <h3 className="font-medium">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#929792]">
+                    {description}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
         </section>
-
-        <section className="grid gap-8 border-t border-[#2b2e2c] py-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20">
-          <div>
-            <p className="font-mono text-xs text-[#7e837e]">Install</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
-              Start with the React package.
-            </h2>
-          </div>
-          <div className="flex items-center justify-between rounded-md border border-[#343735] bg-[#1b1d1c] px-4 py-3">
-            <code className="overflow-x-auto font-mono text-xs text-[#d9dbd7] sm:text-sm">
-              {installCommand}
-            </code>
-            <CopyButton value={installCommand} />
-          </div>
-        </section>
       </div>
 
+      {/* ── Footer ─────────────────────────────────────────── */}
       <footer className="border-t border-[#2b2e2c] bg-[#101211]">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-2 px-5 py-7 text-sm text-[#7e837e] sm:flex-row sm:px-8">
-          <span>StateIcons · Open source</span>
-          <Link className="transition-colors hover:text-white" href="/icons">
-            Browse the library →
-          </Link>
+        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-4 px-5 py-7 text-sm text-[#7e837e] sm:flex-row sm:items-center sm:px-8">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+            <span>StateIcons · Open source · ISC License</span>
+          </div>
+          <div className="flex items-center gap-5">
+            <a
+              href="https://github.com/kamalhara/stateicons"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-white"
+            >
+              GitHub
+            </a>
+            <Link
+              className="transition-colors hover:text-white"
+              href="/icons"
+            >
+              Browse the library →
+            </Link>
+          </div>
         </div>
       </footer>
     </main>
