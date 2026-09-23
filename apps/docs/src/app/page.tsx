@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
 import { HeroDemo } from "@/components/hero-demo";
+import { RoadmapList } from "@/components/roadmap-list";
 import { SiteHeader } from "@/components/site-header";
 import {
   categoryDescriptions,
@@ -73,24 +74,66 @@ const principles = [
   ],
 ] as const;
 
+const waysToUse = [
+  {
+    label: "React package",
+    title: "Import and ship",
+    description:
+      "Use ready-made, tree-shakeable components with typed state props in React, Next.js, or Vite.",
+    href: "/docs/setup",
+    action: "Read setup",
+  },
+  {
+    label: "Copy-and-own CLI",
+    title: "Keep the source",
+    description:
+      "Generate an editable component inside your project when you want full control over its markup and styles.",
+    href: "/docs/cli",
+    action: "Explore the CLI",
+  },
+  {
+    label: "Core definitions",
+    title: "Build your own renderer",
+    description:
+      "Use framework-independent metadata and TypeScript definitions for custom tooling or other UI layers.",
+    href: "/docs/api",
+    action: "View the API",
+  },
+] as const;
+
 const roadmap = [
   {
     title: "More icon support",
     description:
       "More stateful components, categories, and source icon libraries—without changing the small API you already use.",
     detail: "Expanding the collection",
+    points: [
+      "New workflow and product categories",
+      "Additional open-source icon foundations",
+      "Source and license metadata for every glyph",
+    ],
   },
   {
     title: "Custom icon support",
     description:
       "Bring your own SVGs and group them into typed states while keeping StateGlyph's accessibility and transition model.",
     detail: "Use your own artwork",
+    points: [
+      "Map your SVGs to named states",
+      "Keep typed states and accessible labels",
+      "Export a reusable React component",
+    ],
   },
   {
     title: "Visual editor",
     description:
       "Build a state icon in the browser, preview each state, and copy the generated React and TypeScript code.",
     detail: "Create, preview, copy",
+    points: [
+      "Preview every state in the browser",
+      "Adjust size, stroke, and transitions",
+      "Copy generated React and TypeScript code",
+    ],
   },
 ] as const;
 
@@ -107,7 +150,7 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* ── Hero ──────────────────────────────────────────── */}
         <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_320px] lg:items-center">
-          <div className="max-w-4xl">
+          <div className="hero-enter max-w-4xl">
             <div className="mb-5 flex flex-wrap items-center gap-3">
               <p className="font-mono text-xs text-[#929792]">
                 Open-source · React · TypeScript · {iconCatalog.length} icons
@@ -150,7 +193,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hidden lg:flex lg:justify-center">
+          <div className="hero-enter hero-enter--late hidden lg:flex lg:justify-center">
             <HeroDemo />
           </div>
         </section>
@@ -250,6 +293,52 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Ways to use ───────────────────────────────────── */}
+        <section className="border-t border-[#2b2e2c] py-14 lg:py-20">
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="font-mono text-xs text-[#7e837e]">
+                Use it your way
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
+                Start simple. Own as much as you need.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-[#929792]">
+              Choose the integration that fits your project today. All three
+              paths use the same state definitions and accessibility model.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-[#343735] bg-[#343735] md:grid-cols-3">
+            {waysToUse.map((way, index) => (
+              <article key={way.title} className="group bg-[#1a1c1b] p-6">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-[#666b67]">
+                    {way.label}
+                  </span>
+                  <span className="font-mono text-[10px] text-[#555a56]">
+                    0{index + 1}
+                  </span>
+                </div>
+                <h3 className="mt-8 text-lg font-medium">{way.title}</h3>
+                <p className="mt-3 min-h-20 text-sm leading-6 text-[#7e837e]">
+                  {way.description}
+                </p>
+                <Link
+                  href={way.href}
+                  className="mt-6 inline-flex items-center gap-2 text-sm text-[#c5c8c3] transition-colors hover:text-white"
+                >
+                  {way.action}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* ── Collections ───────────────────────────────────── */}
         <section
           id="collections"
@@ -272,7 +361,7 @@ export default function Home() {
             {collections.map((collection, index) => (
               <article
                 key={collection.name}
-                className="group flex flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] transition-colors hover:border-[#454946]"
+                className="group flex flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-1 hover:border-[#454946]"
               >
                 {/* Icon preview strip */}
                 <div
@@ -341,27 +430,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="divide-y divide-[#2b2e2c] border-y border-[#2b2e2c]">
-            {roadmap.map((item, index) => (
-              <article
-                key={item.title}
-                className="grid gap-4 py-6 sm:grid-cols-[48px_1fr_auto] sm:items-start"
-              >
-                <span className="font-mono text-xs text-[#666b67]">
-                  0{index + 1}
-                </span>
-                <div>
-                  <h3 className="font-medium">{item.title}</h3>
-                  <p className="mt-2 max-w-xl text-sm leading-6 text-[#929792]">
-                    {item.description}
-                  </p>
-                </div>
-                <span className="font-mono text-[10px] text-[#666b67] sm:pt-1">
-                  {item.detail}
-                </span>
-              </article>
-            ))}
-          </div>
+          <RoadmapList items={roadmap} />
         </section>
 
         {/* ── Principles / About ────────────────────────────── */}

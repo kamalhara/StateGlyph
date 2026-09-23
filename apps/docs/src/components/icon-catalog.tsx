@@ -1,27 +1,62 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
-import { iconCatalog } from "@/data/icon-catalog";
+import { iconCatalog, iconCategories } from "@/data/icon-catalog";
 
 export function IconCatalog() {
   const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All");
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      const target = event.target as HTMLElement;
+      const isTyping =
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.isContentEditable;
+
+      if (event.key === "/" && !isTyping) {
+        event.preventDefault();
+        searchRef.current?.focus();
+      }
+
+      if (
+        event.key === "Escape" &&
+        document.activeElement === searchRef.current
+      ) {
+        setQuery("");
+        searchRef.current?.blur();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const matchingIcons = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
 
-    if (!normalizedQuery) {
-      return iconCatalog;
-    }
+    return iconCatalog.filter((icon) => {
+      const matchesCategory = category === "All" || icon.category === category;
+      const matchesQuery =
+        !normalizedQuery ||
+        [
+          icon.name,
+          icon.componentName,
+          icon.category,
+          icon.description,
+          ...icon.keywords,
+        ]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalizedQuery);
 
-    return iconCatalog.filter((icon) =>
-      [icon.name, icon.componentName, icon.category, ...icon.keywords]
-        .join(" ")
-        .toLowerCase()
-        .includes(normalizedQuery),
-    );
-  }, [query]);
+      return matchesCategory && matchesQuery;
+    });
+  }, [category, query]);
 
   return (
     <div>
@@ -40,6 +75,7 @@ export function IconCatalog() {
           </svg>
           <span className="sr-only">Search icons</span>
           <input
+            ref={searchRef}
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -56,12 +92,34 @@ export function IconCatalog() {
         </p>
       </div>
 
+      <div
+        className="flex gap-2 overflow-x-auto border-b border-[#2b2e2c] py-4"
+        role="group"
+        aria-label="Filter icons by category"
+      >
+        {["All", ...iconCategories].map((item) => (
+          <button
+            key={item}
+            type="button"
+            onClick={() => setCategory(item)}
+            aria-pressed={category === item}
+            className={`shrink-0 rounded border px-3 py-1.5 text-xs transition-colors ${
+              category === item
+                ? "border-[#686d69] bg-[#252825] text-white"
+                : "border-[#343735] text-[#7e837e] hover:border-[#4a4e4b] hover:text-[#c5c8c3]"
+            }`}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
       {matchingIcons.length > 0 ? (
         <div className="grid gap-4 pt-6 md:grid-cols-2 xl:grid-cols-3">
           {matchingIcons.map((icon) => (
             <article
               key={icon.slug}
-              className="overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b]"
+              className="group overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-[#4a4e4b]"
             >
               <div
                 className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]"
@@ -93,6 +151,9 @@ export function IconCatalog() {
                     <code className="mt-1 block font-mono text-xs text-[#7e837e]">
                       {icon.componentName}
                     </code>
+                    <p className="mt-3 text-xs leading-5 text-[#7e837e]">
+                      {icon.description}
+                    </p>
                   </div>
                   <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
                     {icon.states.length} states
@@ -119,8 +180,18 @@ export function IconCatalog() {
           <div>
             <p className="font-medium">No icons found</p>
             <p className="mt-2 text-sm text-[#7e837e]">
-              Try a name, component, or category.
+              Try another name, intent, or category.
             </p>
+            <button
+              type="button"
+              onClick={() => {
+                setQuery("");
+                setCategory("All");
+              }}
+              className="mt-4 text-xs text-[#c5c8c3] underline decoration-[#555a56] underline-offset-4 hover:text-white"
+            >
+              Clear filters
+            </button>
           </div>
         </div>
       )}
