@@ -53,6 +53,14 @@ export function SiteFooter() {
                     About
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="/#roadmap"
+                    className="text-[#929792] transition-colors hover:text-white"
+                  >
+                    Roadmap
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>

@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "StateGlyph — Stateful icons for React",
   description:
-    "Typed, accessible React icons for every visual state of an interface action.",
+    "Typed, accessible React icons for every visual state of an interface action—with custom icon support and a visual editor on the roadmap.",
   icons: {
     icon: "/favicon.svg",
   },

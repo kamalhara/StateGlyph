@@ -13,7 +13,12 @@ export default function IconsPage() {
     <>
       <div className="flex flex-col justify-between gap-5 border-b border-[#2b2e2c] pb-10 sm:flex-row sm:items-end">
         <div>
-          <p className="font-mono text-xs text-[#7e837e]">Icon library</p>
+          <div className="flex items-center gap-3">
+            <p className="font-mono text-xs text-[#7e837e]">Icon library</p>
+            <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
+              More coming soon
+            </span>
+          </div>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
             All state icons
           </h1>
@@ -29,7 +34,8 @@ export default function IconsPage() {
       </div>
 
       <p className="mt-8 font-mono text-xs text-[#666b67]">
-        {iconCatalog.length} of 30 planned icons available
+        {iconCatalog.length} icons available now · More components and source
+        libraries are planned
       </p>
     </>
   );

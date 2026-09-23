@@ -73,6 +73,27 @@ const principles = [
   ],
 ] as const;
 
+const roadmap = [
+  {
+    title: "More icon support",
+    description:
+      "More stateful components, categories, and source icon libraries—without changing the small API you already use.",
+    detail: "Expanding the collection",
+  },
+  {
+    title: "Custom icon support",
+    description:
+      "Bring your own SVGs and group them into typed states while keeping StateGlyph's accessibility and transition model.",
+    detail: "Use your own artwork",
+  },
+  {
+    title: "Visual editor",
+    description:
+      "Build a state icon in the browser, preview each state, and copy the generated React and TypeScript code.",
+    detail: "Create, preview, copy",
+  },
+] as const;
+
 export default function Home() {
   const totalStates = iconCatalog.reduce(
     (sum, icon) => sum + icon.states.length,
@@ -87,9 +108,14 @@ export default function Home() {
         {/* ── Hero ──────────────────────────────────────────── */}
         <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_320px] lg:items-center">
           <div className="max-w-4xl">
-            <p className="mb-5 font-mono text-xs text-[#929792]">
-              Open-source · React · TypeScript · {iconCatalog.length} icons
-            </p>
+            <div className="mb-5 flex flex-wrap items-center gap-3">
+              <p className="font-mono text-xs text-[#929792]">
+                Open-source · React · TypeScript · {iconCatalog.length} icons
+              </p>
+              <span className="rounded border border-[#343735] bg-[#1b1d1c] px-2 py-1 font-mono text-[10px] text-[#a6aaa5]">
+                Early access
+              </span>
+            </div>
             <h1 className="text-5xl leading-[1.02] font-semibold tracking-[-0.055em] sm:text-7xl">
               Icons that understand
               <br className="hidden sm:block" /> interface state.
@@ -293,6 +319,51 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ── Roadmap ──────────────────────────────────────── */}
+        <section
+          id="roadmap"
+          className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[0.8fr_1.2fr] lg:py-20"
+        >
+          <div>
+            <div className="flex items-center gap-3">
+              <p className="font-mono text-xs text-[#7e837e]">Roadmap</p>
+              <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
+                Coming soon
+              </span>
+            </div>
+            <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
+              A larger library, with room for your icons.
+            </h2>
+            <p className="mt-5 max-w-lg text-sm leading-7 text-[#929792]">
+              The first release focuses on a dependable set of state icons. The
+              next phase makes the collection broader and gives you tools to
+              create stateful icons from your own visual language.
+            </p>
+          </div>
+
+          <div className="divide-y divide-[#2b2e2c] border-y border-[#2b2e2c]">
+            {roadmap.map((item, index) => (
+              <article
+                key={item.title}
+                className="grid gap-4 py-6 sm:grid-cols-[48px_1fr_auto] sm:items-start"
+              >
+                <span className="font-mono text-xs text-[#666b67]">
+                  0{index + 1}
+                </span>
+                <div>
+                  <h3 className="font-medium">{item.title}</h3>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-[#929792]">
+                    {item.description}
+                  </p>
+                </div>
+                <span className="font-mono text-[10px] text-[#666b67] sm:pt-1">
+                  {item.detail}
+                </span>
+              </article>
+            ))}
+          </div>
+        </section>
+
         {/* ── Principles / About ────────────────────────────── */}
         <section
           id="about"
@@ -331,8 +402,6 @@ export default function Home() {
           </div>
         </section>
       </div>
-
-      
     </main>
   );
 }
