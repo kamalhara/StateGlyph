@@ -2,6 +2,7 @@
   "name": "stateicons",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "description": "Typed, accessible state icons for React.",
   "workspaces": [
     "apps/*",
@@ -10,7 +11,31 @@
   "scripts": {
     "dev": "npm run dev --workspace=@stateicons/docs",
     "build": "npm run build --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
   },
-  "license": "MIT"
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^26.6.2",
+    "@vitest/coverage-v8": "^5.0.1",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.9",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
 }
