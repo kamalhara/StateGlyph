@@ -63,7 +63,7 @@ export function IconSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="border-b border-[#2b2e2c] lg:border-r lg:border-b-0 lg:pr-7">
+    <aside className="scrollbar-hidden border-b border-[#2b2e2c] lg:overflow-y-auto lg:border-r lg:border-b-0 lg:pr-7">
       <details className="py-4 lg:hidden">
         <summary className="cursor-pointer text-sm font-medium text-[#c5c8c3]">
           Browse icon categories

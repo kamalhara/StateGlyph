@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a reproducible problem in StateGlyph
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping improve StateGlyph.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest example or repository that reproduces the issue.
+      placeholder: Include code, commands, and steps.
+    validations:
+      required: true
+  - type: input
+    id: package-version
+    attributes:
+      label: Package and version
+      placeholder: "@stateglyph/react 0.1.0"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: Node.js version, browser, framework, and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add screenshots, logs, or other relevant details.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched the existing issues for duplicates.
+          required: true
+        - label: I agree to follow the Code of Conduct.
+          required: true

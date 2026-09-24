@@ -1,5 +1,12 @@
 # StateGlyph
 
+[![CI](https://github.com/kamalhara/StateGlyph/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kamalhara/StateGlyph/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@stateglyph/react.svg?logo=npm)](https://www.npmjs.com/package/@stateglyph/react)
+[![License: MIT](https://img.shields.io/badge/license-MIT-5c625d.svg)](./LICENSE)
+[![Bundle size](https://img.shields.io/badge/gzip%20per%20icon-~1.4%20kB-34d399.svg)](#bundle-size)
+
+![StateGlyph upload icon moving from idle to loading to success](./.github/assets/stateglyph-readme-hero.png)
+
 StateGlyph is an open-source collection of typed React icons that communicate
 what an interface is doing, not only what an action looks like. Each component
 has named states such as `idle`, `loading`, and `success`, with accessible
@@ -11,6 +18,19 @@ feedback, forms, commerce, and notifications. The icons use the open-source
 
 > StateGlyph is currently an early `0.1.0` release. The API may evolve before
 > version `1.0.0`.
+
+[Documentation](./apps/docs/src/app/docs) · [Browse icon definitions](./packages/core/src/icons) · [Contributing](./CONTRIBUTING.md)
+
+## Why StateGlyph?
+
+- **One component, many states.** Keep idle, loading, success, error, and
+  toggle glyphs behind one stable, typed component API.
+- **Accessible by design.** Icons are decorative by default and can expose
+  state-aware labels when they carry meaning.
+- **Use it your way.** Import tree-shakeable React components or copy
+  self-contained source into your project with the CLI.
+- **Open foundations.** Every definition records its source icons and license
+  metadata.
 
 ## Install the React package
 
@@ -66,11 +86,19 @@ project. Existing files are preserved unless you pass `--force`.
 | `@stateglyph/transitions` | Optional CSS transitions with reduced-motion support |
 
 To enable the transition declared by each icon definition, install the optional
-package and import its stylesheet once:
+package and import its stylesheet once. It includes `crossfade`, `scale-fade`,
+`rotate`, `slide`, and `morph`, plus continuous loading-state rotation and a
+reduced-motion fallback:
 
 ```ts
 import "@stateglyph/transitions/styles.css";
 ```
+
+## Bundle size
+
+A direct per-icon entry such as `@stateglyph/react/upload` adds approximately
+1.4 kB gzipped of StateGlyph wrapper code before your bundler processes the
+selected Lucide glyph. Direct entries and the main package are tree-shakeable.
 
 ## Local development
 

@@ -20,6 +20,16 @@ npm run dev
 - Use an existing Lucide icon when adding or changing an icon state.
 - Include accessible labels and respect reduced-motion preferences.
 
+## Find a contribution
+
+Issues labelled
+[`good first issue`](https://github.com/kamalhara/StateGlyph/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+are intended to be approachable without deep knowledge of the repository.
+Issues labelled
+[`help wanted`](https://github.com/kamalhara/StateGlyph/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+are ready for community contributions. Comment on an issue before starting
+substantial work so effort is not duplicated.
+
 ## Verify your work
 
 ```bash
@@ -43,6 +53,13 @@ package versions manually; the release workflow applies changesets.
 An icon needs a typed definition in `packages/core`, a React component in
 `packages/react`, an export from both package entry points, and documentation.
 Add tests for metadata and state mappings when appropriate.
+
+## Community standards
+
+Participation in StateGlyph is governed by the
+[Code of Conduct](./CODE_OF_CONDUCT.md). Report security vulnerabilities using
+the private process described in [SECURITY.md](./SECURITY.md), not a public
+issue.
 
 By contributing, you agree that your contribution is licensed under the MIT
 License used by this repository.

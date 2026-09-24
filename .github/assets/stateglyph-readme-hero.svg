@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 720" role="img" aria-labelledby="title desc">
+  <title id="title">StateGlyph upload state progression</title>
+  <desc id="desc">An upload icon changes to a loading spinner and then a success check.</desc>
+  <rect width="1800" height="720" fill="#101311" />
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#68706b" stroke-width="6">
+      <rect x="230" y="190" width="310" height="300" rx="30" />
+      <rect x="745" y="190" width="310" height="300" rx="30" />
+      <rect x="1260" y="190" width="310" height="300" rx="30" />
+    </g>
+
+    <g stroke="#f0f1ed" stroke-width="16">
+      <path d="M385 390V275" />
+      <path d="m340 320 45-45 45 45" />
+      <path d="M320 385v45h130v-45" />
+
+      <path d="M590 340h110" />
+      <path d="m665 305 35 35-35 35" />
+
+      <circle cx="900" cy="340" r="70" stroke-dasharray="18 18.65" />
+
+      <path d="M1105 340h110" />
+      <path d="m1180 305 35 35-35 35" />
+    </g>
+
+    <g stroke="#34d399" stroke-width="16">
+      <circle cx="1415" cy="340" r="82" />
+      <path d="m1368 342 34 34 62-68" />
+    </g>
+  </g>
+</svg>

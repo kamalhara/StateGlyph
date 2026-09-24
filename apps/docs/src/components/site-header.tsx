@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navLinks = [
-  { label: "Guide", href: "/docs/guide" },
+  { label: "Docs", href: "/docs" },
   { label: "Setup", href: "/docs/setup" },
   { label: "API", href: "/docs/api" },
   { label: "CLI", href: "/docs/cli" },
