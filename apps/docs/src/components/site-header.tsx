@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -23,9 +24,15 @@ export function SiteHeader() {
           href="/"
           className="flex items-center gap-3 font-semibold tracking-tight"
         >
-          <span className="grid size-7 place-items-center rounded border border-[#686d69] font-mono text-[10px]">
-            SI
-          </span>
+          <Image
+            src="/stateglyph-sg-mark.png"
+            alt=""
+            width={28}
+            height={28}
+            className="size-7"
+            unoptimized
+            aria-hidden="true"
+          />
           <span>StateGlyph</span>
         </Link>
 

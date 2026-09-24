@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "predev": "npm run build:packages",
     "dev": "npm run dev --workspace=@stateglyph/docs",
     "build": "npm run build:packages && npm run build --workspace=@stateglyph/docs",
     "build:packages": "npm run build --workspace=@stateglyph/core && npm run build --workspace=@stateglyph/react && npm run build --workspace=@stateglyph/cli && npm run build --workspace=@stateglyph/transitions",

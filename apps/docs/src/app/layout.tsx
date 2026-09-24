@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   description:
     "Typed, accessible React icons for every visual state of an interface action.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/stateglyph-sg-favicon.png",
   },
 };
 
