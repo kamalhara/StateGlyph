@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/cli",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Copy StateGlyph components into React projects.",
   "license": "MIT",
   "author": "Kamalveer Singh",
@@ -29,16 +29,19 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "dev": "tsup src/index.ts --format esm --dts --watch",
+    "prepack": "node ../../scripts/sync-package-legal-files.mjs",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateglyph/core": "0.0.0",
+    "@stateglyph/core": "0.1.0",
     "commander": "^15.0.0"
   },
   "engines": {

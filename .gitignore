@@ -8,3 +8,5 @@ coverage
 .env.local
 .DS_Store
 *.log
+packages/*/LICENSE
+packages/*/THIRD_PARTY_NOTICES.md

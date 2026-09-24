@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/transitions",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "CSS transitions for StateGlyph React icons.",
   "license": "MIT",
   "author": "Kamalveer Singh",
@@ -38,11 +38,14 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean && cp src/styles.css dist/styles.css",
     "dev": "tsup src/index.ts --format esm --dts --watch",
+    "prepack": "node ../../scripts/sync-package-legal-files.mjs",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
