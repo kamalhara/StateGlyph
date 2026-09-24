@@ -1,7 +1,11 @@
 import { DocsSidebar } from "@/components/docs-sidebar";
 import { SiteHeader } from "@/components/site-header";
 
-export default function DocsLayout({ children }: { children: React.ReactNode }) {
+export default function DocsLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="min-h-screen bg-[#141615] text-[#f0f1ed]">
       <SiteHeader />

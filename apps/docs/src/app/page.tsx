@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
 import { HeroDemo } from "@/components/hero-demo";
+import { HighlightedCode } from "@/components/highlighted-code";
 import { RoadmapList } from "@/components/roadmap-list";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -288,7 +289,7 @@ export default function Home() {
               <CopyButton value={usageSnippet} />
             </div>
             <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-              <code>{usageSnippet}</code>
+              <HighlightedCode code={usageSnippet} />
             </pre>
           </div>
         </section>

@@ -4,7 +4,7 @@ export const paymentStateIcon = defineStateIcon({
   id: "payment",
   title: "Payment",
   description: "Shows a payment moving through processing and completion.",
-  category: "async",
+  category: "commerce",
   states: {
     idle: {
       icon: "credit-card",

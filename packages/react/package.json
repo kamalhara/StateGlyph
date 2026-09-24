@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/react",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Typed, accessible state icon components for React.",
   "license": "MIT",
   "author": "Kamalveer Singh",
@@ -33,9 +33,129 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./*": {
-      "types": "./dist/icons/*-state-icon.d.ts",
-      "import": "./dist/icons/*-state-icon.js"
+    "./add-to-cart": {
+      "types": "./dist/icons/add-to-cart-state-icon.d.ts",
+      "import": "./dist/icons/add-to-cart-state-icon.js"
+    },
+    "./bookmark": {
+      "types": "./dist/icons/bookmark-state-icon.d.ts",
+      "import": "./dist/icons/bookmark-state-icon.js"
+    },
+    "./camera": {
+      "types": "./dist/icons/camera-state-icon.d.ts",
+      "import": "./dist/icons/camera-state-icon.js"
+    },
+    "./chevron-horizontal": {
+      "types": "./dist/icons/chevron-horizontal-state-icon.d.ts",
+      "import": "./dist/icons/chevron-horizontal-state-icon.js"
+    },
+    "./chevron-vertical": {
+      "types": "./dist/icons/chevron-vertical-state-icon.d.ts",
+      "import": "./dist/icons/chevron-vertical-state-icon.js"
+    },
+    "./copy": {
+      "types": "./dist/icons/copy-state-icon.d.ts",
+      "import": "./dist/icons/copy-state-icon.js"
+    },
+    "./delete": {
+      "types": "./dist/icons/delete-state-icon.d.ts",
+      "import": "./dist/icons/delete-state-icon.js"
+    },
+    "./download": {
+      "types": "./dist/icons/download-state-icon.d.ts",
+      "import": "./dist/icons/download-state-icon.js"
+    },
+    "./expand": {
+      "types": "./dist/icons/expand-state-icon.d.ts",
+      "import": "./dist/icons/expand-state-icon.js"
+    },
+    "./fullscreen": {
+      "types": "./dist/icons/fullscreen-state-icon.d.ts",
+      "import": "./dist/icons/fullscreen-state-icon.js"
+    },
+    "./install": {
+      "types": "./dist/icons/install-state-icon.d.ts",
+      "import": "./dist/icons/install-state-icon.js"
+    },
+    "./like": {
+      "types": "./dist/icons/like-state-icon.d.ts",
+      "import": "./dist/icons/like-state-icon.js"
+    },
+    "./menu": {
+      "types": "./dist/icons/menu-state-icon.d.ts",
+      "import": "./dist/icons/menu-state-icon.js"
+    },
+    "./microphone": {
+      "types": "./dist/icons/microphone-state-icon.d.ts",
+      "import": "./dist/icons/microphone-state-icon.js"
+    },
+    "./notification": {
+      "types": "./dist/icons/notification-state-icon.d.ts",
+      "import": "./dist/icons/notification-state-icon.js"
+    },
+    "./panel": {
+      "types": "./dist/icons/panel-state-icon.d.ts",
+      "import": "./dist/icons/panel-state-icon.js"
+    },
+    "./payment": {
+      "types": "./dist/icons/payment-state-icon.d.ts",
+      "import": "./dist/icons/payment-state-icon.js"
+    },
+    "./play-pause": {
+      "types": "./dist/icons/play-pause-state-icon.d.ts",
+      "import": "./dist/icons/play-pause-state-icon.js"
+    },
+    "./playback": {
+      "types": "./dist/icons/playback-state-icon.d.ts",
+      "import": "./dist/icons/playback-state-icon.js"
+    },
+    "./publish": {
+      "types": "./dist/icons/publish-state-icon.d.ts",
+      "import": "./dist/icons/publish-state-icon.js"
+    },
+    "./refresh": {
+      "types": "./dist/icons/refresh-state-icon.d.ts",
+      "import": "./dist/icons/refresh-state-icon.js"
+    },
+    "./repeat": {
+      "types": "./dist/icons/repeat-state-icon.d.ts",
+      "import": "./dist/icons/repeat-state-icon.js"
+    },
+    "./save": {
+      "types": "./dist/icons/save-state-icon.d.ts",
+      "import": "./dist/icons/save-state-icon.js"
+    },
+    "./send": {
+      "types": "./dist/icons/send-state-icon.d.ts",
+      "import": "./dist/icons/send-state-icon.js"
+    },
+    "./shuffle": {
+      "types": "./dist/icons/shuffle-state-icon.d.ts",
+      "import": "./dist/icons/shuffle-state-icon.js"
+    },
+    "./sidebar": {
+      "types": "./dist/icons/sidebar-state-icon.d.ts",
+      "import": "./dist/icons/sidebar-state-icon.js"
+    },
+    "./submit": {
+      "types": "./dist/icons/submit-state-icon.d.ts",
+      "import": "./dist/icons/submit-state-icon.js"
+    },
+    "./sync": {
+      "types": "./dist/icons/sync-state-icon.d.ts",
+      "import": "./dist/icons/sync-state-icon.js"
+    },
+    "./upload": {
+      "types": "./dist/icons/upload-state-icon.d.ts",
+      "import": "./dist/icons/upload-state-icon.js"
+    },
+    "./view": {
+      "types": "./dist/icons/view-state-icon.d.ts",
+      "import": "./dist/icons/view-state-icon.js"
+    },
+    "./volume": {
+      "types": "./dist/icons/volume-state-icon.d.ts",
+      "import": "./dist/icons/volume-state-icon.js"
     }
   },
   "files": [
@@ -49,7 +169,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateglyph/core": "^0.1.0",
+    "@stateglyph/core": "0.0.0",
     "lucide-react": "^1.47.0"
   },
   "peerDependencies": {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import "@stateglyph/transitions/styles.css";
 import "./globals.css";
 
 import { SiteFooter } from "@/components/site-footer";
@@ -17,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "StateGlyph — Stateful icons for React",
   description:
-    "Typed, accessible React icons for every visual state of an interface action—with custom icon support and a visual editor on the roadmap.",
+    "Typed, accessible React icons for every visual state of an interface action.",
   icons: {
     icon: "/favicon.svg",
   },

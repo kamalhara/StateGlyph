@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { BiCopy } from "react-icons/bi";
 
+import { HighlightedCode, type HighlightedCodeProps } from "./highlighted-code";
+
 type CodeBlockProps = {
   filename?: string;
   code: string;
-  language?: string;
+  language?: HighlightedCodeProps["language"];
 };
 
-export function CodeBlock({ filename, code }: CodeBlockProps) {
+export function CodeBlock({ filename, code, language }: CodeBlockProps) {
   const [copied, setCopied] = useState(false);
 
   async function copyCode() {
@@ -36,7 +38,7 @@ export function CodeBlock({ filename, code }: CodeBlockProps) {
         </div>
       )}
       <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-        <code>{code}</code>
+        <HighlightedCode code={code} language={language} />
       </pre>
     </div>
   );

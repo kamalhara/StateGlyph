@@ -30,6 +30,7 @@ export { panelStateIcon } from "./icons/panel";
 export { copyStateIcon } from "./icons/copy";
 export { likeStateIcon } from "./icons/like";
 export { bookmarkStateIcon } from "./icons/bookmark";
+export { notificationStateIcon } from "./icons/notification";
 export type { UploadState } from "./icons/upload";
 export type { DownloadState } from "./icons/download";
 export type { SaveState } from "./icons/save";
@@ -60,9 +61,11 @@ export type { PanelState } from "./icons/panel";
 export type { CopyState } from "./icons/copy";
 export type { LikeState } from "./icons/like";
 export type { BookmarkState } from "./icons/bookmark";
+export type { NotificationState } from "./icons/notification";
 export type {
   StateIconCategory,
   StateIconDefinition,
+  StateIconLibrary,
   StateIconSource,
   StateIconStateDefinition,
   StateIconStates,

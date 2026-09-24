@@ -5,8 +5,8 @@ what an interface is doing, not only what an action looks like. Each component
 has named states such as `idle`, `loading`, and `success`, with accessible
 labels and predictable TypeScript props.
 
-The first release contains 30 icons across async actions, media, navigation,
-feedback, and device controls. The icons use the open-source
+The first release contains 31 icons across async actions, media, navigation,
+feedback, forms, commerce, and notifications. The icons use the open-source
 [Lucide](https://lucide.dev/) icon set as their visual foundation.
 
 > StateGlyph is currently an early `0.1.0` release. The API may evolve before
@@ -58,11 +58,19 @@ project. Existing files are preserved unless you pass `--force`.
 
 ## Packages
 
-| Package             | Purpose                                             |
-| ------------------- | --------------------------------------------------- |
-| `@stateglyph/react` | Ready-to-use React components                       |
-| `@stateglyph/core`  | Framework-independent icon definitions and metadata |
-| `@stateglyph/cli`   | Copy-and-own component generator                    |
+| Package                   | Purpose                                              |
+| ------------------------- | ---------------------------------------------------- |
+| `@stateglyph/react`       | Ready-to-use React components                        |
+| `@stateglyph/core`        | Framework-independent icon definitions and metadata  |
+| `@stateglyph/cli`         | Copy-and-own component generator                     |
+| `@stateglyph/transitions` | Optional CSS transitions with reduced-motion support |
+
+To enable the transition declared by each icon definition, install the optional
+package and import its stylesheet once:
+
+```ts
+import "@stateglyph/transitions/styles.css";
+```
 
 ## Local development
 

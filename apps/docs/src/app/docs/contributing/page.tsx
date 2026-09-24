@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { CopyButton } from "@/components/copy-button";
+import { HighlightedCode } from "@/components/highlighted-code";
 
 export const metadata: Metadata = {
   title: "Contributing — StateGlyph",
@@ -88,8 +89,7 @@ const guidelines = [
   },
   {
     title: "Search before opening issues",
-    description:
-      "Check existing issues and PRs before opening a duplicate.",
+    description: "Check existing issues and PRs before opening a duplicate.",
   },
 ] as const;
 
@@ -103,8 +103,8 @@ export default function ContributingPage() {
           Contributing
         </h1>
         <p className="mt-5 max-w-2xl text-sm leading-7 text-[#a6aaa5]">
-          Thank you for helping improve StateGlyph. This guide covers
-          everything from local setup to submitting your first pull request.
+          Thank you for helping improve StateGlyph. This guide covers everything
+          from local setup to submitting your first pull request.
         </p>
       </div>
 
@@ -135,7 +135,7 @@ export default function ContributingPage() {
                       <CopyButton value={item.code} />
                     </div>
                     <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-                      <code>{item.code}</code>
+                      <HighlightedCode code={item.code} language="shell" />
                     </pre>
                   </div>
                 )}

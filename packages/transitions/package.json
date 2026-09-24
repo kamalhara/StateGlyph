@@ -1,10 +1,31 @@
 {
   "name": "@stateglyph/transitions",
   "version": "0.0.0",
-  "private": true,
+  "description": "CSS transitions for StateGlyph React icons.",
+  "license": "MIT",
+  "author": "Kamalveer Singh",
+  "keywords": [
+    "icons",
+    "css",
+    "transitions",
+    "animation",
+    "accessibility"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamalhara/StateGlyph.git",
+    "directory": "packages/transitions"
+  },
+  "homepage": "https://github.com/kamalhara/StateGlyph#readme",
+  "bugs": {
+    "url": "https://github.com/kamalhara/StateGlyph/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "sideEffects": [
-    "*.css"
+    "./dist/styles.css"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -16,12 +37,14 @@
     "./styles.css": "./dist/styles.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean && cp src/styles.css dist/styles.css",
     "dev": "tsup src/index.ts --format esm --dts --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
   },
   "engines": {
     "node": ">=22.19.0"

@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/core",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Typed state definitions and metadata for StateGlyph.",
   "license": "MIT",
   "author": "Kamalveer Singh",

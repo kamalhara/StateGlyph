@@ -6,6 +6,9 @@ const categoryLabels = {
   navigation: "Navigation and layout",
   feedback: "Feedback and toggles",
   device: "Device and connection",
+  form: "Form states",
+  commerce: "Commerce",
+  notification: "Notifications",
 } as const;
 
 export function formatIconList(): string {

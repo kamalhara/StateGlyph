@@ -28,6 +28,7 @@ import { panelStateIcon } from "./icons/panel";
 import { copyStateIcon } from "./icons/copy";
 import { likeStateIcon } from "./icons/like";
 import { bookmarkStateIcon } from "./icons/bookmark";
+import { notificationStateIcon } from "./icons/notification";
 
 export const stateIconCatalog = [
   uploadStateIcon,
@@ -60,4 +61,5 @@ export const stateIconCatalog = [
   copyStateIcon,
   likeStateIcon,
   bookmarkStateIcon,
+  notificationStateIcon,
 ] as const;

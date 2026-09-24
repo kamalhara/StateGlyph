@@ -1,4 +1,7 @@
 import {
+  Bell,
+  BellOff,
+  BellRing,
   Bookmark,
   BookmarkCheck,
   Check,
@@ -52,6 +55,9 @@ import {
   type LucideIcon,
 } from "lucide-react";
 export const lucideIconMap = {
+  bell: Bell,
+  "bell-off": BellOff,
+  "bell-ring": BellRing,
   bookmark: Bookmark,
   "bookmark-check": BookmarkCheck,
   check: Check,

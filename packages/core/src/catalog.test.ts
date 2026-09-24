@@ -1,10 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { stateIconCatalog } from "./catalog";
+import type { StateIconSource } from "./types";
 
 describe("state icon catalog", () => {
-  it("contains the planned first 30 icons", () => {
-    expect(stateIconCatalog).toHaveLength(30);
+  it("contains the launch catalog", () => {
+    expect(stateIconCatalog).toHaveLength(31);
   });
 
   it("uses unique IDs", () => {
@@ -25,5 +26,16 @@ describe("state icon catalog", () => {
         expect(icon.source.icons).toContain(state.icon);
       }
     }
+  });
+
+  it("accepts additional source libraries without widening the catalog", () => {
+    const source: StateIconSource = {
+      library: "heroicons",
+      license: "MIT",
+      url: "https://heroicons.com",
+      icons: ["arrow-up-tray"],
+    };
+
+    expect(source.library).toBe("heroicons");
   });
 });

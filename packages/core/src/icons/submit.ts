@@ -4,7 +4,7 @@ export const submitStateIcon = defineStateIcon({
   id: "submit",
   title: "Submit",
   description: "Shows the progress and result of a form submission.",
-  category: "async",
+  category: "form",
   states: {
     idle: {
       icon: "send-horizontal",

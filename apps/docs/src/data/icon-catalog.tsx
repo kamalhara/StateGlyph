@@ -30,6 +30,7 @@ import {
   copyStateIcon,
   likeStateIcon,
   bookmarkStateIcon,
+  notificationStateIcon,
   type StateIconDefinition,
   type StateIconStates,
 } from "@stateglyph/core";
@@ -64,6 +65,7 @@ import {
   CopyStateIcon,
   LikeStateIcon,
   BookmarkStateIcon,
+  NotificationStateIcon,
 } from "@stateglyph/react";
 
 export type IconStateRecord = {
@@ -99,6 +101,9 @@ function toStateRecords<States extends StateIconStates>(
 export const categoryDescriptions = {
   "Async workflows":
     "Uploads, saves, payments, submissions, and other task lifecycles.",
+  "Form states": "Submission and validation states for forms and fields.",
+  Commerce: "Cart, checkout, and payment workflows.",
+  Notifications: "Notification preferences and unread activity.",
   "Media controls": "Playback, audio, camera, and viewing states.",
   "Navigation and layout": "Menus, panels, views, and directional controls.",
   "Feedback and toggles": "Temporary confirmation and saved preference states.",
@@ -262,7 +267,7 @@ export const iconCatalog = [
     slug: "payment",
     name: paymentStateIcon.title,
     componentName: "PaymentStateIcon",
-    category: "Async workflows",
+    category: "Commerce",
     source: "Lucide",
     license: paymentStateIcon.source.license,
     description: paymentStateIcon.description,
@@ -284,7 +289,7 @@ export const iconCatalog = [
     slug: "add-to-cart",
     name: addToCartStateIcon.title,
     componentName: "AddToCartStateIcon",
-    category: "Async workflows",
+    category: "Commerce",
     source: "Lucide",
     license: addToCartStateIcon.source.license,
     description: addToCartStateIcon.description,
@@ -306,7 +311,7 @@ export const iconCatalog = [
     slug: "submit",
     name: submitStateIcon.title,
     componentName: "SubmitStateIcon",
-    category: "Async workflows",
+    category: "Form states",
     source: "Lucide",
     license: submitStateIcon.source.license,
     description: submitStateIcon.description,
@@ -761,6 +766,28 @@ export const iconCatalog = [
     render: ({ state, size, className }: RenderIconOptions) => (
       <BookmarkStateIcon
         state={state as ComponentProps<typeof BookmarkStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "notification",
+    name: notificationStateIcon.title,
+    componentName: "NotificationStateIcon",
+    category: "Notifications",
+    source: "Lucide",
+    license: notificationStateIcon.source.license,
+    description: notificationStateIcon.description,
+    keywords: notificationStateIcon.tags,
+    states: toStateRecords(notificationStateIcon),
+    usage:
+      'import { NotificationStateIcon } from "@stateglyph/react";\n\n<NotificationStateIcon state="off" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <NotificationStateIcon
+        state={state as ComponentProps<typeof NotificationStateIcon>["state"]}
         size={size}
         strokeWidth={1.65}
         decorative

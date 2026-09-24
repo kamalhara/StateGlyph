@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CopyButton } from "@/components/copy-button";
+import { HighlightedCode } from "@/components/highlighted-code";
 import { StateSwitcher } from "@/components/state-switcher";
 import { getIconBySlug, iconCatalog } from "@/data/icon-catalog";
 
@@ -166,7 +167,7 @@ export default async function IconPage({ params }: IconPageProps) {
             <CopyButton value={icon.usage} />
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-sm leading-7 text-[#d9dbd7]">
-            <code>{icon.usage}</code>
+            <HighlightedCode code={icon.usage} />
           </pre>
         </div>
       </section>

@@ -4,7 +4,7 @@ export const addToCartStateIcon = defineStateIcon({
   id: "add-to-cart",
   title: "Add to cart",
   description: "Shows the lifecycle of adding an item to a cart.",
-  category: "async",
+  category: "commerce",
   states: {
     idle: {
       icon: "shopping-cart",

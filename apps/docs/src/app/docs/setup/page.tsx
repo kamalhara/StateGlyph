@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
+import { HighlightedCode } from "@/components/highlighted-code";
 
 export const metadata: Metadata = {
   title: "Installation & Setup — StateGlyph",
@@ -142,7 +143,7 @@ export default function SetupPage() {
               <CopyButton value={basicUsage} />
             </div>
             <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-              <code>{basicUsage}</code>
+              <HighlightedCode code={basicUsage} />
             </pre>
           </div>
 
@@ -154,7 +155,7 @@ export default function SetupPage() {
               <CopyButton value={directImport} />
             </div>
             <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-              <code>{directImport}</code>
+              <HighlightedCode code={directImport} />
             </pre>
           </div>
         </div>
@@ -191,7 +192,7 @@ export default function SetupPage() {
                 <CopyButton value={nextjsConfig} />
               </div>
               <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-                <code>{nextjsConfig}</code>
+                <HighlightedCode code={nextjsConfig} language="typescript" />
               </pre>
             </div>
           </div>
@@ -222,8 +223,8 @@ export default function SetupPage() {
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             aria-hidden=&quot;true&quot;
           </code>
-          ). When an icon communicates information not already conveyed by nearby
-          text, set{" "}
+          ). When an icon communicates information not already conveyed by
+          nearby text, set{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             {"decorative={false}"}
           </code>{" "}
@@ -241,7 +242,7 @@ export default function SetupPage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{accessibleUsage}</code>
+            <HighlightedCode code={accessibleUsage} />
           </pre>
         </div>
       </section>
@@ -272,7 +273,7 @@ export default function SetupPage() {
             <CopyButton value={cliUsage} />
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{cliUsage}</code>
+            <HighlightedCode code={cliUsage} language="shell" />
           </pre>
         </div>
 

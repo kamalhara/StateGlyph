@@ -1,0 +1,82 @@
+:where([data-state-icon][data-transition]) {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+[data-state-icon][data-transition="crossfade"] {
+  animation: stateglyph-crossfade var(--stateglyph-duration, 180ms)
+    var(--stateglyph-easing, ease-out) both;
+}
+
+[data-state-icon][data-transition="scale-fade"] {
+  animation: stateglyph-scale-fade var(--stateglyph-duration, 200ms)
+    var(--stateglyph-easing, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+[data-state-icon][data-transition="rotate"] {
+  animation: stateglyph-rotate var(--stateglyph-duration, 240ms)
+    var(--stateglyph-easing, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+[data-state-icon][data-transition="slide"] {
+  animation: stateglyph-slide var(--stateglyph-duration, 220ms)
+    var(--stateglyph-easing, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+[data-state-icon][data-transition="morph"] {
+  animation: stateglyph-morph var(--stateglyph-duration, 240ms)
+    var(--stateglyph-easing, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+[data-state-icon][data-state-continuous="true"] {
+  animation: stateglyph-spin var(--stateglyph-spin-duration, 900ms) linear
+    infinite;
+}
+
+@keyframes stateglyph-crossfade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes stateglyph-scale-fade {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes stateglyph-rotate {
+  from {
+    opacity: 0;
+    transform: rotate(-35deg) scale(0.9);
+  }
+}
+
+@keyframes stateglyph-slide {
+  from {
+    opacity: 0;
+    transform: translateY(18%);
+  }
+}
+
+@keyframes stateglyph-morph {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+    transform: scale(0.9) rotate(-8deg);
+  }
+}
+
+@keyframes stateglyph-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-state-icon][data-transition],
+  [data-state-icon][data-state-continuous="true"] {
+    animation: none;
+  }
+}

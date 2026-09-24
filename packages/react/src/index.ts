@@ -119,3 +119,7 @@ export {
   BookmarkStateIcon,
   type BookmarkStateIconProps,
 } from "./icons/bookmark-state-icon";
+export {
+  NotificationStateIcon,
+  type NotificationStateIconProps,
+} from "./icons/notification-state-icon";

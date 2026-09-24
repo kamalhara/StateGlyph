@@ -3,9 +3,16 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [["@stateglyph/core", "@stateglyph/react", "@stateglyph/cli"]],
+  "linked": [
+    [
+      "@stateglyph/core",
+      "@stateglyph/react",
+      "@stateglyph/cli",
+      "@stateglyph/transitions"
+    ]
+  ],
   "access": "public",
   "baseBranch": "master",
   "updateInternalDependencies": "patch",
-  "ignore": ["@stateglyph/docs", "@stateglyph/transitions"]
+  "ignore": ["@stateglyph/docs"]
 }

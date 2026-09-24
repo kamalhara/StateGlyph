@@ -27,10 +27,25 @@ export function StateIcon<States extends StateIconStates>({
 }: StateIconProps<States>) {
   const stateDefinition = definition.states[state];
 
+  if (!stateDefinition) {
+    console.warn(
+      `[StateGlyph] Unknown state "${state}" for icon "${definition.id}".`,
+    );
+    return null;
+  }
+
+  if (definition.source.library !== "lucide") {
+    console.warn(
+      `[StateGlyph] Unsupported icon library: ${definition.source.library}`,
+    );
+    return null;
+  }
+
   const IconComponent = lucideIconMap[stateDefinition.icon as LucideIconName];
 
   if (!IconComponent) {
-    throw new Error(`Unknown Lucide icon: ${stateDefinition.icon}`);
+    console.warn(`[StateGlyph] Unknown Lucide icon: ${stateDefinition.icon}`);
+    return null;
   }
 
   const accessibleLabel = label ?? stateDefinition.label;
@@ -42,6 +57,8 @@ export function StateIcon<States extends StateIconStates>({
       strokeWidth={strokeWidth}
       data-state-icon={definition.id}
       data-state={state}
+      data-transition={definition.transition}
+      data-state-continuous={stateDefinition.continuous ? "true" : undefined}
       aria-hidden={decorative ? true : undefined}
       aria-label={decorative ? undefined : accessibleLabel}
       role={decorative ? undefined : "img"}

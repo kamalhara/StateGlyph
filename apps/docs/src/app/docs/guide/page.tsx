@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { HighlightedCode } from "@/components/highlighted-code";
+
 export const metadata: Metadata = {
   title: "Guide — StateGlyph",
   description:
@@ -76,7 +78,7 @@ export default function GuidePage() {
           </code>
           . With StateGlyph, you pass{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
-            {"state=\"loading\""}
+            {'state="loading"'}
           </code>{" "}
           and the right icon appears — typed, labelled, and accessible.
         </p>
@@ -88,7 +90,8 @@ export default function GuidePage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{`import { UploadStateIcon } from "@stateglyph/react";
+            <HighlightedCode
+              code={`import { UploadStateIcon } from "@stateglyph/react";
 
 function UploadButton({ status }) {
   return (
@@ -97,7 +100,8 @@ function UploadButton({ status }) {
       Upload file
     </button>
   );
-}`}</code>
+}`}
+            />
           </pre>
         </div>
       </section>
@@ -131,11 +135,11 @@ function UploadButton({ status }) {
       <section className="border-b border-[#2b2e2c] py-10">
         <h2 className="text-2xl font-semibold tracking-[-0.03em]">Packages</h2>
         <p className="mt-4 text-sm leading-7 text-[#929792]">
-          StateGlyph is published as a monorepo with three packages. Most
+          StateGlyph is published as a monorepo with four packages. Most
           projects only need the React package.
         </p>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-3">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {[
             {
               name: "@stateglyph/react",
@@ -151,6 +155,11 @@ function UploadButton({ status }) {
               name: "@stateglyph/cli",
               description:
                 "Copy-and-own component generator. Copies editable source into your project.",
+            },
+            {
+              name: "@stateglyph/transitions",
+              description:
+                "Optional CSS transitions with reduced-motion support.",
             },
           ].map((pkg) => (
             <div
@@ -191,9 +200,14 @@ function UploadButton({ status }) {
               description: "Generate copy-and-own components.",
             },
             {
+              label: "Transitions",
+              href: "/docs/transitions",
+              description: "Add optional, accessible state animations.",
+            },
+            {
               label: "Browse Icons",
               href: "/icons",
-              description: "Explore all 30 state icon components.",
+              description: "Explore all 31 state icon components.",
             },
           ].map((link) => (
             <Link

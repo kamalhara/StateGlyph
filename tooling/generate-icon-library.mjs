@@ -20,6 +20,8 @@ const asyncIcon = (
   successName,
   successLabel,
   description,
+  coreCategory = "async",
+  docsCategory = "Async workflows",
 ) => ({
   slug,
   camel,
@@ -27,8 +29,8 @@ const asyncIcon = (
   title,
   actionIcon,
   description,
-  coreCategory: "async",
-  docsCategory: "Async workflows",
+  coreCategory,
+  docsCategory,
   transition: "scale-fade",
   initialState: "idle",
   states: [
@@ -173,6 +175,8 @@ const icons = [
     "success",
     "Payment complete",
     "Shows a payment moving through processing and completion.",
+    "commerce",
+    "Commerce",
   ),
   asyncIcon(
     "add-to-cart",
@@ -185,6 +189,8 @@ const icons = [
     "added",
     "Added to cart",
     "Shows the lifecycle of adding an item to a cart.",
+    "commerce",
+    "Commerce",
   ),
   asyncIcon(
     "submit",
@@ -197,6 +203,8 @@ const icons = [
     "success",
     "Submission complete",
     "Shows the progress and result of a form submission.",
+    "form",
+    "Form states",
   ),
   asyncIcon(
     "install",
@@ -510,9 +518,33 @@ const icons = [
       ),
     ],
   ),
+  {
+    slug: "notification",
+    camel: "notification",
+    pascal: "Notification",
+    title: "Notification",
+    description: "Shows off, enabled, and unread notification states.",
+    coreCategory: "notification",
+    docsCategory: "Notifications",
+    transition: "scale-fade",
+    initialState: "off",
+    states: [
+      s("off", "bell-off", "Enable notifications", "Notifications are off."),
+      s("on", "bell", "Notifications on", "Notifications are enabled."),
+      s(
+        "unread",
+        "bell-ring",
+        "Unread notifications",
+        "There are unread notifications.",
+      ),
+    ],
+  },
 ];
 
 const lucide = {
+  bell: "Bell",
+  "bell-off": "BellOff",
+  "bell-ring": "BellRing",
   bookmark: "Bookmark",
   "bookmark-check": "BookmarkCheck",
   check: "Check",
@@ -609,7 +641,7 @@ const coreIndex = `export { defineStateIcon } from "./define-state-icon";
 export { stateIconCatalog } from "./catalog";
 ${icons.map((x) => `export { ${x.camel}StateIcon } from "./icons/${x.slug}";`).join("\n")}
 ${icons.map((x) => `export type { ${x.pascal}State } from "./icons/${x.slug}";`).join("\n")}
-export type { StateIconCategory, StateIconDefinition, StateIconSource, StateIconStateDefinition, StateIconStates, StateIconTransition } from "./types";
+export type { StateIconCategory, StateIconDefinition, StateIconLibrary, StateIconSource, StateIconStateDefinition, StateIconStates, StateIconTransition } from "./types";
 `;
 
 const reactIndex = `export { StateIcon, type StateIconProps } from "./components/state-icon";
@@ -662,6 +694,9 @@ function toStateRecords<States extends StateIconStates>(definition: StateIconDef
 }
 export const categoryDescriptions = {
   "Async workflows": "Uploads, saves, payments, submissions, and other task lifecycles.",
+  "Form states": "Submission and validation states for forms and fields.",
+  Commerce: "Cart, checkout, and payment workflows.",
+  Notifications: "Notification preferences and unread activity.",
   "Media controls": "Playback, audio, camera, and viewing states.",
   "Navigation and layout": "Menus, panels, views, and directional controls.",
   "Feedback and toggles": "Temporary confirmation and saved preference states.",

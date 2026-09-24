@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
+import { HighlightedCode } from "@/components/highlighted-code";
 
 export const metadata: Metadata = {
   title: "API Reference — StateGlyph",
@@ -36,6 +37,7 @@ import type {
   StateIconStates,
   StateIconStateDefinition,
   StateIconSource,
+  StateIconLibrary,
   StateIconCategory,
   StateIconTransition,
 } from "@stateglyph/core";`;
@@ -47,7 +49,7 @@ const commonProps = [
     default: "—",
     required: true,
     description:
-      "The current visual state. Each icon component types this as a union of its valid states (e.g. \"idle\" | \"loading\" | \"success\" | \"error\").",
+      'The current visual state. Each icon component types this as a union of its valid states (e.g. "idle" | "loading" | "success" | "error").',
   },
   {
     name: "size",
@@ -86,8 +88,7 @@ const commonProps = [
     type: "string",
     default: "—",
     required: false,
-    description:
-      "Additional CSS class names applied to the SVG element.",
+    description: "Additional CSS class names applied to the SVG element.",
   },
 ] as const;
 
@@ -95,7 +96,7 @@ const definitionFields = [
   {
     name: "id",
     type: "string",
-    description: "Unique kebab-case identifier, e.g. \"upload\".",
+    description: 'Unique kebab-case identifier, e.g. "upload".',
   },
   {
     name: "title",
@@ -111,7 +112,7 @@ const definitionFields = [
     name: "category",
     type: "StateIconCategory",
     description:
-      "One of \"async\", \"media\", \"navigation\", \"feedback\", or \"device\".",
+      'One of "async", "media", "navigation", "feedback", "device", "form", "commerce", or "notification".',
   },
   {
     name: "states",
@@ -128,7 +129,7 @@ const definitionFields = [
     name: "transition",
     type: "StateIconTransition",
     description:
-      "Transition hint — \"crossfade\", \"scale-fade\", \"rotate\", \"slide\", or \"morph\".",
+      'Transition hint — "crossfade", "scale-fade", "rotate", "slide", or "morph".',
   },
   {
     name: "tags",
@@ -139,7 +140,7 @@ const definitionFields = [
     name: "source",
     type: "StateIconSource",
     description:
-      "Source library metadata (library name, license, URL, icon names used).",
+      "Source library metadata (extensible library name, license, URL, and icon names used).",
   },
 ] as const;
 
@@ -168,7 +169,7 @@ export default function ApiPage() {
           Icon components
         </h2>
         <p className="mt-4 text-sm leading-7 text-[#929792]">
-          StateGlyph ships 30 pre-built icon components. Each accepts the same
+          StateGlyph ships 31 pre-built icon components. Each accepts the same
           common props — the only difference is the typed{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             state
@@ -184,7 +185,7 @@ export default function ApiPage() {
             <CopyButton value={stateIconUsage} />
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{stateIconUsage}</code>
+            <HighlightedCode code={stateIconUsage} />
           </pre>
         </div>
       </section>
@@ -259,9 +260,7 @@ export default function ApiPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 font-mono text-[10px] text-[#666b67]">
-          * required
-        </p>
+        <p className="mt-3 font-mono text-[10px] text-[#666b67]">* required</p>
       </section>
 
       {/* Generic StateIcon */}
@@ -285,7 +284,7 @@ export default function ApiPage() {
             <CopyButton value={customIconUsage} />
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{customIconUsage}</code>
+            <HighlightedCode code={customIconUsage} />
           </pre>
         </div>
 
@@ -359,7 +358,7 @@ export default function ApiPage() {
         <p className="mt-4 text-sm leading-7 text-[#929792]">
           Use these in CSS selectors (
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
-            {"[data-state=\"loading\"]"}
+            {'[data-state="loading"]'}
           </code>
           ) or test assertions.
         </p>
@@ -385,7 +384,7 @@ export default function ApiPage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{typesUsage}</code>
+            <HighlightedCode code={typesUsage} language="typescript" />
           </pre>
         </div>
       </section>

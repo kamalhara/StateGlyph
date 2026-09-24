@@ -15,6 +15,7 @@ const sections = [
     title: "Reference",
     items: [
       { label: "API Reference", href: "/docs/api" },
+      { label: "Transitions", href: "/docs/transitions" },
       { label: "CLI", href: "/docs/cli" },
     ],
   },

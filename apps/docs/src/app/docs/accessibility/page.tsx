@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { HighlightedCode } from "@/components/highlighted-code";
+
 export const metadata: Metadata = {
   title: "Accessibility — StateGlyph",
   description:
@@ -55,17 +57,17 @@ const features = [
   {
     title: "Decorative by default",
     description:
-      "Icons render with aria-hidden=\"true\" and no role. This is correct when the icon appears alongside text that already describes the action — like a button label.",
+      'Icons render with aria-hidden="true" and no role. This is correct when the icon appears alongside text that already describes the action — like a button label.',
   },
   {
     title: "Semantic mode",
     description:
-      "Set decorative={false} and the icon gains role=\"img\" and an aria-label derived from the state definition. Override with the label prop when needed.",
+      'Set decorative={false} and the icon gains role="img" and an aria-label derived from the state definition. Override with the label prop when needed.',
   },
   {
     title: "No focusable SVGs",
     description:
-      "Every SVG renders with focusable=\"false\" to prevent unexpected focus outlines in IE/Edge legacy and assistive technology.",
+      'Every SVG renders with focusable="false" to prevent unexpected focus outlines in IE/Edge legacy and assistive technology.',
   },
   {
     title: "Reduced motion",
@@ -135,7 +137,7 @@ export default function AccessibilityPage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{decorativeCode}</code>
+            <HighlightedCode code={decorativeCode} />
           </pre>
         </div>
       </section>
@@ -161,7 +163,7 @@ export default function AccessibilityPage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{semanticCode}</code>
+            <HighlightedCode code={semanticCode} />
           </pre>
         </div>
 
@@ -213,12 +215,10 @@ export default function AccessibilityPage() {
 
         <div className="mt-6 overflow-hidden rounded-md border border-[#343735] bg-[#101211]">
           <div className="border-b border-[#2b2e2c] px-5 py-3">
-            <span className="font-mono text-[10px] text-[#7e837e]">
-              CSS
-            </span>
+            <span className="font-mono text-[10px] text-[#7e837e]">CSS</span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{reducedMotionCss}</code>
+            <HighlightedCode code={reducedMotionCss} language="css" />
           </pre>
         </div>
       </section>
@@ -248,7 +248,7 @@ export default function AccessibilityPage() {
             </span>
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{testingCode}</code>
+            <HighlightedCode code={testingCode} language="typescript" />
           </pre>
         </div>
       </section>

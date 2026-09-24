@@ -1,8 +1,17 @@
 export type StateIconCategory =
-  "async" | "media" | "navigation" | "feedback" | "device";
+  | "async"
+  | "media"
+  | "navigation"
+  | "feedback"
+  | "device"
+  | "form"
+  | "commerce"
+  | "notification";
 
 export type StateIconTransition =
   "crossfade" | "scale-fade" | "rotate" | "slide" | "morph";
+
+export type StateIconLibrary = "lucide" | (string & {});
 
 export interface StateIconStateDefinition {
   icon: string;
@@ -13,8 +22,8 @@ export interface StateIconStateDefinition {
 export type StateIconStates = Record<string, StateIconStateDefinition>;
 
 export interface StateIconSource {
-  library: "lucide";
-  license: "ISC";
+  library: StateIconLibrary;
+  license: string;
   url: string;
   icons: readonly string[];
 }

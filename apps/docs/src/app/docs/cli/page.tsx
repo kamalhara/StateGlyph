@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { CopyButton } from "@/components/copy-button";
+import { HighlightedCode } from "@/components/highlighted-code";
 
 export const metadata: Metadata = {
   title: "CLI Reference — StateGlyph",
@@ -37,14 +38,14 @@ const commands = [
     usage: listCommand,
     example: `$ npx @stateglyph/cli list
 
-Available icons (30):
+Available icons (31):
   upload, download, save, delete, refresh,
   sync, send, payment, add-to-cart, submit,
   install, publish, play-pause, playback,
   volume, microphone, camera, fullscreen,
   repeat, shuffle, menu, expand, sidebar,
   view, chevron-vertical, chevron-horizontal,
-  panel, copy, like, bookmark`,
+  panel, copy, like, bookmark, notification`,
   },
   {
     command: "add <name...>",
@@ -58,7 +59,7 @@ Available icons (30):
     description: "Copy every available icon component.",
     usage: addAll,
     example: `$ npx @stateglyph/cli add all
-✓ Created 30 icon components in src/stateglyph/`,
+✓ Created 31 icon components in src/stateglyph/`,
   },
 ] as const;
 
@@ -163,7 +164,7 @@ export default function CliPage() {
                   <CopyButton value={cmd.usage} />
                 </div>
                 <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-                  <code>{cmd.example}</code>
+                  <HighlightedCode code={cmd.example} language="shell" />
                 </pre>
               </div>
             </div>
@@ -267,7 +268,7 @@ export default function CliPage() {
             <CopyButton value={generatedExample} />
           </div>
           <pre className="overflow-x-auto p-6 font-mono text-xs leading-7 text-[#d9dbd7] sm:text-sm">
-            <code>{generatedExample}</code>
+            <HighlightedCode code={generatedExample} />
           </pre>
         </div>
 
