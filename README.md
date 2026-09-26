@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/kamalhara/StateGlyph/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/kamalhara/StateGlyph/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@stateglyph/react.svg?logo=npm)](https://www.npmjs.com/package/@stateglyph/react)
+[![Documentation](https://img.shields.io/badge/docs-stateglyph.js.org-34d399.svg)](https://stateglyph.js.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-5c625d.svg)](./LICENSE)
 [![Bundle size](https://img.shields.io/badge/gzip%20per%20icon-~1.4%20kB-34d399.svg)](#bundle-size)
 
@@ -19,7 +20,7 @@ feedback, forms, commerce, and notifications. The icons use the open-source
 > StateGlyph is currently an early `0.1.0` release. The API may evolve before
 > version `1.0.0`.
 
-[Documentation](./apps/docs/src/app/docs) · [Browse icon definitions](./packages/core/src/icons) · [Contributing](./CONTRIBUTING.md)
+[Documentation](https://stateglyph.js.org/) · [Browse icon definitions](./packages/core/src/icons) · [Contributing](./CONTRIBUTING.md)
 
 ## Why StateGlyph?
 
