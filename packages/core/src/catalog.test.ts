@@ -4,8 +4,8 @@ import { stateIconCatalog } from "./catalog";
 import type { StateIconSource } from "./types";
 
 describe("state icon catalog", () => {
-  it("contains the launch catalog", () => {
-    expect(stateIconCatalog).toHaveLength(31);
+  it("contains the expanded catalog", () => {
+    expect(stateIconCatalog).toHaveLength(55);
   });
 
   it("uses unique IDs", () => {

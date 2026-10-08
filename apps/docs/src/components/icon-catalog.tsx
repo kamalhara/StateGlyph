@@ -136,9 +136,6 @@ export function IconCatalog() {
                     {icon.render({
                       state: state.name,
                       size: 26,
-                      className: state.continuous
-                        ? "catalog-icon--loading"
-                        : undefined,
                     })}
                   </div>
                 ))}

@@ -1,3 +1,27 @@
+import { wifiStateIcon } from "./icons/wifi";
+import { bluetoothStateIcon } from "./icons/bluetooth";
+import { ethernetStateIcon } from "./icons/ethernet";
+import { cellularStateIcon } from "./icons/cellular";
+import { lockStateIcon } from "./icons/lock";
+import { visibilityStateIcon } from "./icons/visibility";
+import { shieldStateIcon } from "./icons/shield";
+import { authenticationStateIcon } from "./icons/authentication";
+import { themeStateIcon } from "./icons/theme";
+import { brightnessStateIcon } from "./icons/brightness";
+import { contrastStateIcon } from "./icons/contrast";
+import { toolStateIcon } from "./icons/tool";
+import { textFormatStateIcon } from "./icons/text-format";
+import { alignmentStateIcon } from "./icons/alignment";
+import { folderStateIcon } from "./icons/folder";
+import { fileAccessStateIcon } from "./icons/file-access";
+import { archiveStateIcon } from "./icons/archive";
+import { linkStateIcon } from "./icons/link";
+import { weatherStateIcon } from "./icons/weather";
+import { daylightStateIcon } from "./icons/daylight";
+import { temperatureStateIcon } from "./icons/temperature";
+import { taskStateIcon } from "./icons/task";
+import { priorityStateIcon } from "./icons/priority";
+import { pinStateIcon } from "./icons/pin";
 import { uploadStateIcon } from "./icons/upload";
 import { downloadStateIcon } from "./icons/download";
 import { saveStateIcon } from "./icons/save";
@@ -31,6 +55,30 @@ import { bookmarkStateIcon } from "./icons/bookmark";
 import { notificationStateIcon } from "./icons/notification";
 
 export const stateIconCatalog = [
+  wifiStateIcon,
+  bluetoothStateIcon,
+  ethernetStateIcon,
+  cellularStateIcon,
+  lockStateIcon,
+  visibilityStateIcon,
+  shieldStateIcon,
+  authenticationStateIcon,
+  themeStateIcon,
+  brightnessStateIcon,
+  contrastStateIcon,
+  toolStateIcon,
+  textFormatStateIcon,
+  alignmentStateIcon,
+  folderStateIcon,
+  fileAccessStateIcon,
+  archiveStateIcon,
+  linkStateIcon,
+  weatherStateIcon,
+  daylightStateIcon,
+  temperatureStateIcon,
+  taskStateIcon,
+  priorityStateIcon,
+  pinStateIcon,
   uploadStateIcon,
   downloadStateIcon,
   saveStateIcon,

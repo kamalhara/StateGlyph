@@ -36,7 +36,8 @@ const semanticCode = `// Semantic — the icon conveys information
   label="File uploaded successfully"
 />`;
 
-const reducedMotionCss = `/* StateGlyph docs include this — add it to your project */
+const reducedMotionCss = `/* Optional protection for your own CSS animations.
+   StateGlyph respects reduced motion automatically. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -72,7 +73,7 @@ const features = [
   {
     title: "Reduced motion",
     description:
-      "Continuous states (like loading spinners) use CSS animations that respect prefers-reduced-motion. When enabled, animations are effectively disabled.",
+      "Both glyph transitions and continuous rotation respect prefers-reduced-motion. Changing the preference stops active animations immediately.",
   },
 ] as const;
 
@@ -205,7 +206,7 @@ export default function AccessibilityPage() {
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             {"continuous: true"}
           </code>{" "}
-          (e.g. a loading spinner). These use CSS animations that are
+          (e.g. a loading spinner). These use built-in animations that are
           automatically disabled when the user enables the{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             prefers-reduced-motion

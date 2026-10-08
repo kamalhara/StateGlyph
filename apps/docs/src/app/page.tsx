@@ -35,7 +35,7 @@ const howItWorks = [
     step: "02",
     title: "Pass your state",
     description:
-      'Import the component and pass a typed state prop — "idle", "loading", "success", or any state the icon supports.',
+      'Import a component and pass a typed state — "light", "dark", "weak", "strong", "done", or any state the icon supports.',
   },
   {
     step: "03",
@@ -167,7 +167,8 @@ export default function Home() {
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#a6aaa5]">
               StateGlyph groups the related visual states of an interface action
               into one typed, accessible React component — so a button can move
-              from idle → loading → success without scattered icon logic.
+              between light → dark → system, weak → strong signal, or task
+              states with smooth animated transitions.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">

@@ -50,9 +50,17 @@ package versions manually; the release workflow applies changesets.
 
 ## Adding an icon
 
-An icon needs a typed definition in `packages/core`, a React component in
-`packages/react`, an export from both package entry points, and documentation.
-Add tests for metadata and state mappings when appropriate.
+Add an entry to the `icons` specification in `tooling/generate-icon-library.mjs`
+and register any new glyphs in its `lucide` map. Run `npm run generate` to create
+the core definitions, React wrappers, catalog exports, direct package imports,
+website entries, and the standalone CLI animation renderer. Generated files are
+committed alongside the generator. Update catalog count expectations, document
+new categories, and add behavior tests for new states or animation changes.
+
+Keep `packages/react/src/components/animated-icon.tsx` as the source of the shared
+animation implementation; generation copies it into the CLI's source template.
+Run `npm run format` after generation, then the verification commands above.
+See [RELEASE.md](./RELEASE.md) for versioning and npm publication.
 
 ## Community standards
 

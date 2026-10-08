@@ -207,7 +207,7 @@ function UploadButton({ status }) {
             {
               label: "Browse Icons",
               href: "/icons",
-              description: "Explore all 31 state icon components.",
+              description: "Explore all 55 state icon components.",
             },
           ].map((link) => (
             <Link

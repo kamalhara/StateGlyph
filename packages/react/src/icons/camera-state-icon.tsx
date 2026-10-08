@@ -1,3 +1,5 @@
+"use client";
+
 import { cameraStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 

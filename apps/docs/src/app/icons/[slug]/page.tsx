@@ -71,20 +71,7 @@ export default async function IconPage({ params }: IconPageProps) {
 
         <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
           {/* Interactive switcher */}
-          <StateSwitcher
-            states={icon.states}
-            renderedStates={icon.states.map((state) => (
-              <div key={state.name}>
-                {icon.render({
-                  state: state.name,
-                  size: 56,
-                  className: state.continuous
-                    ? "catalog-icon--loading"
-                    : undefined,
-                })}
-              </div>
-            ))}
-          />
+          <StateSwitcher states={icon.states} iconId={icon.slug} />
 
           {/* State detail cards */}
           <div className="grid content-start gap-3 sm:grid-cols-2 lg:grid-cols-1">
@@ -97,9 +84,6 @@ export default async function IconPage({ params }: IconPageProps) {
                   {icon.render({
                     state: state.name,
                     size: 20,
-                    className: state.continuous
-                      ? "catalog-icon--loading"
-                      : undefined,
                   })}
                 </div>
                 <div className="min-w-0 flex-1">

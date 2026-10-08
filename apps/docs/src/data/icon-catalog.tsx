@@ -1,5 +1,29 @@
 import type { ComponentProps, ReactNode } from "react";
 import {
+  wifiStateIcon,
+  bluetoothStateIcon,
+  ethernetStateIcon,
+  cellularStateIcon,
+  lockStateIcon,
+  visibilityStateIcon,
+  shieldStateIcon,
+  authenticationStateIcon,
+  themeStateIcon,
+  brightnessStateIcon,
+  contrastStateIcon,
+  toolStateIcon,
+  textFormatStateIcon,
+  alignmentStateIcon,
+  folderStateIcon,
+  fileAccessStateIcon,
+  archiveStateIcon,
+  linkStateIcon,
+  weatherStateIcon,
+  daylightStateIcon,
+  temperatureStateIcon,
+  taskStateIcon,
+  priorityStateIcon,
+  pinStateIcon,
   uploadStateIcon,
   downloadStateIcon,
   saveStateIcon,
@@ -35,6 +59,30 @@ import {
   type StateIconStates,
 } from "@stateglyph/core";
 import {
+  WifiStateIcon,
+  BluetoothStateIcon,
+  EthernetStateIcon,
+  CellularStateIcon,
+  LockStateIcon,
+  VisibilityStateIcon,
+  ShieldStateIcon,
+  AuthenticationStateIcon,
+  ThemeStateIcon,
+  BrightnessStateIcon,
+  ContrastStateIcon,
+  ToolStateIcon,
+  TextFormatStateIcon,
+  AlignmentStateIcon,
+  FolderStateIcon,
+  FileAccessStateIcon,
+  ArchiveStateIcon,
+  LinkStateIcon,
+  WeatherStateIcon,
+  DaylightStateIcon,
+  TemperatureStateIcon,
+  TaskStateIcon,
+  PriorityStateIcon,
+  PinStateIcon,
   UploadStateIcon,
   DownloadStateIcon,
   SaveStateIcon,
@@ -99,6 +147,14 @@ function toStateRecords<States extends StateIconStates>(
   }));
 }
 export const categoryDescriptions = {
+  Connectivity: "Wireless, Bluetooth, wired connections, and signal strength.",
+  "Security and privacy":
+    "Access, visibility, protection, and identity states.",
+  Appearance: "Themes, brightness, and contrast preferences.",
+  "Editing tools": "Selection tools, text formatting, and alignment.",
+  "Files and folders": "Folders, sharing, archives, and links.",
+  "Weather and time": "Weather conditions, daylight, and temperature.",
+  Productivity: "Task progress, priority, and pinned items.",
   "Async workflows":
     "Uploads, saves, payments, submissions, and other task lifecycles.",
   "Form states": "Submission and validation states for forms and fields.",
@@ -109,6 +165,534 @@ export const categoryDescriptions = {
   "Feedback and toggles": "Temporary confirmation and saved preference states.",
 } as const;
 export const iconCatalog = [
+  {
+    slug: "wifi",
+    name: wifiStateIcon.title,
+    componentName: "WifiStateIcon",
+    category: "Connectivity",
+    source: "Lucide",
+    license: wifiStateIcon.source.license,
+    description: wifiStateIcon.description,
+    keywords: wifiStateIcon.tags,
+    states: toStateRecords(wifiStateIcon),
+    usage:
+      'import { WifiStateIcon } from "@stateglyph/react";\n\n<WifiStateIcon state="off" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <WifiStateIcon
+        state={state as ComponentProps<typeof WifiStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "bluetooth",
+    name: bluetoothStateIcon.title,
+    componentName: "BluetoothStateIcon",
+    category: "Connectivity",
+    source: "Lucide",
+    license: bluetoothStateIcon.source.license,
+    description: bluetoothStateIcon.description,
+    keywords: bluetoothStateIcon.tags,
+    states: toStateRecords(bluetoothStateIcon),
+    usage:
+      'import { BluetoothStateIcon } from "@stateglyph/react";\n\n<BluetoothStateIcon state="off" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <BluetoothStateIcon
+        state={state as ComponentProps<typeof BluetoothStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "ethernet",
+    name: ethernetStateIcon.title,
+    componentName: "EthernetStateIcon",
+    category: "Connectivity",
+    source: "Lucide",
+    license: ethernetStateIcon.source.license,
+    description: ethernetStateIcon.description,
+    keywords: ethernetStateIcon.tags,
+    states: toStateRecords(ethernetStateIcon),
+    usage:
+      'import { EthernetStateIcon } from "@stateglyph/react";\n\n<EthernetStateIcon state="disconnected" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <EthernetStateIcon
+        state={state as ComponentProps<typeof EthernetStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "cellular",
+    name: cellularStateIcon.title,
+    componentName: "CellularStateIcon",
+    category: "Connectivity",
+    source: "Lucide",
+    license: cellularStateIcon.source.license,
+    description: cellularStateIcon.description,
+    keywords: cellularStateIcon.tags,
+    states: toStateRecords(cellularStateIcon),
+    usage:
+      'import { CellularStateIcon } from "@stateglyph/react";\n\n<CellularStateIcon state="offline" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <CellularStateIcon
+        state={state as ComponentProps<typeof CellularStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "lock",
+    name: lockStateIcon.title,
+    componentName: "LockStateIcon",
+    category: "Security and privacy",
+    source: "Lucide",
+    license: lockStateIcon.source.license,
+    description: lockStateIcon.description,
+    keywords: lockStateIcon.tags,
+    states: toStateRecords(lockStateIcon),
+    usage:
+      'import { LockStateIcon } from "@stateglyph/react";\n\n<LockStateIcon state="unlocked" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <LockStateIcon
+        state={state as ComponentProps<typeof LockStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "visibility",
+    name: visibilityStateIcon.title,
+    componentName: "VisibilityStateIcon",
+    category: "Security and privacy",
+    source: "Lucide",
+    license: visibilityStateIcon.source.license,
+    description: visibilityStateIcon.description,
+    keywords: visibilityStateIcon.tags,
+    states: toStateRecords(visibilityStateIcon),
+    usage:
+      'import { VisibilityStateIcon } from "@stateglyph/react";\n\n<VisibilityStateIcon state="visible" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <VisibilityStateIcon
+        state={state as ComponentProps<typeof VisibilityStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "shield",
+    name: shieldStateIcon.title,
+    componentName: "ShieldStateIcon",
+    category: "Security and privacy",
+    source: "Lucide",
+    license: shieldStateIcon.source.license,
+    description: shieldStateIcon.description,
+    keywords: shieldStateIcon.tags,
+    states: toStateRecords(shieldStateIcon),
+    usage:
+      'import { ShieldStateIcon } from "@stateglyph/react";\n\n<ShieldStateIcon state="unprotected" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <ShieldStateIcon
+        state={state as ComponentProps<typeof ShieldStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "authentication",
+    name: authenticationStateIcon.title,
+    componentName: "AuthenticationStateIcon",
+    category: "Security and privacy",
+    source: "Lucide",
+    license: authenticationStateIcon.source.license,
+    description: authenticationStateIcon.description,
+    keywords: authenticationStateIcon.tags,
+    states: toStateRecords(authenticationStateIcon),
+    usage:
+      'import { AuthenticationStateIcon } from "@stateglyph/react";\n\n<AuthenticationStateIcon state="signed-out" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <AuthenticationStateIcon
+        state={state as ComponentProps<typeof AuthenticationStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "theme",
+    name: themeStateIcon.title,
+    componentName: "ThemeStateIcon",
+    category: "Appearance",
+    source: "Lucide",
+    license: themeStateIcon.source.license,
+    description: themeStateIcon.description,
+    keywords: themeStateIcon.tags,
+    states: toStateRecords(themeStateIcon),
+    usage:
+      'import { ThemeStateIcon } from "@stateglyph/react";\n\n<ThemeStateIcon state="light" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <ThemeStateIcon
+        state={state as ComponentProps<typeof ThemeStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "brightness",
+    name: brightnessStateIcon.title,
+    componentName: "BrightnessStateIcon",
+    category: "Appearance",
+    source: "Lucide",
+    license: brightnessStateIcon.source.license,
+    description: brightnessStateIcon.description,
+    keywords: brightnessStateIcon.tags,
+    states: toStateRecords(brightnessStateIcon),
+    usage:
+      'import { BrightnessStateIcon } from "@stateglyph/react";\n\n<BrightnessStateIcon state="low" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <BrightnessStateIcon
+        state={state as ComponentProps<typeof BrightnessStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "contrast",
+    name: contrastStateIcon.title,
+    componentName: "ContrastStateIcon",
+    category: "Appearance",
+    source: "Lucide",
+    license: contrastStateIcon.source.license,
+    description: contrastStateIcon.description,
+    keywords: contrastStateIcon.tags,
+    states: toStateRecords(contrastStateIcon),
+    usage:
+      'import { ContrastStateIcon } from "@stateglyph/react";\n\n<ContrastStateIcon state="standard" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <ContrastStateIcon
+        state={state as ComponentProps<typeof ContrastStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "tool",
+    name: toolStateIcon.title,
+    componentName: "ToolStateIcon",
+    category: "Editing tools",
+    source: "Lucide",
+    license: toolStateIcon.source.license,
+    description: toolStateIcon.description,
+    keywords: toolStateIcon.tags,
+    states: toStateRecords(toolStateIcon),
+    usage:
+      'import { ToolStateIcon } from "@stateglyph/react";\n\n<ToolStateIcon state="select" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <ToolStateIcon
+        state={state as ComponentProps<typeof ToolStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "text-format",
+    name: textFormatStateIcon.title,
+    componentName: "TextFormatStateIcon",
+    category: "Editing tools",
+    source: "Lucide",
+    license: textFormatStateIcon.source.license,
+    description: textFormatStateIcon.description,
+    keywords: textFormatStateIcon.tags,
+    states: toStateRecords(textFormatStateIcon),
+    usage:
+      'import { TextFormatStateIcon } from "@stateglyph/react";\n\n<TextFormatStateIcon state="regular" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <TextFormatStateIcon
+        state={state as ComponentProps<typeof TextFormatStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "alignment",
+    name: alignmentStateIcon.title,
+    componentName: "AlignmentStateIcon",
+    category: "Editing tools",
+    source: "Lucide",
+    license: alignmentStateIcon.source.license,
+    description: alignmentStateIcon.description,
+    keywords: alignmentStateIcon.tags,
+    states: toStateRecords(alignmentStateIcon),
+    usage:
+      'import { AlignmentStateIcon } from "@stateglyph/react";\n\n<AlignmentStateIcon state="start" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <AlignmentStateIcon
+        state={state as ComponentProps<typeof AlignmentStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "folder",
+    name: folderStateIcon.title,
+    componentName: "FolderStateIcon",
+    category: "Files and folders",
+    source: "Lucide",
+    license: folderStateIcon.source.license,
+    description: folderStateIcon.description,
+    keywords: folderStateIcon.tags,
+    states: toStateRecords(folderStateIcon),
+    usage:
+      'import { FolderStateIcon } from "@stateglyph/react";\n\n<FolderStateIcon state="closed" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <FolderStateIcon
+        state={state as ComponentProps<typeof FolderStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "file-access",
+    name: fileAccessStateIcon.title,
+    componentName: "FileAccessStateIcon",
+    category: "Files and folders",
+    source: "Lucide",
+    license: fileAccessStateIcon.source.license,
+    description: fileAccessStateIcon.description,
+    keywords: fileAccessStateIcon.tags,
+    states: toStateRecords(fileAccessStateIcon),
+    usage:
+      'import { FileAccessStateIcon } from "@stateglyph/react";\n\n<FileAccessStateIcon state="private" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <FileAccessStateIcon
+        state={state as ComponentProps<typeof FileAccessStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "archive",
+    name: archiveStateIcon.title,
+    componentName: "ArchiveStateIcon",
+    category: "Files and folders",
+    source: "Lucide",
+    license: archiveStateIcon.source.license,
+    description: archiveStateIcon.description,
+    keywords: archiveStateIcon.tags,
+    states: toStateRecords(archiveStateIcon),
+    usage:
+      'import { ArchiveStateIcon } from "@stateglyph/react";\n\n<ArchiveStateIcon state="unpacked" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <ArchiveStateIcon
+        state={state as ComponentProps<typeof ArchiveStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "link",
+    name: linkStateIcon.title,
+    componentName: "LinkStateIcon",
+    category: "Files and folders",
+    source: "Lucide",
+    license: linkStateIcon.source.license,
+    description: linkStateIcon.description,
+    keywords: linkStateIcon.tags,
+    states: toStateRecords(linkStateIcon),
+    usage:
+      'import { LinkStateIcon } from "@stateglyph/react";\n\n<LinkStateIcon state="connected" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <LinkStateIcon
+        state={state as ComponentProps<typeof LinkStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "weather",
+    name: weatherStateIcon.title,
+    componentName: "WeatherStateIcon",
+    category: "Weather and time",
+    source: "Lucide",
+    license: weatherStateIcon.source.license,
+    description: weatherStateIcon.description,
+    keywords: weatherStateIcon.tags,
+    states: toStateRecords(weatherStateIcon),
+    usage:
+      'import { WeatherStateIcon } from "@stateglyph/react";\n\n<WeatherStateIcon state="sunny" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <WeatherStateIcon
+        state={state as ComponentProps<typeof WeatherStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "daylight",
+    name: daylightStateIcon.title,
+    componentName: "DaylightStateIcon",
+    category: "Weather and time",
+    source: "Lucide",
+    license: daylightStateIcon.source.license,
+    description: daylightStateIcon.description,
+    keywords: daylightStateIcon.tags,
+    states: toStateRecords(daylightStateIcon),
+    usage:
+      'import { DaylightStateIcon } from "@stateglyph/react";\n\n<DaylightStateIcon state="dawn" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <DaylightStateIcon
+        state={state as ComponentProps<typeof DaylightStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "temperature",
+    name: temperatureStateIcon.title,
+    componentName: "TemperatureStateIcon",
+    category: "Weather and time",
+    source: "Lucide",
+    license: temperatureStateIcon.source.license,
+    description: temperatureStateIcon.description,
+    keywords: temperatureStateIcon.tags,
+    states: toStateRecords(temperatureStateIcon),
+    usage:
+      'import { TemperatureStateIcon } from "@stateglyph/react";\n\n<TemperatureStateIcon state="cold" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <TemperatureStateIcon
+        state={state as ComponentProps<typeof TemperatureStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "task",
+    name: taskStateIcon.title,
+    componentName: "TaskStateIcon",
+    category: "Productivity",
+    source: "Lucide",
+    license: taskStateIcon.source.license,
+    description: taskStateIcon.description,
+    keywords: taskStateIcon.tags,
+    states: toStateRecords(taskStateIcon),
+    usage:
+      'import { TaskStateIcon } from "@stateglyph/react";\n\n<TaskStateIcon state="todo" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <TaskStateIcon
+        state={state as ComponentProps<typeof TaskStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "priority",
+    name: priorityStateIcon.title,
+    componentName: "PriorityStateIcon",
+    category: "Productivity",
+    source: "Lucide",
+    license: priorityStateIcon.source.license,
+    description: priorityStateIcon.description,
+    keywords: priorityStateIcon.tags,
+    states: toStateRecords(priorityStateIcon),
+    usage:
+      'import { PriorityStateIcon } from "@stateglyph/react";\n\n<PriorityStateIcon state="low" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <PriorityStateIcon
+        state={state as ComponentProps<typeof PriorityStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
+  {
+    slug: "pin",
+    name: pinStateIcon.title,
+    componentName: "PinStateIcon",
+    category: "Productivity",
+    source: "Lucide",
+    license: pinStateIcon.source.license,
+    description: pinStateIcon.description,
+    keywords: pinStateIcon.tags,
+    states: toStateRecords(pinStateIcon),
+    usage:
+      'import { PinStateIcon } from "@stateglyph/react";\n\n<PinStateIcon state="unpinned" decorative />',
+    render: ({ state, size, className }: RenderIconOptions) => (
+      <PinStateIcon
+        state={state as ComponentProps<typeof PinStateIcon>["state"]}
+        size={size}
+        strokeWidth={1.65}
+        decorative
+        className={className}
+      />
+    ),
+  },
   {
     slug: "upload",
     name: uploadStateIcon.title,

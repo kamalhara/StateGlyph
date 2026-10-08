@@ -44,6 +44,38 @@ import type {
 
 const commonProps = [
   {
+    name: "animated",
+    type: "boolean",
+    default: "true",
+    required: false,
+    description:
+      "Animate incoming and outgoing glyphs when state changes. Set false to disable transitions and continuous rotation.",
+  },
+  {
+    name: "duration",
+    type: "number",
+    default: "transition preset",
+    required: false,
+    description:
+      "Duration of a state transition in milliseconds. Zero disables the transition. Overrides the CSS duration variable.",
+  },
+  {
+    name: "spinDuration",
+    type: "number",
+    default: "900",
+    required: false,
+    description:
+      "Duration of one continuous rotation in milliseconds. Overrides the CSS spin-duration variable.",
+  },
+  {
+    name: "transition",
+    type: "StateIconTransition",
+    default: "definition transition",
+    required: false,
+    description:
+      "Override the icon's transition: crossfade, scale-fade, rotate, slide, or morph (blur blend).",
+  },
+  {
     name: "state",
     type: "string literal union",
     default: "—",
@@ -112,7 +144,7 @@ const definitionFields = [
     name: "category",
     type: "StateIconCategory",
     description:
-      'One of "async", "media", "navigation", "feedback", "device", "form", "commerce", or "notification".',
+      'One of "async", "media", "navigation", "feedback", "device", "form", "commerce", "notification", "connectivity", "security", "appearance", "editing", "files", "weather", or "productivity".',
   },
   {
     name: "states",
@@ -169,7 +201,7 @@ export default function ApiPage() {
           Icon components
         </h2>
         <p className="mt-4 text-sm leading-7 text-[#929792]">
-          StateGlyph ships 31 pre-built icon components. Each accepts the same
+          StateGlyph ships 55 pre-built icon components. Each accepts the same
           common props — the only difference is the typed{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             state

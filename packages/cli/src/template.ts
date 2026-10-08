@@ -1,8 +1,13 @@
-import type { StateIconStateDefinition } from "@stateglyph/core";
+import type {
+  StateIconStateDefinition,
+  StateIconTransition,
+} from "@stateglyph/core";
+import { animationSource } from "./animation-source";
 
 type RenderableIconDefinition = {
   id: string;
   states: Readonly<Record<string, StateIconStateDefinition>>;
+  transition?: StateIconTransition;
 };
 
 function toPascalCase(value: string): string {
@@ -19,96 +24,54 @@ export function renderIconComponent(
   const stateTypeName = `${toPascalCase(definition.id)}State`;
   const propsTypeName = `${componentName}Props`;
   const states = Object.entries(definition.states);
-  const lucideComponents = [
-    ...new Set(states.map(([, stateDefinition]) => stateDefinition.icon)),
-  ]
-    .map(toPascalCase)
-    .sort();
-  const continuousStates = states
-    .filter(([, stateDefinition]) => stateDefinition.continuous)
-    .map(([name]) => name);
-  const animationName = `stateglyph-${definition.id}-spin`;
+  const glyphs = [...new Set(states.map(([, value]) => value.icon))];
+  const imports = glyphs.map(toPascalCase).sort();
+  const runtime = animationSource.replace(
+    'import type { LucideIcon } from "lucide-react";',
+    `import { ${imports.join(", ")}, type LucideIcon } from "lucide-react";`,
+  );
   const stateUnion = states.map(([name]) => JSON.stringify(name)).join(" | ");
   const iconRows = states
     .map(
-      ([name, stateDefinition]) =>
-        `  ${JSON.stringify(name)}: ${toPascalCase(stateDefinition.icon)},`,
+      ([name, value]) =>
+        `  ${JSON.stringify(name)}: ${toPascalCase(value.icon)},`,
+    )
+    .join("\n");
+  const nameRows = states
+    .map(
+      ([name, value]) =>
+        `  ${JSON.stringify(name)}: ${JSON.stringify(value.icon)},`,
     )
     .join("\n");
   const labelRows = states
     .map(
-      ([name, stateDefinition]) =>
-        `  ${JSON.stringify(name)}: ${JSON.stringify(stateDefinition.label)},`,
+      ([name, value]) =>
+        `  ${JSON.stringify(name)}: ${JSON.stringify(value.label)},`,
     )
     .join("\n");
+  const continuous = states
+    .filter(([, value]) => value.continuous)
+    .map(([name]) => name);
 
-  return `import type { SVGProps } from "react";
-import {
-${lucideComponents.map((name) => `  ${name},`).join("\n")}
-  type LucideIcon,
-} from "lucide-react";
-
+  return `${runtime}
 export type ${stateTypeName} = ${stateUnion};
-
-export type ${propsTypeName} = Omit<SVGProps<SVGSVGElement>, "children"> & {
-  state: ${stateTypeName};
-  size?: number | string;
-  strokeWidth?: number;
-  duration?: number;
-  decorative?: boolean;
-  label?: string;
-};
-
+export type ${propsTypeName} = Omit<AnimatedIconProps, "icon" | "iconName" | "iconId" | "state" | "continuous"> & { state: ${stateTypeName}; };
 const iconByState = {
 ${iconRows}
 } satisfies Record<${stateTypeName}, LucideIcon>;
-
+const nameByState = {
+${nameRows}
+} satisfies Record<${stateTypeName}, string>;
 const labelByState = {
 ${labelRows}
 } satisfies Record<${stateTypeName}, string>;
+const continuousStates = new Set<${stateTypeName}>(${JSON.stringify(continuous)});
 
-const continuousStates = new Set<${stateTypeName}>(${JSON.stringify(continuousStates)});
-
-export function ${componentName}({
-  state,
-  size = 24,
-  strokeWidth = 2,
-  duration = 900,
-  decorative = true,
-  label,
-  style,
-  ...svgProps
-}: ${propsTypeName}) {
+export function ${componentName}({ state, label, transition = ${JSON.stringify(definition.transition ?? "crossfade")}, ...props }: ${propsTypeName}) {
   const Icon = iconByState[state];
-  const isContinuous = continuousStates.has(state);
-  const accessibleLabel = label ?? labelByState[state];
-
-  return (
-    <>
-      {isContinuous ? (
-        <style>{\`@keyframes ${animationName} { to { transform: rotate(360deg); } } @media (prefers-reduced-motion: reduce) { [data-state-icon="${definition.id}"] { animation: none !important; } }\`}</style>
-      ) : null}
-      <Icon
-        {...svgProps}
-        size={size}
-        strokeWidth={strokeWidth}
-        data-state-icon="${definition.id}"
-        data-state={state}
-        aria-hidden={decorative ? true : undefined}
-        aria-label={decorative ? undefined : accessibleLabel}
-        role={decorative ? undefined : "img"}
-        focusable="false"
-        style={{
-          ...style,
-          animation:
-            style?.animation ??
-            (isContinuous
-              ? \`${animationName} \${duration}ms linear infinite\`
-              : undefined),
-        }}
-      />
-    </>
-  );
+  if (!Icon) return null;
+  return <AnimatedIcon {...props} icon={Icon} iconName={nameByState[state]} iconId=${JSON.stringify(definition.id)}
+    state={state} label={label ?? labelByState[state]} transition={transition} continuous={continuousStates.has(state)} />;
 }
 `;
 }

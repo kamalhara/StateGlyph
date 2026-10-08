@@ -57,14 +57,13 @@ const steps = [
 ] as const;
 
 const addingIconSteps = [
-  "Add a typed icon definition in packages/core/src/icons/",
-  "Export the definition from packages/core/src/index.ts",
-  "Create a React component in packages/react/src/icons/",
-  "Export the component from packages/react/src/index.ts",
-  "Add Lucide icon mapping in packages/react/src/lucide/",
-  "Add documentation entry in apps/docs/src/data/icon-catalog.tsx",
-  "Write tests for metadata and state mappings",
-];
+  "Add an icon specification and Lucide glyph mappings in tooling/generate-icon-library.mjs",
+  "Run npm run generate to create definitions, React components, exports, and website entries",
+  "For a new category, update core types, CLI labels, and the generator's category descriptions",
+  "Update count expectations and add tests for the new states",
+  "Run npm run format and the required verification commands",
+  "Add a changeset describing the user-visible addition",
+] as const;
 
 const guidelines = [
   {
@@ -85,7 +84,7 @@ const guidelines = [
   {
     title: "Respect reduced motion",
     description:
-      "Mark continuous states appropriately. CSS handles the rest via prefers-reduced-motion.",
+      "Mark continuous states appropriately. The shared renderer observes prefers-reduced-motion and cancels active animations.",
   },
   {
     title: "Search before opening issues",

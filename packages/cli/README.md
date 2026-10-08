@@ -21,4 +21,9 @@ The generated components are TypeScript React files. They are self-contained
 and depend only on `react` and `lucide-react`, so you can edit them freely in
 your own project.
 
+Each copied component includes animated outgoing/incoming glyph transitions,
+continuous rotation where defined, and live reduced-motion support. Customize
+`animated`, `duration`, `spinDuration`, and `transition` without installing a
+StateGlyph runtime package.
+
 MIT licensed. The source icons from Lucide use the ISC License.

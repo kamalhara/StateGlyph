@@ -2,21 +2,19 @@
 
 import { useEffect, useState } from "react";
 
-import { UploadStateIcon } from "@stateglyph/react";
+import { ThemeStateIcon } from "@stateglyph/react";
 
-const states = ["idle", "loading", "success", "error"] as const;
+const states = ["light", "dark", "system"] as const;
 const labels: Record<(typeof states)[number], string> = {
-  idle: "Idle",
-  loading: "Uploading",
-  success: "Success",
-  error: "Error",
+  light: "Light",
+  dark: "Dark",
+  system: "System",
 };
 
 const durations: Record<(typeof states)[number], number> = {
-  idle: 2200,
-  loading: 2600,
-  success: 2000,
-  error: 2000,
+  light: 2200,
+  dark: 2200,
+  system: 2200,
 };
 
 export function HeroDemo() {
@@ -42,7 +40,7 @@ export function HeroDemo() {
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex w-full items-center justify-between font-mono text-[10px] text-[#666b67]">
-        <span>Live state preview</span>
+        <span>Live theme preview</span>
         <button
           type="button"
           onClick={() => setIsPaused((current) => !current)}
@@ -53,15 +51,12 @@ export function HeroDemo() {
         </button>
       </div>
       <div className="relative grid size-28 place-items-center rounded-2xl border border-[#2b2e2c] bg-[#171918]">
-        <span key={state} className="state-preview-enter">
-          <UploadStateIcon
+        <span>
+          <ThemeStateIcon
             state={state}
             size={44}
             strokeWidth={1.5}
             decorative
-            className={
-              state === "loading" ? "catalog-icon--loading" : undefined
-            }
           />
         </span>
         <span className="absolute -bottom-6 font-mono text-[10px] tracking-wide text-[#737873]">
@@ -69,7 +64,7 @@ export function HeroDemo() {
         </span>
       </div>
 
-      <div className="mt-5 grid grid-cols-4 gap-1 rounded-md border border-[#2b2e2c] bg-[#171918] p-1">
+      <div className="mt-5 grid grid-cols-3 gap-1 rounded-md border border-[#2b2e2c] bg-[#171918] p-1">
         {states.map((s, i) => (
           <button
             key={s}

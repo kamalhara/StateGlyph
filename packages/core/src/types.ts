@@ -6,7 +6,14 @@ export type StateIconCategory =
   | "device"
   | "form"
   | "commerce"
-  | "notification";
+  | "notification"
+  | "connectivity"
+  | "security"
+  | "appearance"
+  | "editing"
+  | "files"
+  | "weather"
+  | "productivity";
 
 export type StateIconTransition =
   "crossfade" | "scale-fade" | "rotate" | "slide" | "morph";
