@@ -6,7 +6,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-5c625d.svg)](./LICENSE)
 [![Bundle size](https://img.shields.io/badge/gzip%20per%20icon-~1.4%20kB-34d399.svg)](#bundle-size)
 
-![StateGlyph upload icon moving from idle to loading to success](./.github/assets/stateglyph-readme-hero.png)
+
 
 StateGlyph is an open-source collection of typed React icons that communicate
 what an interface is doing, not only what an action looks like. Each component
