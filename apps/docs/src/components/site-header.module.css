@@ -1,0 +1,47 @@
+.navLink {
+  position: relative;
+  padding-block: 0.5rem;
+}
+
+.navLink::after {
+  position: absolute;
+  right: 0;
+  bottom: 0.1rem;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease;
+}
+
+.navLink:hover::after,
+.navLink:focus-visible::after,
+.navLink[aria-current="page"]::after {
+  opacity: 0.65;
+  transform: scaleX(1);
+}
+
+.mobileNav {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 160ms ease;
+}
+
+.mobileNav[data-open="true"] {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navLink::after,
+  .mobileNav {
+    transition: none;
+  }
+}

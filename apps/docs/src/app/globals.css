@@ -149,3 +149,154 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Motion follows a control's state; no layout or color changes are needed. */
+.preview-tile {
+  position: relative;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.preview-progress {
+  position: absolute;
+  inset: auto 12px 0;
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.preview-tile[data-active="true"] .preview-progress {
+  opacity: 0.45;
+  transform: scaleX(1);
+}
+
+.preview-tile[data-active="true"][data-playing="true"] .preview-progress {
+  animation: preview-progress 1400ms linear both;
+}
+
+.catalog-card {
+  transition: border-color 180ms ease;
+}
+
+.catalog-card:hover,
+.catalog-card:focus-within {
+  border-color: #4a4e4b;
+}
+
+.catalog-search {
+  transition: border-color 160ms ease;
+}
+
+.catalog-search:focus-within {
+  border-color: #686d69;
+}
+
+.state-option {
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.catalog-category {
+  color-scheme: dark;
+  transition: border-color 160ms ease;
+}
+
+.catalog-category:focus-visible {
+  border-color: #686d69;
+}
+
+.link-arrow {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.group:hover .link-arrow,
+a:focus-visible .link-arrow {
+  transform: translateX(3px);
+}
+
+.sidebar-category {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.sidebar-icon-link {
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    padding-left 160ms ease;
+}
+
+.sidebar-icon-link[aria-current="page"] {
+  box-shadow: inset 1px 0 currentColor;
+}
+
+.collection-glyph svg {
+  transition: transform 180ms ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .collection-card:hover .collection-glyph svg {
+    transform: translateY(-2px);
+  }
+
+  .sidebar-icon-link:hover {
+    padding-left: 34px;
+  }
+}
+
+[data-reveal] {
+  transition:
+    opacity 280ms ease-out,
+    transform 280ms ease-out;
+}
+
+[data-reveal-pending] {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.button-press {
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.button-press:active {
+  transform: translateY(1px);
+}
+
+@keyframes preview-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preview-tile[data-active="true"][data-playing="true"] .preview-progress {
+    animation: none;
+  }
+
+  [data-reveal],
+  [data-reveal-pending] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .link-arrow,
+  .button-press:active {
+    transform: none !important;
+  }
+}

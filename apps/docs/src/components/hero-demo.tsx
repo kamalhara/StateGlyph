@@ -2,19 +2,52 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 
+import { defineStateIcon, stateIconCatalog } from "@stateglyph/core";
+import { StateIcon } from "@stateglyph/react";
+
 import { getIconBySlug } from "@/data/icon-catalog";
 
 const examples = [
-  "menu",
+  "wifi",
+  "lock",
+  "volume",
   "play-pause",
   "theme",
-  "copy",
+  "notification",
   "visibility",
   "bookmark",
+  "menu",
 ].map((slug) => {
   const icon = getIconBySlug(slug);
-  if (!icon) throw new Error(`Missing homepage example: ${slug}`);
-  return icon;
+  const definition = stateIconCatalog.find((entry) => entry.id === slug);
+  if (!icon || !definition)
+    throw new Error(`Missing homepage example: ${slug}`);
+  return { ...icon, definition };
+});
+
+// One component keeps the outgoing glyph when changing to a different example.
+const previewDefinition = defineStateIcon({
+  id: "homepage-preview",
+  title: "Live icon preview",
+  description: "Explore interface icon states.",
+  category: "navigation",
+  states: Object.fromEntries(
+    examples.flatMap((icon) =>
+      Object.entries(icon.definition.states).map(([name, state]) => [
+        `${icon.slug}:${name}`,
+        state,
+      ]),
+    ),
+  ),
+  initialState: "wifi:off",
+  transition: "morph",
+  tags: [],
+  source: {
+    library: "lucide",
+    license: "ISC",
+    url: "https://lucide.dev",
+    icons: examples.flatMap((icon) => [...icon.definition.source.icons]),
+  },
 });
 
 function subscribeToMotion(callback: () => void) {
@@ -50,12 +83,12 @@ export function HeroDemo() {
           i === next ? (index + 1) % examples[i].states.length : index,
         ),
       );
-    }, 1200);
+    }, 1400);
     return () => window.clearInterval(timer);
   }, [isPaused, reducedMotion]);
 
   const activeIcon = examples[activeIndex];
-  const activeState = activeIcon.states[indices[activeIndex]].name;
+  const activeState = activeIcon.states[indices[activeIndex]];
 
   return (
     <section
@@ -63,35 +96,80 @@ export function HeroDemo() {
       data-home-preview
       className="overflow-hidden rounded-xl border border-[#343735] bg-[#1a1c1b]"
     >
-      <div className="flex items-center justify-between gap-3 border-b border-[#2b2e2c] px-5 py-4">
-        <div>
-          <p className="text-sm font-medium">Everyday UI, in motion</p>
-          <p className="mt-1 text-xs text-[#929792]">
-            Click an icon to try its next state.
-          </p>
+      {/* Header */}
+      <div className="flex items-center justify-between gap-3 border-b border-[#2b2e2c] px-5 py-3.5">
+        <div className="flex items-center gap-3">
+          <p className="font-mono text-[10px] text-[#666b67]">Icon preview</p>
+          <span
+            className="font-mono text-[10px] tabular-nums text-[#666b67]"
+            aria-hidden="true"
+          >
+            {String(activeIndex + 1).padStart(2, "0")} / {examples.length}
+          </span>
         </div>
         <button
           type="button"
           onClick={() => setIsPaused((paused) => !paused)}
           disabled={reducedMotion}
-          aria-label={isPaused ? "Play icon previews" : "Pause icon previews"}
+          aria-label={
+            reducedMotion
+              ? "Manual icon previews"
+              : isPaused
+                ? "Play icon previews"
+                : "Pause icon previews"
+          }
           aria-pressed={!isPaused && !reducedMotion}
-          className="shrink-0 rounded border border-[#343735] px-2.5 py-1.5 font-mono text-[10px] text-[#c5c8c3] transition-colors hover:border-[#666b67] disabled:opacity-60"
+          className="shrink-0 rounded border border-[#343735] px-2.5 py-1 font-mono text-[10px] text-[#929792] transition-colors hover:border-[#666b67] hover:text-[#c5c8c3] disabled:opacity-60"
         >
           {reducedMotion ? "Manual" : isPaused ? "Play" : "Pause"}
         </button>
       </div>
 
+      {/* Active icon large preview */}
+      <div className="flex items-center gap-4 border-b border-[#2b2e2c] bg-[#171918] px-5 py-4">
+        <div className="grid size-14 shrink-0 place-items-center rounded-lg border border-[#2b2e2c] bg-[#1a1c1b] text-[#e4e6e1]">
+          <StateIcon
+            definition={previewDefinition}
+            state={`${activeIcon.slug}:${activeState.name}`}
+            transition={activeIcon.definition.transition}
+            size={28}
+            duration={280}
+            decorative
+          />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium text-[#e4e6e1]">
+            {activeIcon.name}
+          </p>
+          <p className="mt-0.5 font-mono text-[10px] text-[#747974]">
+            {activeState.name}
+            {activeState.continuous && (
+              <span className="ml-1.5 text-[#555a56]">· animated</span>
+            )}
+          </p>
+        </div>
+      </div>
+
+      <p className="border-b border-[#2b2e2c] px-5 py-2.5 font-mono text-[10px] text-[#666b67]">
+        Select and click on any icon to change its states
+      </p>
+
+      {/* Icon grid */}
       <div className="grid grid-cols-3 gap-px bg-[#2b2e2c]">
         {examples.map((icon, i) => {
           const state = icon.states[indices[i]].name;
+          const isActive = i === activeIndex;
           return (
             <button
               key={icon.slug}
               type="button"
               aria-label={`${icon.name}: ${state}. Show next state`}
+              aria-pressed={isActive}
+              data-active={isActive}
+              data-playing={!isPaused && !reducedMotion}
               onClick={() => {
                 setIsPaused(true);
+                cursor.current = (i + 1) % examples.length;
                 setActiveIndex(i);
                 setIndices((current) =>
                   current.map((index, j) =>
@@ -99,27 +177,38 @@ export function HeroDemo() {
                   ),
                 );
               }}
-              className="flex min-w-0 flex-col items-center gap-3 bg-[#171918] px-2 py-7 text-[#d9dbd7] transition-colors hover:bg-[#212421] focus-visible:relative focus-visible:z-10 focus-visible:outline-offset-[-3px]"
+              className={`preview-tile flex min-w-0 flex-col items-center gap-2.5 bg-[#171918] px-2 py-4 transition-colors focus-visible:relative focus-visible:z-10 focus-visible:outline-offset-[-3px] ${
+                isActive
+                  ? "bg-[#1e211f] text-[#e4e6e1]"
+                  : "text-[#929792] hover:bg-[#1e211f] hover:text-[#c5c8c3]"
+              }`}
             >
-              {icon.render({ state, size: 30 })}
-              <span className="max-w-full truncate text-[11px] text-[#a6aaa5]">
+              <span
+                key={state}
+                className="preview-progress"
+                aria-hidden="true"
+              />
+              {icon.render({ state, size: 24 })}
+              <span className="max-w-full truncate text-[10px]">
                 {icon.name}
-              </span>
-              <span className="font-mono text-[9px] text-[#747974]">
-                {state}
               </span>
             </button>
           );
         })}
       </div>
 
-      <div className="scrollbar-hidden overflow-x-auto border-t border-[#2b2e2c] px-4 py-4">
-        <code className="whitespace-nowrap font-mono text-[10px] text-[#a6aaa5]">
-          &lt;{activeIcon.componentName}{" "}
-          <span className="text-[#c5d5b4]">
-            state=&quot;{activeState}&quot;
+      {/* Code preview */}
+      <div className="scrollbar-hidden overflow-x-auto border-t border-[#2b2e2c] px-4 py-3">
+        <code className="block whitespace-nowrap font-mono text-[10px] text-[#747974]">
+          <span className="text-[#666b67]">&lt;</span>
+          <span className="text-[#a6aaa5]">
+            {activeIcon.componentName}
           </span>{" "}
-          /&gt;
+          <span className="text-[#666b67]">state=</span>
+          <span className="text-[#c5d5b4]">
+            &quot;{activeState.name}&quot;
+          </span>{" "}
+          <span className="text-[#666b67]">/&gt;</span>
         </code>
       </div>
     </section>

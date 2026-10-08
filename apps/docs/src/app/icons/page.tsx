@@ -11,25 +11,22 @@ export const metadata: Metadata = {
 export default function IconsPage() {
   return (
     <>
-      <div className="flex flex-col justify-between gap-5 border-b border-[#2b2e2c] pb-10 sm:flex-row sm:items-end">
+      <div className="flex flex-col justify-between gap-5 border-b border-[#2b2e2c] pb-7 sm:flex-row sm:items-end">
         <div>
           <div className="flex items-center gap-3">
             <p className="font-mono text-xs text-[#7e837e]">Icon library</p>
-            <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
-              More coming soon
-            </span>
           </div>
           <h1 className="mt-3 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">
             All state icons
           </h1>
         </div>
         <p className="max-w-md text-sm leading-6 text-[#929792]">
-          Browse by category, search by intent, then open an icon to see every
-          state and its implementation.
+          Pick a category or search for what you need. Each icon shows every
+          state it supports — click one to see it in action.
         </p>
       </div>
 
-      <div className="pt-8">
+      <div className="pt-5">
         <IconCatalog />
       </div>
 

@@ -81,7 +81,7 @@ function SidebarLinks({ pathname }: { pathname: string }) {
               <button
                 type="button"
                 onClick={() => toggle(category)}
-                className="flex w-full items-center gap-2 rounded px-3 py-2 text-left font-mono text-[10px] uppercase tracking-[0.14em] text-[#929792] transition-colors hover:bg-[#1b1d1c] hover:text-white"
+                className="sidebar-category flex w-full items-center gap-2 rounded px-3 py-2 text-left font-mono text-[10px] tracking-[0.04em] text-[#929792] transition-colors hover:bg-[#1b1d1c] hover:text-white"
                 aria-expanded={isExpanded}
                 aria-controls={panelId}
               >
@@ -113,7 +113,7 @@ function SidebarLinks({ pathname }: { pathname: string }) {
                           key={icon.slug}
                           href={href}
                           aria-current={isActive ? "page" : undefined}
-                          className={`flex items-center justify-between rounded px-3 py-1.5 pl-8 text-sm transition-colors ${
+                          className={`sidebar-icon-link flex items-center justify-between rounded px-3 py-1.5 pl-8 text-sm transition-colors ${
                             isActive
                               ? "bg-[#252825] text-white"
                               : "text-[#929792] hover:bg-[#1b1d1c] hover:text-white"
