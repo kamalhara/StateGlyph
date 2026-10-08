@@ -22,7 +22,8 @@
     "format:check": "prettier --check .",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "npm run build:packages && changeset publish"
+    "release": "npm run build:packages && changeset publish",
+    "generate": "node tooling/generate-icon-library.mjs"
   },
   "engines": {
     "node": ">=22.19.0"

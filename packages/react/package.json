@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Typed, accessible state icon components for React.",
   "license": "MIT",
   "author": "Kamalveer Singh",
@@ -37,13 +37,37 @@
       "types": "./dist/icons/add-to-cart-state-icon.d.ts",
       "import": "./dist/icons/add-to-cart-state-icon.js"
     },
+    "./alignment": {
+      "types": "./dist/icons/alignment-state-icon.d.ts",
+      "import": "./dist/icons/alignment-state-icon.js"
+    },
+    "./archive": {
+      "types": "./dist/icons/archive-state-icon.d.ts",
+      "import": "./dist/icons/archive-state-icon.js"
+    },
+    "./authentication": {
+      "types": "./dist/icons/authentication-state-icon.d.ts",
+      "import": "./dist/icons/authentication-state-icon.js"
+    },
+    "./bluetooth": {
+      "types": "./dist/icons/bluetooth-state-icon.d.ts",
+      "import": "./dist/icons/bluetooth-state-icon.js"
+    },
     "./bookmark": {
       "types": "./dist/icons/bookmark-state-icon.d.ts",
       "import": "./dist/icons/bookmark-state-icon.js"
     },
+    "./brightness": {
+      "types": "./dist/icons/brightness-state-icon.d.ts",
+      "import": "./dist/icons/brightness-state-icon.js"
+    },
     "./camera": {
       "types": "./dist/icons/camera-state-icon.d.ts",
       "import": "./dist/icons/camera-state-icon.js"
+    },
+    "./cellular": {
+      "types": "./dist/icons/cellular-state-icon.d.ts",
+      "import": "./dist/icons/cellular-state-icon.js"
     },
     "./chevron-horizontal": {
       "types": "./dist/icons/chevron-horizontal-state-icon.d.ts",
@@ -53,9 +77,17 @@
       "types": "./dist/icons/chevron-vertical-state-icon.d.ts",
       "import": "./dist/icons/chevron-vertical-state-icon.js"
     },
+    "./contrast": {
+      "types": "./dist/icons/contrast-state-icon.d.ts",
+      "import": "./dist/icons/contrast-state-icon.js"
+    },
     "./copy": {
       "types": "./dist/icons/copy-state-icon.d.ts",
       "import": "./dist/icons/copy-state-icon.js"
+    },
+    "./daylight": {
+      "types": "./dist/icons/daylight-state-icon.d.ts",
+      "import": "./dist/icons/daylight-state-icon.js"
     },
     "./delete": {
       "types": "./dist/icons/delete-state-icon.d.ts",
@@ -65,9 +97,21 @@
       "types": "./dist/icons/download-state-icon.d.ts",
       "import": "./dist/icons/download-state-icon.js"
     },
+    "./ethernet": {
+      "types": "./dist/icons/ethernet-state-icon.d.ts",
+      "import": "./dist/icons/ethernet-state-icon.js"
+    },
     "./expand": {
       "types": "./dist/icons/expand-state-icon.d.ts",
       "import": "./dist/icons/expand-state-icon.js"
+    },
+    "./file-access": {
+      "types": "./dist/icons/file-access-state-icon.d.ts",
+      "import": "./dist/icons/file-access-state-icon.js"
+    },
+    "./folder": {
+      "types": "./dist/icons/folder-state-icon.d.ts",
+      "import": "./dist/icons/folder-state-icon.js"
     },
     "./fullscreen": {
       "types": "./dist/icons/fullscreen-state-icon.d.ts",
@@ -80,6 +124,14 @@
     "./like": {
       "types": "./dist/icons/like-state-icon.d.ts",
       "import": "./dist/icons/like-state-icon.js"
+    },
+    "./link": {
+      "types": "./dist/icons/link-state-icon.d.ts",
+      "import": "./dist/icons/link-state-icon.js"
+    },
+    "./lock": {
+      "types": "./dist/icons/lock-state-icon.d.ts",
+      "import": "./dist/icons/lock-state-icon.js"
     },
     "./menu": {
       "types": "./dist/icons/menu-state-icon.d.ts",
@@ -101,6 +153,10 @@
       "types": "./dist/icons/payment-state-icon.d.ts",
       "import": "./dist/icons/payment-state-icon.js"
     },
+    "./pin": {
+      "types": "./dist/icons/pin-state-icon.d.ts",
+      "import": "./dist/icons/pin-state-icon.js"
+    },
     "./play-pause": {
       "types": "./dist/icons/play-pause-state-icon.d.ts",
       "import": "./dist/icons/play-pause-state-icon.js"
@@ -108,6 +164,10 @@
     "./playback": {
       "types": "./dist/icons/playback-state-icon.d.ts",
       "import": "./dist/icons/playback-state-icon.js"
+    },
+    "./priority": {
+      "types": "./dist/icons/priority-state-icon.d.ts",
+      "import": "./dist/icons/priority-state-icon.js"
     },
     "./publish": {
       "types": "./dist/icons/publish-state-icon.d.ts",
@@ -129,6 +189,10 @@
       "types": "./dist/icons/send-state-icon.d.ts",
       "import": "./dist/icons/send-state-icon.js"
     },
+    "./shield": {
+      "types": "./dist/icons/shield-state-icon.d.ts",
+      "import": "./dist/icons/shield-state-icon.js"
+    },
     "./shuffle": {
       "types": "./dist/icons/shuffle-state-icon.d.ts",
       "import": "./dist/icons/shuffle-state-icon.js"
@@ -145,6 +209,26 @@
       "types": "./dist/icons/sync-state-icon.d.ts",
       "import": "./dist/icons/sync-state-icon.js"
     },
+    "./task": {
+      "types": "./dist/icons/task-state-icon.d.ts",
+      "import": "./dist/icons/task-state-icon.js"
+    },
+    "./temperature": {
+      "types": "./dist/icons/temperature-state-icon.d.ts",
+      "import": "./dist/icons/temperature-state-icon.js"
+    },
+    "./text-format": {
+      "types": "./dist/icons/text-format-state-icon.d.ts",
+      "import": "./dist/icons/text-format-state-icon.js"
+    },
+    "./theme": {
+      "types": "./dist/icons/theme-state-icon.d.ts",
+      "import": "./dist/icons/theme-state-icon.js"
+    },
+    "./tool": {
+      "types": "./dist/icons/tool-state-icon.d.ts",
+      "import": "./dist/icons/tool-state-icon.js"
+    },
     "./upload": {
       "types": "./dist/icons/upload-state-icon.d.ts",
       "import": "./dist/icons/upload-state-icon.js"
@@ -153,9 +237,21 @@
       "types": "./dist/icons/view-state-icon.d.ts",
       "import": "./dist/icons/view-state-icon.js"
     },
+    "./visibility": {
+      "types": "./dist/icons/visibility-state-icon.d.ts",
+      "import": "./dist/icons/visibility-state-icon.js"
+    },
     "./volume": {
       "types": "./dist/icons/volume-state-icon.d.ts",
       "import": "./dist/icons/volume-state-icon.js"
+    },
+    "./weather": {
+      "types": "./dist/icons/weather-state-icon.d.ts",
+      "import": "./dist/icons/weather-state-icon.js"
+    },
+    "./wifi": {
+      "types": "./dist/icons/wifi-state-icon.d.ts",
+      "import": "./dist/icons/wifi-state-icon.js"
     }
   },
   "files": [
@@ -172,7 +268,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateglyph/core": "0.1.0",
+    "@stateglyph/core": "0.2.0",
     "lucide-react": "^1.47.0"
   },
   "peerDependencies": {

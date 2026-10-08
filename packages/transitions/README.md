@@ -1,23 +1,19 @@
 # @stateglyph/transitions
 
-Optional, accessible CSS transitions for StateGlyph React icons.
+Optional CSS timing presets for StateGlyph's built-in animated state changes.
 
 ```bash
 npm install @stateglyph/react @stateglyph/transitions
 ```
 
-Import the stylesheet once near the root of your application:
-
 ```ts
 import "@stateglyph/transitions/styles.css";
 ```
 
-StateGlyph components expose their definition's transition through a
-`data-transition` attribute, so no wrapper or per-icon class is required. The
-stylesheet implements `crossfade`, `scale-fade`, `rotate`, `slide`, and
-`morph`, plus continuous rotation for loading states.
-
-You can customize timing with CSS custom properties:
+React components and CLI-generated components animate without this stylesheet.
+The renderer retains the outgoing glyph while the incoming glyph enters, using
+`crossfade`, `scale-fade`, `rotate`, `slide`, or a blur blend named `morph`.
+The optional stylesheet sets timing defaults using `data-transition`.
 
 ```css
 .status-icon {
@@ -27,4 +23,7 @@ You can customize timing with CSS custom properties:
 }
 ```
 
-All animation is disabled when the user enables reduced motion.
+Set a custom duration on a class or parent scope. Explicit React `duration` and
+`spinDuration` props take precedence over CSS variables. Use `animated={false}`
+to disable animation on one component. Live reduced-motion preferences disable
+both state transitions and continuous rotation.

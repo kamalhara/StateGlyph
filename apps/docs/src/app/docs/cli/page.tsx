@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { stateIconCatalog } from "@stateglyph/core";
 
 import { CopyButton } from "@/components/copy-button";
 import { HighlightedCode } from "@/components/highlighted-code";
@@ -17,56 +18,45 @@ const addAll = "npx @stateglyph/cli add all";
 const addDir = "npx @stateglyph/cli add upload --dir src/components/icons";
 const addForce = "npx @stateglyph/cli add upload --force";
 
-const generatedExample = `// Generated file: src/components/stateglyph/upload-state-icon.tsx
+const generatedExample = `// Generated file: components/stateglyph/theme-state-icon.tsx
+// The file includes its own animation renderer and typed state/glyph maps.
+// Its only runtime dependencies are react and lucide-react.
 
-import { uploadStateIcon } from "@stateglyph/core";
-import { StateIcon, type StateIconProps } from "@stateglyph/react";
+export type ThemeState = "light" | "dark" | "system";
 
-export type UploadStateIconProps = Omit<
-  StateIconProps<typeof uploadStateIcon.states>,
-  "definition"
->;
+// Usage after copying the self-contained component:
+import { ThemeStateIcon } from "./components/stateglyph/theme-state-icon";
 
-export function UploadStateIcon(props: UploadStateIconProps) {
-  return <StateIcon definition={uploadStateIcon} {...props} />;
-}`;
+<ThemeStateIcon state="dark" duration={300} />`;
 
 const commands = [
   {
     command: "list",
     description: "List all available icon names.",
     usage: listCommand,
-    example: `$ npx @stateglyph/cli list
-
-Available icons (31):
-  upload, download, save, delete, refresh,
-  sync, send, payment, add-to-cart, submit,
-  install, publish, play-pause, playback,
-  volume, microphone, camera, fullscreen,
-  repeat, shuffle, menu, expand, sidebar,
-  view, chevron-vertical, chevron-horizontal,
-  panel, copy, like, bookmark, notification`,
+    example: `$ npx @stateglyph/cli list\n\nStateGlyph — ${stateIconCatalog.length} icons\n\n${stateIconCatalog.map((icon) => `  ${icon.id.padEnd(22)} ${icon.title} (${Object.keys(icon.states).length} states)`).join("\n")}`,
   },
   {
     command: "add <name...>",
     description: "Copy one or more icon components into your project.",
     usage: addSingle,
     example: `$ npx @stateglyph/cli add upload
-✓ Created src/stateglyph/upload-state-icon.tsx`,
+Added:
+  components/stateglyph/upload-state-icon.tsx`,
   },
   {
     command: "add all",
     description: "Copy every available icon component.",
     usage: addAll,
     example: `$ npx @stateglyph/cli add all
-✓ Created 31 icon components in src/stateglyph/`,
+Added ${stateIconCatalog.length} icon components in components/stateglyph/`,
   },
 ] as const;
 
 const options = [
   {
     flag: "--dir <path>",
-    default: "src/stateglyph",
+    default: "components/stateglyph",
     description:
       "Target directory for generated files. Will be created if it doesn't exist.",
   },
@@ -250,9 +240,9 @@ export default function CliPage() {
         <p className="mt-4 text-sm leading-7 text-[#929792]">
           Each generated file is a self-contained component that imports from{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
-            @stateglyph/core
+            react
           </code>{" "}
-          for definitions and{" "}
+          for state and animation hooks and{" "}
           <code className="rounded bg-[#1b1d1c] px-1.5 py-0.5 font-mono text-[11px] text-[#c5c8c3]">
             lucide-react
           </code>{" "}

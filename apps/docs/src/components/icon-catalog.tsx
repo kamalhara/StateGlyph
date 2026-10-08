@@ -1,14 +1,129 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 
-import { iconCatalog, iconCategories } from "@/data/icon-catalog";
+import {
+  iconCatalog,
+  iconCategories,
+  type IconRecord,
+} from "@/data/icon-catalog";
+
+const categoryEvent = "stateglyph:category";
+function subscribeToCategory(callback: () => void) {
+  window.addEventListener("popstate", callback);
+  window.addEventListener(categoryEvent, callback);
+  return () => {
+    window.removeEventListener("popstate", callback);
+    window.removeEventListener(categoryEvent, callback);
+  };
+}
+function readCategory() {
+  const value = new URLSearchParams(window.location.search).get("category");
+  return value && (iconCategories as readonly string[]).includes(value)
+    ? value
+    : "All";
+}
+function defaultCategory() {
+  return "All";
+}
+function selectCategory(category: string) {
+  const url = new URL(window.location.href);
+  if (category === "All") url.searchParams.delete("category");
+  else url.searchParams.set("category", category);
+  window.history.replaceState(window.history.state, "", url);
+  window.dispatchEvent(new Event(categoryEvent));
+}
+
+function IconCard({ icon }: { icon: IconRecord }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const previewing = hovered || focused;
+  const state = icon.states[activeIndex];
+
+  useEffect(() => {
+    if (!previewing) return;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timer: number | undefined;
+    function syncTimer() {
+      window.clearInterval(timer);
+      if (!motion.matches) {
+        timer = window.setInterval(
+          () => setActiveIndex((index) => (index + 1) % icon.states.length),
+          1100,
+        );
+      }
+    }
+    syncTimer();
+    motion.addEventListener("change", syncTimer);
+    return () => {
+      window.clearInterval(timer);
+      motion.removeEventListener("change", syncTimer);
+    };
+  }, [previewing, icon.states.length]);
+
+  function advance() {
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+      setActiveIndex((index) => (index + 1) % icon.states.length);
+  }
+
+  return (
+    <article
+      data-icon-card={icon.slug}
+      className="catalog-card group overflow-hidden rounded-md border border-[#343735] bg-[#1a1c1b]"
+    >
+      <Link
+        href={`/icons/${icon.slug}`}
+        aria-label={`View ${icon.name} icon`}
+        onMouseEnter={() => {
+          setHovered(true);
+          if (!focused) advance();
+        }}
+        onMouseLeave={() => {
+          setHovered(false);
+          if (!focused) setActiveIndex(0);
+        }}
+        onFocus={() => {
+          setFocused(true);
+          if (!hovered) advance();
+        }}
+        onBlur={() => {
+          setFocused(false);
+          if (!hovered) setActiveIndex(0);
+        }}
+        className="flex min-h-36 flex-col items-center justify-center gap-3 px-3 py-5 text-[#c5c8c3] focus-visible:outline-offset-[-3px]"
+      >
+        {icon.render({ state: state.name, size: 28 })}
+        <div className="w-full text-center">
+          <h2 className="truncate text-sm font-medium">{icon.name}</h2>
+          <p
+            className="mt-1 truncate font-mono text-[10px] text-[#7e837e]"
+            aria-hidden="true"
+          >
+            {previewing ? state.name : `${icon.states.length} states`}
+          </p>
+        </div>
+      </Link>
+    </article>
+  );
+}
 
 export function IconCatalog() {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
+  const category = useSyncExternalStore(
+    subscribeToCategory,
+    readCategory,
+    defaultCategory,
+  );
   const searchRef = useRef<HTMLInputElement>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -17,12 +132,16 @@ export function IconCatalog() {
         target.tagName === "INPUT" ||
         target.tagName === "TEXTAREA" ||
         target.isContentEditable;
-
-      if (event.key === "/" && !isTyping) {
+      if (
+        event.key === "/" &&
+        !isTyping &&
+        !event.ctrlKey &&
+        !event.metaKey &&
+        !event.altKey
+      ) {
         event.preventDefault();
         searchRef.current?.focus();
       }
-
       if (
         event.key === "Escape" &&
         document.activeElement === searchRef.current
@@ -31,37 +150,53 @@ export function IconCatalog() {
         searchRef.current?.blur();
       }
     }
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   const matchingIcons = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
+    const normalized = query.trim().toLowerCase();
+    return iconCatalog.filter(
+      (icon) =>
+        (category === "All" || icon.category === category) &&
+        (!normalized ||
+          [
+            icon.name,
+            icon.componentName,
+            icon.category,
+            icon.description,
+            ...icon.keywords,
+          ]
+            .join(" ")
+            .toLowerCase()
+            .includes(normalized)),
+    );
+  }, [category, query]);
 
-    return iconCatalog.filter((icon) => {
-      const matchesCategory = category === "All" || icon.category === category;
-      const matchesQuery =
-        !normalizedQuery ||
-        [
-          icon.name,
-          icon.componentName,
-          icon.category,
-          icon.description,
-          ...icon.keywords,
-        ]
-          .join(" ")
-          .toLowerCase()
-          .includes(normalizedQuery);
-
-      return matchesCategory && matchesQuery;
-    });
+  useEffect(() => {
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motion.matches || !resultsRef.current?.animate) return;
+    const animation = resultsRef.current.animate(
+      [
+        { opacity: 0.55, transform: "translateY(4px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 180, easing: "ease-out" },
+    );
+    function cancelForMotion() {
+      if (motion.matches) animation.cancel();
+    }
+    motion.addEventListener("change", cancelForMotion);
+    return () => {
+      animation.cancel();
+      motion.removeEventListener("change", cancelForMotion);
+    };
   }, [category, query]);
 
   return (
     <div>
-      <div className="flex flex-col gap-3 border-y border-[#2b2e2c] py-4 sm:flex-row sm:items-center sm:justify-between">
-        <label className="flex min-h-11 flex-1 items-center gap-3 rounded-md border border-[#343735] bg-[#1b1d1c] px-4 sm:max-w-lg">
+      <div className="flex flex-col gap-3 border-b border-[#2b2e2c] pb-5 sm:flex-row sm:items-center">
+        <label className="catalog-search flex min-h-11 flex-1 items-center gap-3 rounded-md border border-[#343735] bg-[#1b1d1c] px-4">
           <svg
             aria-hidden="true"
             viewBox="0 0 24 24"
@@ -86,115 +221,58 @@ export function IconCatalog() {
             /
           </kbd>
         </label>
-
-        <p className="font-mono text-xs text-[#747974]">
+        <label className="min-w-0 sm:w-48">
+          <span className="sr-only">Filter icons by category</span>
+          <select
+            value={category}
+            onChange={(event) => selectCategory(event.target.value)}
+            className="catalog-category min-h-11 w-full rounded-md border border-[#343735] bg-[#1b1d1c] px-3 text-xs text-[#c5c8c3]"
+          >
+            <option value="All">All categories</option>
+            {iconCategories.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </label>
+        <p
+          className="min-w-20 font-mono text-xs tabular-nums text-[#747974] sm:text-right"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
           {matchingIcons.length} {matchingIcons.length === 1 ? "icon" : "icons"}
         </p>
       </div>
-
-      <div
-        className="flex gap-2 overflow-x-auto border-b border-[#2b2e2c] py-4"
-        role="group"
-        aria-label="Filter icons by category"
-      >
-        {["All", ...iconCategories].map((item) => (
-          <button
-            key={item}
-            type="button"
-            onClick={() => setCategory(item)}
-            aria-pressed={category === item}
-            className={`shrink-0 rounded border px-3 py-1.5 text-xs transition-colors ${
-              category === item
-                ? "border-[#686d69] bg-[#252825] text-white"
-                : "border-[#343735] text-[#7e837e] hover:border-[#4a4e4b] hover:text-[#c5c8c3]"
-            }`}
-          >
-            {item}
-          </button>
-        ))}
-      </div>
-
-      {matchingIcons.length > 0 ? (
-        <div className="grid gap-4 pt-6 md:grid-cols-2 xl:grid-cols-3">
-          {matchingIcons.map((icon) => (
-            <article
-              key={icon.slug}
-              className="group overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-[#4a4e4b]"
-            >
-              <div
-                className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]"
-                style={{
-                  gridTemplateColumns: `repeat(${icon.states.length}, minmax(0, 1fr))`,
-                }}
-              >
-                {icon.states.map((state) => (
-                  <div
-                    key={state.name}
-                    className="grid aspect-square place-items-center text-[#c5c8c3]"
-                    title={state.name}
-                  >
-                    {icon.render({
-                      state: state.name,
-                      size: 26,
-                      className: state.continuous
-                        ? "catalog-icon--loading"
-                        : undefined,
-                    })}
-                  </div>
-                ))}
-              </div>
-
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-5">
-                  <div>
-                    <h2 className="font-medium">{icon.name}</h2>
-                    <code className="mt-1 block font-mono text-xs text-[#7e837e]">
-                      {icon.componentName}
-                    </code>
-                    <p className="mt-3 text-xs leading-5 text-[#7e837e]">
-                      {icon.description}
-                    </p>
-                  </div>
-                  <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
-                    {icon.states.length} states
-                  </span>
-                </div>
-
-                <div className="mt-6 flex items-center justify-between border-t border-[#2b2e2c] pt-4 text-xs">
-                  <span className="text-[#7e837e]">
-                    {icon.source} · {icon.category}
-                  </span>
-                  <Link
-                    href={`/icons/${icon.slug}`}
-                    className="text-[#c5c8c3] transition-colors hover:text-white"
-                  >
-                    Open icon →
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      ) : (
-        <div className="grid min-h-56 place-items-center border-b border-[#2b2e2c] text-center">
-          <div>
-            <p className="font-medium">No icons found</p>
-            <p className="mt-2 text-sm text-[#7e837e]">
-              Try another name, intent, or category.
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                setQuery("");
-                setCategory("All");
-              }}
-              className="mt-4 text-xs text-[#c5c8c3] underline decoration-[#555a56] underline-offset-4 hover:text-white"
-            >
-              Clear filters
-            </button>
+      <div ref={resultsRef}>
+        {matchingIcons.length > 0 ? (
+          <div className="grid grid-cols-2 gap-3 pt-5 sm:grid-cols-3 xl:grid-cols-4">
+            {matchingIcons.map((icon) => (
+              <IconCard key={icon.slug} icon={icon} />
+            ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="grid min-h-56 place-items-center border-b border-[#2b2e2c] text-center">
+            <div>
+              <p className="font-medium">No icons found</p>
+              <p className="mt-2 text-sm text-[#7e837e]">
+                Try another name, intent, or category.
+              </p>
+              <button
+                type="button"
+                onClick={() => {
+                  setQuery("");
+                  selectCategory("All");
+                }}
+                className="mt-4 text-xs text-[#c5c8c3] underline decoration-[#555a56] underline-offset-4 hover:text-white"
+              >
+                Clear filters
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

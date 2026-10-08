@@ -9,6 +9,13 @@ const categoryLabels = {
   form: "Form states",
   commerce: "Commerce",
   notification: "Notifications",
+  connectivity: "Connectivity",
+  security: "Security and privacy",
+  appearance: "Appearance",
+  editing: "Editing tools",
+  files: "Files and folders",
+  weather: "Weather and time",
+  productivity: "Productivity",
 } as const;
 
 export function formatIconList(): string {

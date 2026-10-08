@@ -1,3 +1,5 @@
+"use client";
+
 import { installStateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 

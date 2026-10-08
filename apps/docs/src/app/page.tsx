@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CopyButton } from "@/components/copy-button";
 import { HeroDemo } from "@/components/hero-demo";
 import { HighlightedCode } from "@/components/highlighted-code";
+import { RevealScope } from "@/components/reveal-scope";
 import { RoadmapList } from "@/components/roadmap-list";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -35,7 +36,7 @@ const howItWorks = [
     step: "02",
     title: "Pass your state",
     description:
-      'Import the component and pass a typed state prop — "idle", "loading", "success", or any state the icon supports.',
+      'Import a component and pass a typed state — "light", "dark", "weak", "strong", "done", or any state the icon supports.',
   },
   {
     step: "03",
@@ -148,9 +149,9 @@ export default function Home() {
     <main className="min-h-screen bg-[#141615] text-[#f0f1ed]">
       <SiteHeader />
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-8">
+      <RevealScope className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_320px] lg:items-center">
+        <section className="grid gap-10 py-14 sm:py-20 lg:grid-cols-[1fr_400px] lg:items-center">
           <div className="hero-enter max-w-4xl">
             <div className="mb-5 flex flex-wrap items-center gap-3">
               <p className="font-mono text-xs text-[#929792]">
@@ -167,13 +168,14 @@ export default function Home() {
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[#a6aaa5]">
               StateGlyph groups the related visual states of an interface action
               into one typed, accessible React component — so a button can move
-              from idle → loading → success without scattered icon logic.
+              between light → dark → system, weak → strong signal, or task
+              states with smooth animated transitions.
             </p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Link
                 href="/icons"
-                className="rounded-md bg-[#e4e6e1] px-4 py-2.5 text-sm font-medium text-[#141615] transition-colors hover:bg-white"
+                className="button-press rounded-md bg-[#e4e6e1] px-4 py-2.5 text-sm font-medium text-[#141615] transition-colors hover:bg-white"
               >
                 Browse {iconCatalog.length} icons
               </Link>
@@ -181,7 +183,7 @@ export default function Home() {
                 href="https://github.com/kamalhara/StateGlyph"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-md border border-[#3c403d] px-4 py-2.5 text-sm text-[#c5c8c3] transition-colors hover:border-[#666b67] hover:text-white"
+                className="button-press rounded-md border border-[#3c403d] px-4 py-2.5 text-sm text-[#c5c8c3] transition-colors hover:border-[#666b67] hover:text-white"
               >
                 View on GitHub
               </a>
@@ -194,7 +196,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-enter hero-enter--late hidden lg:flex lg:justify-center">
+          <div className="hero-enter hero-enter--late min-w-0">
             <HeroDemo />
           </div>
         </section>
@@ -234,7 +236,10 @@ export default function Home() {
         </section>
 
         {/* ── Install ───────────────────────────────────────── */}
-        <section className="grid gap-8 py-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20">
+        <section
+          data-reveal
+          className="grid gap-8 py-14 lg:grid-cols-[1fr_1fr] lg:items-center lg:py-20"
+        >
           <div>
             <p className="font-mono text-xs text-[#7e837e]">Get started</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.035em]">
@@ -255,6 +260,7 @@ export default function Home() {
 
         {/* ── How it works ──────────────────────────────────── */}
         <section
+          data-reveal
           id="how-it-works"
           className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[1fr_1.2fr] lg:py-20"
         >
@@ -295,7 +301,10 @@ export default function Home() {
         </section>
 
         {/* ── Ways to use ───────────────────────────────────── */}
-        <section className="border-t border-[#2b2e2c] py-14 lg:py-20">
+        <section
+          data-reveal
+          className="border-t border-[#2b2e2c] py-14 lg:py-20"
+        >
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
               <p className="font-mono text-xs text-[#7e837e]">
@@ -342,6 +351,7 @@ export default function Home() {
 
         {/* ── Collections ───────────────────────────────────── */}
         <section
+          data-reveal
           id="collections"
           className="border-t border-[#2b2e2c] py-14 lg:py-20"
         >
@@ -362,11 +372,11 @@ export default function Home() {
             {collections.map((collection, index) => (
               <article
                 key={collection.name}
-                className="group flex flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-1 hover:border-[#454946]"
+                className="collection-card group flex flex-col rounded-lg border border-[#343735] bg-[#1a1c1b] transition-colors duration-200 hover:border-[#454946]"
               >
                 {/* Icon preview strip */}
                 <div
-                  className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918] rounded-t-lg"
+                  className="grid h-20 divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918] rounded-t-lg"
                   style={{
                     gridTemplateColumns: `repeat(${Math.min(collection.icons.length, 4)}, minmax(0, 1fr))`,
                   }}
@@ -374,7 +384,7 @@ export default function Home() {
                   {collection.icons.slice(0, 4).map((icon) => (
                     <div
                       key={icon.slug}
-                      className="grid aspect-square place-items-center text-[#929792] group-hover:text-[#c5c8c3] transition-colors"
+                      className="collection-glyph grid place-items-center text-[#929792] group-hover:text-[#c5c8c3] transition-colors"
                     >
                       {icon.render({ state: icon.states[0].name, size: 22 })}
                     </div>
@@ -398,10 +408,13 @@ export default function Home() {
                     {collection.description}
                   </p>
                   <Link
-                    href="/icons"
-                    className="mt-auto pt-6 text-sm text-[#c5c8c3] transition-colors hover:text-white"
+                    href={`/icons?category=${encodeURIComponent(collection.name)}`}
+                    className="inline-flex items-center gap-2 mt-auto pt-6 text-sm text-[#c5c8c3] transition-colors hover:text-white"
                   >
-                    Explore collection →
+                    Explore collection{" "}
+                    <span className="link-arrow" aria-hidden="true">
+                      →
+                    </span>
                   </Link>
                 </div>
               </article>
@@ -411,6 +424,7 @@ export default function Home() {
 
         {/* ── Roadmap ──────────────────────────────────────── */}
         <section
+          data-reveal
           id="roadmap"
           className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[0.8fr_1.2fr] lg:py-20"
         >
@@ -436,6 +450,7 @@ export default function Home() {
 
         {/* ── Principles / About ────────────────────────────── */}
         <section
+          data-reveal
           id="about"
           className="grid gap-12 border-t border-[#2b2e2c] py-14 lg:grid-cols-[0.8fr_1.2fr] lg:py-20"
         >
@@ -471,7 +486,7 @@ export default function Home() {
             ))}
           </div>
         </section>
-      </div>
+      </RevealScope>
     </main>
   );
 }

@@ -11,7 +11,7 @@ npm install @stateglyph/core
 import { stateIconCatalog, uploadStateIcon } from "@stateglyph/core";
 
 console.log(uploadStateIcon.states);
-console.log(stateIconCatalog.length); // 31
+console.log(stateIconCatalog.length); // 55
 ```
 
 Most React applications should install `@stateglyph/react` instead. Use this

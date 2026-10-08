@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const root = process.cwd();
@@ -79,7 +79,825 @@ const pair = (
   transition: "morph",
 });
 
+const extendedIcons = [
+  {
+    slug: "wifi",
+    camel: "wifi",
+    pascal: "Wifi",
+    title: "Wi-Fi",
+    description: "Represents wi-fi across off, weak, strong states.",
+    coreCategory: "connectivity",
+    docsCategory: "Connectivity",
+    transition: "scale-fade",
+    initialState: "off",
+    states: [
+      {
+        name: "off",
+        icon: "wifi-off",
+        label: "Wi-Fi off",
+        description: "Wi-Fi off.",
+        continuous: false,
+      },
+      {
+        name: "weak",
+        icon: "wifi-low",
+        label: "Weak Wi-Fi signal",
+        description: "Weak Wi-Fi signal.",
+        continuous: false,
+      },
+      {
+        name: "strong",
+        icon: "wifi-high",
+        label: "Strong Wi-Fi signal",
+        description: "Strong Wi-Fi signal.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "bluetooth",
+    camel: "bluetooth",
+    pascal: "Bluetooth",
+    title: "Bluetooth",
+    description: "Represents bluetooth across off, on, connected states.",
+    coreCategory: "connectivity",
+    docsCategory: "Connectivity",
+    transition: "scale-fade",
+    initialState: "off",
+    states: [
+      {
+        name: "off",
+        icon: "bluetooth-off",
+        label: "Bluetooth off",
+        description: "Bluetooth off.",
+        continuous: false,
+      },
+      {
+        name: "on",
+        icon: "bluetooth",
+        label: "Bluetooth on",
+        description: "Bluetooth on.",
+        continuous: false,
+      },
+      {
+        name: "connected",
+        icon: "bluetooth-connected",
+        label: "Bluetooth connected",
+        description: "Bluetooth connected.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "ethernet",
+    camel: "ethernet",
+    pascal: "Ethernet",
+    title: "Ethernet",
+    description: "Represents ethernet across disconnected, connected states.",
+    coreCategory: "connectivity",
+    docsCategory: "Connectivity",
+    transition: "slide",
+    initialState: "disconnected",
+    states: [
+      {
+        name: "disconnected",
+        icon: "unplug",
+        label: "Cable disconnected",
+        description: "Cable disconnected.",
+        continuous: false,
+      },
+      {
+        name: "connected",
+        icon: "cable",
+        label: "Cable connected",
+        description: "Cable connected.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "cellular",
+    camel: "cellular",
+    pascal: "Cellular",
+    title: "Cellular signal",
+    description: "Represents cellular signal across offline, low, high states.",
+    coreCategory: "connectivity",
+    docsCategory: "Connectivity",
+    transition: "scale-fade",
+    initialState: "offline",
+    states: [
+      {
+        name: "offline",
+        icon: "signal-zero",
+        label: "No cellular signal",
+        description: "No cellular signal.",
+        continuous: false,
+      },
+      {
+        name: "low",
+        icon: "signal-low",
+        label: "Low cellular signal",
+        description: "Low cellular signal.",
+        continuous: false,
+      },
+      {
+        name: "high",
+        icon: "signal-high",
+        label: "High cellular signal",
+        description: "High cellular signal.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "lock",
+    camel: "lock",
+    pascal: "Lock",
+    title: "Lock",
+    description: "Represents lock across unlocked, locked states.",
+    coreCategory: "security",
+    docsCategory: "Security and privacy",
+    transition: "morph",
+    initialState: "unlocked",
+    states: [
+      {
+        name: "unlocked",
+        icon: "lock-open",
+        label: "Unlocked",
+        description: "Unlocked.",
+        continuous: false,
+      },
+      {
+        name: "locked",
+        icon: "lock",
+        label: "Locked",
+        description: "Locked.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "visibility",
+    camel: "visibility",
+    pascal: "Visibility",
+    title: "Visibility",
+    description: "Represents visibility across visible, hidden states.",
+    coreCategory: "security",
+    docsCategory: "Security and privacy",
+    transition: "morph",
+    initialState: "visible",
+    states: [
+      {
+        name: "visible",
+        icon: "eye",
+        label: "Visible",
+        description: "Visible.",
+        continuous: false,
+      },
+      {
+        name: "hidden",
+        icon: "eye-off",
+        label: "Hidden",
+        description: "Hidden.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "shield",
+    camel: "shield",
+    pascal: "Shield",
+    title: "Protection",
+    description:
+      "Represents protection across unprotected, protected, restricted states.",
+    coreCategory: "security",
+    docsCategory: "Security and privacy",
+    transition: "scale-fade",
+    initialState: "unprotected",
+    states: [
+      {
+        name: "unprotected",
+        icon: "shield",
+        label: "Unprotected",
+        description: "Unprotected.",
+        continuous: false,
+      },
+      {
+        name: "protected",
+        icon: "shield-check",
+        label: "Protected",
+        description: "Protected.",
+        continuous: false,
+      },
+      {
+        name: "restricted",
+        icon: "shield-ban",
+        label: "Access restricted",
+        description: "Access restricted.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "authentication",
+    camel: "authentication",
+    pascal: "Authentication",
+    title: "Authentication",
+    description:
+      "Represents authentication across signed out, signed in, expired states.",
+    coreCategory: "security",
+    docsCategory: "Security and privacy",
+    transition: "crossfade",
+    initialState: "signed-out",
+    states: [
+      {
+        name: "signed-out",
+        icon: "user-round",
+        label: "Signed out",
+        description: "Signed out.",
+        continuous: false,
+      },
+      {
+        name: "signed-in",
+        icon: "user-round-check",
+        label: "Signed in",
+        description: "Signed in.",
+        continuous: false,
+      },
+      {
+        name: "expired",
+        icon: "user-round-x",
+        label: "Session expired",
+        description: "Session expired.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "theme",
+    camel: "theme",
+    pascal: "Theme",
+    title: "Theme",
+    description: "Represents theme across light, dark, system states.",
+    coreCategory: "appearance",
+    docsCategory: "Appearance",
+    transition: "rotate",
+    initialState: "light",
+    states: [
+      {
+        name: "light",
+        icon: "sun",
+        label: "Light theme",
+        description: "Light theme.",
+        continuous: false,
+      },
+      {
+        name: "dark",
+        icon: "moon",
+        label: "Dark theme",
+        description: "Dark theme.",
+        continuous: false,
+      },
+      {
+        name: "system",
+        icon: "monitor",
+        label: "System theme",
+        description: "System theme.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "brightness",
+    camel: "brightness",
+    pascal: "Brightness",
+    title: "Brightness",
+    description: "Represents brightness across low, medium, high states.",
+    coreCategory: "appearance",
+    docsCategory: "Appearance",
+    transition: "scale-fade",
+    initialState: "low",
+    states: [
+      {
+        name: "low",
+        icon: "sun-dim",
+        label: "Low brightness",
+        description: "Low brightness.",
+        continuous: false,
+      },
+      {
+        name: "medium",
+        icon: "sun-medium",
+        label: "Medium brightness",
+        description: "Medium brightness.",
+        continuous: false,
+      },
+      {
+        name: "high",
+        icon: "sun",
+        label: "High brightness",
+        description: "High brightness.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "contrast",
+    camel: "contrast",
+    pascal: "Contrast",
+    title: "Contrast",
+    description: "Represents contrast across standard, high, soft states.",
+    coreCategory: "appearance",
+    docsCategory: "Appearance",
+    transition: "crossfade",
+    initialState: "standard",
+    states: [
+      {
+        name: "standard",
+        icon: "circle",
+        label: "Standard contrast",
+        description: "Standard contrast.",
+        continuous: false,
+      },
+      {
+        name: "high",
+        icon: "contrast",
+        label: "High contrast",
+        description: "High contrast.",
+        continuous: false,
+      },
+      {
+        name: "soft",
+        icon: "circle-dashed",
+        label: "Soft contrast",
+        description: "Soft contrast.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "tool",
+    camel: "tool",
+    pascal: "Tool",
+    title: "Editing tool",
+    description: "Represents editing tool across select, draw, erase states.",
+    coreCategory: "editing",
+    docsCategory: "Editing tools",
+    transition: "rotate",
+    initialState: "select",
+    states: [
+      {
+        name: "select",
+        icon: "mouse-pointer-2",
+        label: "Selection tool",
+        description: "Selection tool.",
+        continuous: false,
+      },
+      {
+        name: "draw",
+        icon: "pencil",
+        label: "Drawing tool",
+        description: "Drawing tool.",
+        continuous: false,
+      },
+      {
+        name: "erase",
+        icon: "eraser",
+        label: "Eraser tool",
+        description: "Eraser tool.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "text-format",
+    camel: "textFormat",
+    pascal: "TextFormat",
+    title: "Text format",
+    description: "Represents text format across regular, bold, italic states.",
+    coreCategory: "editing",
+    docsCategory: "Editing tools",
+    transition: "crossfade",
+    initialState: "regular",
+    states: [
+      {
+        name: "regular",
+        icon: "type",
+        label: "Regular text",
+        description: "Regular text.",
+        continuous: false,
+      },
+      {
+        name: "bold",
+        icon: "bold",
+        label: "Bold text",
+        description: "Bold text.",
+        continuous: false,
+      },
+      {
+        name: "italic",
+        icon: "italic",
+        label: "Italic text",
+        description: "Italic text.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "alignment",
+    camel: "alignment",
+    pascal: "Alignment",
+    title: "Text alignment",
+    description:
+      "Represents text alignment across start, center, end, justify states.",
+    coreCategory: "editing",
+    docsCategory: "Editing tools",
+    transition: "slide",
+    initialState: "start",
+    states: [
+      {
+        name: "start",
+        icon: "text-align-start",
+        label: "Align to start",
+        description: "Align to start.",
+        continuous: false,
+      },
+      {
+        name: "center",
+        icon: "text-align-center",
+        label: "Align to center",
+        description: "Align to center.",
+        continuous: false,
+      },
+      {
+        name: "end",
+        icon: "text-align-end",
+        label: "Align to end",
+        description: "Align to end.",
+        continuous: false,
+      },
+      {
+        name: "justify",
+        icon: "text-align-justify",
+        label: "Justified text",
+        description: "Justified text.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "folder",
+    camel: "folder",
+    pascal: "Folder",
+    title: "Folder",
+    description: "Represents folder across closed, open, locked states.",
+    coreCategory: "files",
+    docsCategory: "Files and folders",
+    transition: "morph",
+    initialState: "closed",
+    states: [
+      {
+        name: "closed",
+        icon: "folder",
+        label: "Folder closed",
+        description: "Folder closed.",
+        continuous: false,
+      },
+      {
+        name: "open",
+        icon: "folder-open",
+        label: "Folder open",
+        description: "Folder open.",
+        continuous: false,
+      },
+      {
+        name: "locked",
+        icon: "folder-lock",
+        label: "Folder locked",
+        description: "Folder locked.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "file-access",
+    camel: "fileAccess",
+    pascal: "FileAccess",
+    title: "File access",
+    description:
+      "Represents file access across private, shared, read only states.",
+    coreCategory: "files",
+    docsCategory: "Files and folders",
+    transition: "crossfade",
+    initialState: "private",
+    states: [
+      {
+        name: "private",
+        icon: "file-lock",
+        label: "Private file",
+        description: "Private file.",
+        continuous: false,
+      },
+      {
+        name: "shared",
+        icon: "file-user",
+        label: "Shared file",
+        description: "Shared file.",
+        continuous: false,
+      },
+      {
+        name: "read-only",
+        icon: "file-text",
+        label: "Read-only file",
+        description: "Read-only file.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "archive",
+    camel: "archive",
+    pascal: "Archive",
+    title: "Archive",
+    description: "Represents archive across unpacked, archived states.",
+    coreCategory: "files",
+    docsCategory: "Files and folders",
+    transition: "scale-fade",
+    initialState: "unpacked",
+    states: [
+      {
+        name: "unpacked",
+        icon: "folder-open",
+        label: "Unpacked",
+        description: "Unpacked.",
+        continuous: false,
+      },
+      {
+        name: "archived",
+        icon: "archive",
+        label: "Archived",
+        description: "Archived.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "link",
+    camel: "link",
+    pascal: "Link",
+    title: "Link",
+    description: "Represents link across connected, broken, external states.",
+    coreCategory: "files",
+    docsCategory: "Files and folders",
+    transition: "morph",
+    initialState: "connected",
+    states: [
+      {
+        name: "connected",
+        icon: "link",
+        label: "Link connected",
+        description: "Link connected.",
+        continuous: false,
+      },
+      {
+        name: "broken",
+        icon: "unlink",
+        label: "Link broken",
+        description: "Link broken.",
+        continuous: false,
+      },
+      {
+        name: "external",
+        icon: "external-link",
+        label: "External link",
+        description: "External link.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "weather",
+    camel: "weather",
+    pascal: "Weather",
+    title: "Weather",
+    description:
+      "Represents weather across sunny, cloudy, rainy, snowy states.",
+    coreCategory: "weather",
+    docsCategory: "Weather and time",
+    transition: "crossfade",
+    initialState: "sunny",
+    states: [
+      {
+        name: "sunny",
+        icon: "sun",
+        label: "Sunny",
+        description: "Sunny.",
+        continuous: false,
+      },
+      {
+        name: "cloudy",
+        icon: "cloud",
+        label: "Cloudy",
+        description: "Cloudy.",
+        continuous: false,
+      },
+      {
+        name: "rainy",
+        icon: "cloud-rain",
+        label: "Rainy",
+        description: "Rainy.",
+        continuous: false,
+      },
+      {
+        name: "snowy",
+        icon: "snowflake",
+        label: "Snowy",
+        description: "Snowy.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "daylight",
+    camel: "daylight",
+    pascal: "Daylight",
+    title: "Daylight",
+    description: "Represents daylight across dawn, day, dusk, night states.",
+    coreCategory: "weather",
+    docsCategory: "Weather and time",
+    transition: "rotate",
+    initialState: "dawn",
+    states: [
+      {
+        name: "dawn",
+        icon: "sunrise",
+        label: "Dawn",
+        description: "Dawn.",
+        continuous: false,
+      },
+      {
+        name: "day",
+        icon: "sun",
+        label: "Daytime",
+        description: "Daytime.",
+        continuous: false,
+      },
+      {
+        name: "dusk",
+        icon: "sunset",
+        label: "Dusk",
+        description: "Dusk.",
+        continuous: false,
+      },
+      {
+        name: "night",
+        icon: "moon",
+        label: "Nighttime",
+        description: "Nighttime.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "temperature",
+    camel: "temperature",
+    pascal: "Temperature",
+    title: "Temperature",
+    description: "Represents temperature across cold, mild, hot states.",
+    coreCategory: "weather",
+    docsCategory: "Weather and time",
+    transition: "scale-fade",
+    initialState: "cold",
+    states: [
+      {
+        name: "cold",
+        icon: "snowflake",
+        label: "Cold",
+        description: "Cold.",
+        continuous: false,
+      },
+      {
+        name: "mild",
+        icon: "thermometer",
+        label: "Mild temperature",
+        description: "Mild temperature.",
+        continuous: false,
+      },
+      {
+        name: "hot",
+        icon: "thermometer-sun",
+        label: "Hot",
+        description: "Hot.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "task",
+    camel: "task",
+    pascal: "Task",
+    title: "Task",
+    description: "Represents task across todo, active, done, skipped states.",
+    coreCategory: "productivity",
+    docsCategory: "Productivity",
+    transition: "scale-fade",
+    initialState: "todo",
+    states: [
+      {
+        name: "todo",
+        icon: "circle",
+        label: "To do",
+        description: "To do.",
+        continuous: false,
+      },
+      {
+        name: "active",
+        icon: "circle-dot",
+        label: "In progress",
+        description: "In progress.",
+        continuous: false,
+      },
+      {
+        name: "done",
+        icon: "circle-check",
+        label: "Done",
+        description: "Done.",
+        continuous: false,
+      },
+      {
+        name: "skipped",
+        icon: "circle-slash",
+        label: "Skipped",
+        description: "Skipped.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "priority",
+    camel: "priority",
+    pascal: "Priority",
+    title: "Priority",
+    description: "Represents priority across low, normal, high states.",
+    coreCategory: "productivity",
+    docsCategory: "Productivity",
+    transition: "slide",
+    initialState: "low",
+    states: [
+      {
+        name: "low",
+        icon: "arrow-down",
+        label: "Low priority",
+        description: "Low priority.",
+        continuous: false,
+      },
+      {
+        name: "normal",
+        icon: "minus",
+        label: "Normal priority",
+        description: "Normal priority.",
+        continuous: false,
+      },
+      {
+        name: "high",
+        icon: "arrow-up",
+        label: "High priority",
+        description: "High priority.",
+        continuous: false,
+      },
+    ],
+  },
+  {
+    slug: "pin",
+    camel: "pin",
+    pascal: "Pin",
+    title: "Pin",
+    description: "Represents pin across unpinned, pinned states.",
+    coreCategory: "productivity",
+    docsCategory: "Productivity",
+    transition: "rotate",
+    initialState: "unpinned",
+    states: [
+      {
+        name: "unpinned",
+        icon: "pin-off",
+        label: "Unpinned",
+        description: "Unpinned.",
+        continuous: false,
+      },
+      {
+        name: "pinned",
+        icon: "pin",
+        label: "Pinned",
+        description: "Pinned.",
+        continuous: false,
+      },
+    ],
+  },
+];
+
 const icons = [
+  ...extendedIcons,
   asyncIcon(
     "upload",
     "upload",
@@ -542,6 +1360,70 @@ const icons = [
 ];
 
 const lucide = {
+  archive: "Archive",
+  "arrow-down": "ArrowDown",
+  "arrow-up": "ArrowUp",
+  bluetooth: "Bluetooth",
+  "bluetooth-connected": "BluetoothConnected",
+  "bluetooth-off": "BluetoothOff",
+  bold: "Bold",
+  cable: "Cable",
+  circle: "Circle",
+  "circle-check": "CircleCheck",
+  "circle-dashed": "CircleDashed",
+  "circle-dot": "CircleDot",
+  "circle-slash": "CircleSlash",
+  cloud: "Cloud",
+  "cloud-rain": "CloudRain",
+  contrast: "Contrast",
+  eraser: "Eraser",
+  "external-link": "ExternalLink",
+  eye: "Eye",
+  "eye-off": "EyeOff",
+  "file-lock": "FileLock",
+  "file-text": "FileText",
+  "file-user": "FileUser",
+  folder: "Folder",
+  "folder-lock": "FolderLock",
+  "folder-open": "FolderOpen",
+  italic: "Italic",
+  link: "Link",
+  lock: "Lock",
+  "lock-open": "LockOpen",
+  minus: "Minus",
+  monitor: "Monitor",
+  moon: "Moon",
+  "mouse-pointer-2": "MousePointer2",
+  pencil: "Pencil",
+  pin: "Pin",
+  "pin-off": "PinOff",
+  shield: "Shield",
+  "shield-ban": "ShieldBan",
+  "shield-check": "ShieldCheck",
+  "signal-high": "SignalHigh",
+  "signal-low": "SignalLow",
+  "signal-zero": "SignalZero",
+  snowflake: "Snowflake",
+  sun: "Sun",
+  "sun-dim": "SunDim",
+  "sun-medium": "SunMedium",
+  sunrise: "Sunrise",
+  sunset: "Sunset",
+  "text-align-center": "TextAlignCenter",
+  "text-align-end": "TextAlignEnd",
+  "text-align-justify": "TextAlignJustify",
+  "text-align-start": "TextAlignStart",
+  thermometer: "Thermometer",
+  "thermometer-sun": "ThermometerSun",
+  type: "Type",
+  unlink: "Unlink",
+  unplug: "Unplug",
+  "user-round": "UserRound",
+  "user-round-check": "UserRoundCheck",
+  "user-round-x": "UserRoundX",
+  "wifi-high": "WifiHigh",
+  "wifi-low": "WifiLow",
+  "wifi-off": "WifiOff",
   bell: "Bell",
   "bell-off": "BellOff",
   "bell-ring": "BellRing",
@@ -619,9 +1501,9 @@ ${icon.states.map((x) => `    ${q(x.name)}: { icon: ${q(x.icon)}, label: ${q(x.l
 export type ${icon.pascal}State = keyof typeof ${icon.camel}StateIcon.states;
 `;
 
-const reactFile = (
-  icon,
-) => `import { ${icon.camel}StateIcon } from "@stateglyph/core";
+const reactFile = (icon) => `"use client";
+
+import { ${icon.camel}StateIcon } from "@stateglyph/core";
 import { StateIcon, type StateIconProps } from "../components/state-icon";
 
 export type ${icon.pascal}StateIconProps = Omit<StateIconProps<typeof ${icon.camel}StateIcon.states>, "definition">;
@@ -647,6 +1529,16 @@ export type { StateIconCategory, StateIconDefinition, StateIconLibrary, StateIco
 const reactIndex = `export { StateIcon, type StateIconProps } from "./components/state-icon";
 ${icons.map((x) => `export { ${x.pascal}StateIcon, type ${x.pascal}StateIconProps } from "./icons/${x.slug}-state-icon";`).join("\n")}
 `;
+
+const glyphNames = new Set(
+  icons.flatMap((icon) => icon.states.map((state) => state.icon)),
+);
+for (const glyph of glyphNames) {
+  if (!lucide[glyph]) throw new Error(`Missing Lucide mapping: ${glyph}`);
+}
+if (new Set(icons.map((icon) => icon.slug)).size !== icons.length) {
+  throw new Error("Icon IDs must be unique.");
+}
 
 const usedGlyphs = [
   ...new Set(icons.flatMap((x) => x.states.map((y) => y.icon))),
@@ -693,6 +1585,13 @@ function toStateRecords<States extends StateIconStates>(definition: StateIconDef
   return Object.entries(definition.states).map(([name, value]) => ({ name, label: value.label, description: value.description ?? \`Shows the \${name} state.\`, continuous: value.continuous ?? false }));
 }
 export const categoryDescriptions = {
+  "Connectivity": "Wireless, Bluetooth, wired connections, and signal strength.",
+  "Security and privacy": "Access, visibility, protection, and identity states.",
+  "Appearance": "Themes, brightness, and contrast preferences.",
+  "Editing tools": "Selection tools, text formatting, and alignment.",
+  "Files and folders": "Folders, sharing, archives, and links.",
+  "Weather and time": "Weather conditions, daylight, and temperature.",
+  "Productivity": "Task progress, priority, and pinned items.",
   "Async workflows": "Uploads, saves, payments, submissions, and other task lifecycles.",
   "Form states": "Submission and validation states for forms and fields.",
   Commerce: "Cart, checkout, and payment workflows.",
@@ -701,10 +1600,32 @@ export const categoryDescriptions = {
   "Navigation and layout": "Menus, panels, views, and directional controls.",
   "Feedback and toggles": "Temporary confirmation and saved preference states.",
 } as const;
-export const iconCatalog = [
+const iconRecords = [
 ${docsRecords}
 ] as const satisfies readonly IconRecord[];
-export const iconCategories = Array.from(new Set(iconCatalog.map((icon) => icon.category)));
+// Curated for common interface controls; not a usage analytics ranking.
+const iconPriority: readonly string[] = [
+  "menu", "play-pause", "copy", "like", "bookmark", "theme", "notification",
+  "volume", "visibility", "lock", "upload", "download", "save", "wifi",
+  "chevron-vertical", "chevron-horizontal",
+];
+const categoryPriority = [
+  "Navigation and layout", "Media controls", "Feedback and toggles", "Connectivity",
+  "Notifications", "Async workflows", "Security and privacy", "Productivity",
+  "Commerce", "Form states", "Files and folders", "Appearance", "Editing tools",
+  "Weather and time",
+] as const;
+function priority(slug: string) {
+  const index = iconPriority.indexOf(slug);
+  return index === -1 ? iconPriority.length : index;
+}
+export const iconCatalog = [...iconRecords].sort((a, b) =>
+  priority(a.slug) - priority(b.slug) ||
+  categoryPriority.indexOf(a.category) - categoryPriority.indexOf(b.category)
+);
+export const iconCategories = categoryPriority.filter((category) =>
+  iconCatalog.some((icon) => icon.category === category)
+);
 export function getIconBySlug(slug: string) { return iconCatalog.find((icon) => icon.slug === slug); }
 `;
 
@@ -730,5 +1651,34 @@ await writeFile(
 await writeFile(
   path.join(root, "apps/docs/src/data/icon-catalog.tsx"),
   docsRegistry,
+);
+const reactPackagePath = path.join(root, "packages/react/package.json");
+const reactPackage = JSON.parse(await readFile(reactPackagePath, "utf8"));
+reactPackage.exports = {
+  ".": reactPackage.exports["."],
+  ...Object.fromEntries(
+    [...icons]
+      .sort((a, b) => a.slug.localeCompare(b.slug))
+      .map((icon) => [
+        `./${icon.slug}`,
+        {
+          types: `./dist/icons/${icon.slug}-state-icon.d.ts`,
+          import: `./dist/icons/${icon.slug}-state-icon.js`,
+        },
+      ]),
+  ),
+};
+await writeFile(reactPackagePath, `${JSON.stringify(reactPackage, null, 2)}\n`);
+const animationSource = (
+  await readFile(
+    path.join(root, "packages/react/src/components/animated-icon.tsx"),
+    "utf8",
+  )
+)
+  .replace("export type AnimatedIconProps", "type AnimatedIconProps")
+  .replace("export function AnimatedIcon", "function AnimatedIcon");
+await writeFile(
+  path.join(root, "packages/cli/src/animation-source.ts"),
+  `// Generated from the React animation renderer by npm run generate.\nexport const animationSource = ${JSON.stringify(animationSource)};\n`,
 );
 console.log(`Generated ${icons.length} StateGlyph.`);

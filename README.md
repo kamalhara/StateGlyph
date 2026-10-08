@@ -4,20 +4,19 @@
 [![npm](https://img.shields.io/npm/v/@stateglyph/react.svg?logo=npm)](https://www.npmjs.com/package/@stateglyph/react)
 [![Documentation](https://img.shields.io/badge/docs-stateglyph.js.org-34d399.svg)](https://stateglyph.js.org/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-5c625d.svg)](./LICENSE)
-[![Bundle size](https://img.shields.io/badge/gzip%20per%20icon-~1.4%20kB-34d399.svg)](#bundle-size)
-
-
+[![Animated states](https://img.shields.io/badge/state%20changes-animated-34d399.svg)](#packages)
 
 StateGlyph is an open-source collection of typed React icons that communicate
 what an interface is doing, not only what an action looks like. Each component
 has named states such as `idle`, `loading`, and `success`, with accessible
 labels and predictable TypeScript props.
 
-The first release contains 31 icons across async actions, media, navigation,
-feedback, forms, commerce, and notifications. The icons use the open-source
+The library contains 55 icons across 14 categories, including connectivity,
+security, appearance, editing, files, weather, and productivity alongside
+async actions, media, navigation, feedback, forms, commerce, and notifications. The icons use the open-source
 [Lucide](https://lucide.dev/) icon set as their visual foundation.
 
-> StateGlyph is currently an early `0.1.0` release. The API may evolve before
+> StateGlyph is currently an early `0.2.0` release. The API may evolve before
 > version `1.0.0`.
 
 [Documentation](https://stateglyph.js.org/) · [Browse icon definitions](./packages/core/src/icons) · [Contributing](./CONTRIBUTING.md)
@@ -45,7 +44,7 @@ Import from the main package:
 import { UploadStateIcon } from "@stateglyph/react";
 
 export function UploadButton() {
-  return <UploadStateIcon state="uploading" />;
+  return <UploadStateIcon state="loading" />;
 }
 ```
 
@@ -86,10 +85,21 @@ project. Existing files are preserved unless you pass `--force`.
 | `@stateglyph/cli`         | Copy-and-own component generator                     |
 | `@stateglyph/transitions` | Optional CSS transitions with reduced-motion support |
 
-To enable the transition declared by each icon definition, install the optional
-package and import its stylesheet once. It includes `crossfade`, `scale-fade`,
-`rotate`, `slide`, and `morph`, plus continuous loading-state rotation and a
-reduced-motion fallback:
+State changes animate automatically: the outgoing and incoming glyphs overlap
+through crossfade, scale, rotation, slide, or blur blending. Animations restart on
+every state change and stop when reduced motion is enabled.
+
+```tsx
+import { ThemeStateIcon, WifiStateIcon, PriorityStateIcon } from "@stateglyph/react";
+
+<ThemeStateIcon state="dark" duration={300} />
+<WifiStateIcon state="weak" transition="scale-fade" />
+<PriorityStateIcon state="high" animated={false} />
+```
+
+The `state` prop controls the display; your application handles the action.
+Use `duration` for state changes and `spinDuration` for continuous loading states.
+The optional transitions package provides CSS timing presets:
 
 ```ts
 import "@stateglyph/transitions/styles.css";
@@ -97,9 +107,9 @@ import "@stateglyph/transitions/styles.css";
 
 ## Bundle size
 
-A direct per-icon entry such as `@stateglyph/react/upload` adds approximately
-1.4 kB gzipped of StateGlyph wrapper code before your bundler processes the
-selected Lucide glyph. Direct entries and the main package are tree-shakeable.
+Direct per-icon entries and the main package are tree-shakeable. The animation
+renderer is shared when you import multiple components. Lucide remains an
+external dependency for the React package.
 
 ## Local development
 
