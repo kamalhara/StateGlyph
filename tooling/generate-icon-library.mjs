@@ -1600,10 +1600,32 @@ export const categoryDescriptions = {
   "Navigation and layout": "Menus, panels, views, and directional controls.",
   "Feedback and toggles": "Temporary confirmation and saved preference states.",
 } as const;
-export const iconCatalog = [
+const iconRecords = [
 ${docsRecords}
 ] as const satisfies readonly IconRecord[];
-export const iconCategories = Array.from(new Set(iconCatalog.map((icon) => icon.category)));
+// Curated for common interface controls; not a usage analytics ranking.
+const iconPriority: readonly string[] = [
+  "menu", "play-pause", "copy", "like", "bookmark", "theme", "notification",
+  "volume", "visibility", "lock", "upload", "download", "save", "wifi",
+  "chevron-vertical", "chevron-horizontal",
+];
+const categoryPriority = [
+  "Navigation and layout", "Media controls", "Feedback and toggles", "Connectivity",
+  "Notifications", "Async workflows", "Security and privacy", "Productivity",
+  "Commerce", "Form states", "Files and folders", "Appearance", "Editing tools",
+  "Weather and time",
+] as const;
+function priority(slug: string) {
+  const index = iconPriority.indexOf(slug);
+  return index === -1 ? iconPriority.length : index;
+}
+export const iconCatalog = [...iconRecords].sort((a, b) =>
+  priority(a.slug) - priority(b.slug) ||
+  categoryPriority.indexOf(a.category) - categoryPriority.indexOf(b.category)
+);
+export const iconCategories = categoryPriority.filter((category) =>
+  iconCatalog.some((icon) => icon.category === category)
+);
 export function getIconBySlug(slug: string) { return iconCatalog.find((icon) => icon.slug === slug); }
 `;
 

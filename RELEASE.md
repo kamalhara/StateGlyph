@@ -2,6 +2,8 @@
 
 The 0.2.0 feature release contains 55 icons in 14 displayed categories and
 animated outgoing/incoming glyph transitions in both the React package and CLI.
+The documentation adds a cycling homepage preview, common controls first in the
+catalog, consistent card layouts, and expandable sidebar categories.
 The four published packages are linked and receive the same minor release.
 
 ## Prepare and verify
@@ -31,6 +33,9 @@ lockfile as a separate release commit. Do not recreate a consumed changeset for
 the same addition, or the next release will bump versions again.
 
 ## Publish
+
+Push or publish only after the repository owner approves this release. Use the
+owner’s signed-in GitHub account for the push; verify it with `gh auth status`.
 
 Authenticate with an npm account authorized for the `@stateglyph` scope:
 

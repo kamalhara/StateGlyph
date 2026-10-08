@@ -150,7 +150,7 @@ export default function Home() {
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         {/* ── Hero ──────────────────────────────────────────── */}
-        <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_320px] lg:items-center">
+        <section className="grid gap-12 py-16 sm:py-24 lg:grid-cols-[1fr_400px] lg:items-center">
           <div className="hero-enter max-w-4xl">
             <div className="mb-5 flex flex-wrap items-center gap-3">
               <p className="font-mono text-xs text-[#929792]">
@@ -195,7 +195,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hero-enter hero-enter--late hidden lg:flex lg:justify-center">
+          <div className="hero-enter hero-enter--late min-w-0">
             <HeroDemo />
           </div>
         </section>

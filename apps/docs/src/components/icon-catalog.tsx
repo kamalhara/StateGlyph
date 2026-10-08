@@ -93,7 +93,7 @@ export function IconCatalog() {
       </div>
 
       <div
-        className="flex gap-2 overflow-x-auto border-b border-[#2b2e2c] py-4"
+        className="flex flex-wrap gap-2 border-b border-[#2b2e2c] py-4"
         role="group"
         aria-label="Filter icons by category"
       >
@@ -103,7 +103,7 @@ export function IconCatalog() {
             type="button"
             onClick={() => setCategory(item)}
             aria-pressed={category === item}
-            className={`shrink-0 rounded border px-3 py-1.5 text-xs transition-colors ${
+            className={`rounded border px-3 py-1.5 text-xs transition-colors ${
               category === item
                 ? "border-[#686d69] bg-[#252825] text-white"
                 : "border-[#343735] text-[#7e837e] hover:border-[#4a4e4b] hover:text-[#c5c8c3]"
@@ -119,10 +119,11 @@ export function IconCatalog() {
           {matchingIcons.map((icon) => (
             <article
               key={icon.slug}
-              className="group overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-[#4a4e4b]"
+              data-icon-card={icon.slug}
+              className="group flex flex-col overflow-hidden rounded-lg border border-[#343735] bg-[#1a1c1b] transition-[border-color,transform] duration-300 motion-safe:hover:-translate-y-0.5 hover:border-[#4a4e4b]"
             >
               <div
-                className="grid divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]"
+                className="grid h-28 shrink-0 divide-x divide-[#2b2e2c] border-b border-[#2b2e2c] bg-[#171918]"
                 style={{
                   gridTemplateColumns: `repeat(${icon.states.length}, minmax(0, 1fr))`,
                 }}
@@ -130,43 +131,51 @@ export function IconCatalog() {
                 {icon.states.map((state) => (
                   <div
                     key={state.name}
-                    className="grid aspect-square place-items-center text-[#c5c8c3]"
+                    className="flex min-w-0 flex-col items-center justify-center gap-3 px-1 text-[#c5c8c3]"
                     title={state.name}
                   >
                     {icon.render({
                       state: state.name,
-                      size: 26,
+                      size: 28,
                     })}
+                    <span className="max-w-full truncate font-mono text-[9px] text-[#7e837e]">
+                      {state.name}
+                    </span>
                   </div>
                 ))}
               </div>
 
-              <div className="p-5">
-                <div className="flex items-start justify-between gap-5">
-                  <div>
+              <div className="flex flex-1 flex-col p-5">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
                     <h2 className="font-medium">{icon.name}</h2>
-                    <code className="mt-1 block font-mono text-xs text-[#7e837e]">
+                    <code className="mt-1 block truncate font-mono text-[11px] text-[#7e837e]">
                       {icon.componentName}
                     </code>
-                    <p className="mt-3 text-xs leading-5 text-[#7e837e]">
+                    <p className="mt-3 min-h-10 text-xs leading-5 text-[#7e837e]">
                       {icon.description}
                     </p>
                   </div>
-                  <span className="rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
+                  <span className="shrink-0 rounded border border-[#343735] px-2 py-1 font-mono text-[10px] text-[#929792]">
                     {icon.states.length} states
                   </span>
                 </div>
 
-                <div className="mt-6 flex items-center justify-between border-t border-[#2b2e2c] pt-4 text-xs">
-                  <span className="text-[#7e837e]">
-                    {icon.source} · {icon.category}
-                  </span>
-                  <Link
-                    href={`/icons/${icon.slug}`}
-                    className="text-[#c5c8c3] transition-colors hover:text-white"
-                  >
-                    Open icon →
-                  </Link>
+                <div className="mt-auto pt-6">
+                  <div className="flex items-center justify-between gap-3 border-t border-[#2b2e2c] pt-4 text-xs">
+                    <span
+                      className="min-w-0 truncate text-[#7e837e]"
+                      title={icon.category}
+                    >
+                      {icon.category}
+                    </span>
+                    <Link
+                      href={`/icons/${icon.slug}`}
+                      className="shrink-0 text-[#c5c8c3] transition-colors hover:text-white"
+                    >
+                      Open icon →
+                    </Link>
+                  </div>
                 </div>
               </div>
             </article>

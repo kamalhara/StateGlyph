@@ -43,6 +43,16 @@ input {
   display: none;
 }
 
+html,
+body {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
 button:focus-visible,
 a:focus-visible,
 input:focus-visible {
