@@ -1,6 +1,6 @@
 {
   "name": "@stateglyph/react",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Typed, accessible state icon components for React.",
   "license": "MIT",
   "author": "Kamalveer Singh",
@@ -268,7 +268,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@stateglyph/core": "0.1.0",
+    "@stateglyph/core": "0.2.0",
     "lucide-react": "^1.47.0"
   },
   "peerDependencies": {

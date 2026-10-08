@@ -1,16 +1,22 @@
 #!/usr/bin/env node
 
+import { readFileSync } from "node:fs";
+
 import { Command } from "commander";
 
 import { addIcons } from "./add";
 import { formatIconList } from "./list";
+
+const { version } = JSON.parse(
+  readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+) as { version: string };
 
 const program = new Command();
 
 program
   .name("stateglyph")
   .description("Browse and add StateGlyph components to a React project.")
-  .version("0.1.0")
+  .version(version)
   .showHelpAfterError();
 
 program
